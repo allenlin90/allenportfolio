@@ -1,0 +1,182 @@
+body {
+    background: rgb(204,204,204);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font: 12px "Roboto", "serif", "Georgia", "Times New Roman", "Times";
+    line-height: 0;
+}
+
+@page {
+    margin: 0;
+    width: 10cm;
+    height: 10cm;
+}
+
+.container {
+    height: 10cm;
+    width: 10cm;
+    background: white;
+    page-break-after: always;
+    padding: 0.5cm;
+    margin: 0.5cm auto;
+    box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+}
+
+hr {
+    background: black;
+}
+
+p {
+    margin: 0;
+    line-height: 0.8rem;
+}
+
+img {
+    display: inline-block;
+    width: 100%;
+}
+
+.content {    
+    height: 100%;
+    width: 100%;
+    border: orange dashed 2px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.left, .right {
+    width: 50%;
+    padding: 3mm;
+}
+
+.left {
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr 1fr;
+}
+
+.left p{
+    width: 100%;
+}
+
+.receiver_info, .note, .empty {
+    border-top: 2px solid black;
+    padding-top: 0.2cm;
+}
+
+.receiver_info {
+    font-weight: bold;
+}
+
+.contact {
+    display: flex;
+    margin: 5px 0;
+}
+
+.postcode {
+    margin: 5px 0;
+}
+
+.note_contents + p {
+    text-align: center;
+}
+
+.note {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.note > p {
+    /* transform: scale(0.5); */
+    zoom: 80%;
+}
+
+.right {
+    display: grid;
+    grid-template-rows: 1fr 1/2fr 3fr 1fr;
+}
+
+.serviceDate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pickupDate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tracking {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.qr_code {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#qr_code_img {
+    margin: 10px auto;
+}
+
+#qr_code_img img {
+    height: 100%;
+}
+
+.qr_code p {
+    text-align: center;
+}
+
+.parcels {
+    display: flex;    
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.parcels p {
+    text-align: center;
+    font-weight: bold;
+    margin: 3mm auto;
+}
+
+.extraService {
+    display: flex;
+    justify-content: space-between;
+}
+
+.extraService div {
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cod_amount{
+    font-weight: bold;
+}
+
+.temp, .cod, .express {
+    zoom: 70%;
+}
+
+.temp p:first-child,
+.express p:first-child,
+.cod p:first-child {
+    padding-top: 40px;
+    font-weight: bold;
+}
+
+.temp p:nth-child(2),
+.express p:nth-child(2),
+.cod p:nth-child(2) {
+    padding-bottom: 40px;
+    zoom: 120%;
+}

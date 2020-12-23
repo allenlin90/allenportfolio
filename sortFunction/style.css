@@ -1,0 +1,68 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.contents{
+    background: #fff;
+    margin: 0.2rem;
+    padding: 0.2rem;
+}
+
+.makesend_logo img {
+    margin: auto;
+    margin-top: 1rem;
+    display: block;
+    width: 40%;
+}
+
+.spinner {
+    margin: 1rem auto;
+    flex: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    position:relative;
+}
+
+#spinner_loading {
+    text-align: center;
+    color: #ffc107;
+}
+
+.delivery {
+    display: none;
+}
+
+.order_details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order_details .card{
+    width: 49%;
+}
+
+.order_details * {
+    font-size: 0.3rem;
+}
+
+.delivery img {
+    display: block;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.card p {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.card-body {
+    padding: 5px;
+}

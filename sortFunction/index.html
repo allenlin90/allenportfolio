@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
@@ -30,37 +31,32 @@
                 <img src="https://image.freepik.com/free-vector/delivery-concept-illustration_114360-130.jpg"
                     alt="delivery_img">
                 <div class="order_details">
-                    <div class="card">
-                        <!-- <img src="..." class="card-img-top" alt="..."> -->
+                    <div class="card shadow bg-white rounded" id="sender">
                         <p>Sender</p>
                         <div class="card-body">
                             <p class="card-text">
                             <p><span>Allen Lin</span></p>
                             <p><span>0632166655</span></p>
+                            <p class="address" id="receiver_address">32/4 (5C), Regent On The Park 1, Soi 26 Sukhumvit ,
+                                Klongtan, Klongtoey Bangkok 10110</p>
                             </p>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card shadow bg-white rounded" id="receiver">
                         <!-- <img src="..." class="card-img-top" alt="..."> -->
                         <p>Receiver</p>
                         <div class="card-body">
                             <p class="card-text">
                             <p><span>Talent Yo</span></p>
                             <p><span>0632166699</span></p>
+                            <p class="address" id="receiver_address">32/4 (5C), Regent On The Park 1, Soi 26 Sukhumvit ,
+                                Klongtan, Klongtoey Bangkok 10110</p>
                             </p>
                         </div>
                     </div>
-                    <!-- <ul class="sender list-group">
-                        <li class="list-group-item">Sender</li>
-                        <li class="list-group-item">Name: <span id="sender_name">Allen Lin</span></li>
-                        <li class="list-group-item">Phone: <span id="sender_phone">0632166655</span></li>
-                    </ul>
-                    <ul class="receiver list-group">
-                        <li class="list-group-item">Receiver</li>
-                        <li class="list-group-item">Name: <span id="sender_name">Talent Yo</span></li>
-                        <li class="list-group-item">Phone: <span id="sender_phone">0632166699</span></li>
-                    </ul> -->
                 </div>
+                <button class="btn btn-primary" id="collapse-btn"></button>
+                <button class="btn btn-warning" id="driver-login">Driver Login</button>
             </div>
         </div>
     </div>

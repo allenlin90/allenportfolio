@@ -39,30 +39,64 @@
 
 .order_details {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .order_details .card{
-    width: 49%;
+    width: 40%;
+    cursor: pointer;
+}
+
+.card:hover {    
+    animation-name: cards;
+    animation-duration: 5s;
+    animation-delay: 500ms;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+}
+
+@keyframes cards {
+    0%   { transform: translateY(0); }
+    2.5%  { transform: translateY(-5px); }
+    5%  { transform: translateY(0px); }
+    100% { transform: translateY(0); }
 }
 
 .order_details * {
-    font-size: 0.3rem;
+    font-size: 1rem;
 }
 
 .delivery img {
     display: block;
-    width: 60%;
+    width: 80vw;
     margin: 0 auto;
 }
 
 .card p {
     text-align: center;
     margin: 0 auto;
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: bold;
 }
 
 .card-body {
     padding: 5px;
+}
+
+#collapse-btn {
+    display: none;
+    margin: 20px auto;
+    width: 120px;
+}
+
+#driver-login {
+    background: #ffc107;
+    font-weight: bold;
+    margin: 20px auto;
+    display: block;
+    width: 120px;
+}
+
+.address { 
+    display: none;
 }

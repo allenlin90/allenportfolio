@@ -9,6 +9,58 @@
     background: #fff;
     margin: 0.2rem;
     padding: 0.2rem;
+    display: flex;
+}
+
+.login_panel {
+    z-index: 10;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgb(0,0,0,0.1);
+    position: absolute;
+    top: 0; 
+    /* display: flex; */
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login_content {
+    width: 80%;
+    height: 50%;
+    background: #fff;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+@media (min-width:500px) and (max-width:767px) {
+    .login_content {
+        width: 60%;
+    }
+}
+
+@media (min-width: 768px) {
+    .login_content {
+        width: 40%;
+    }
+}
+
+#close_panel {
+    text-align: right;
+    margin: 0 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.login_form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .makesend_logo img {
@@ -16,16 +68,28 @@
     margin-top: 1rem;
     display: block;
     width: 40%;
+    max-width: 370px;
+    max-height: 110px;
+}
+
+.delivery img {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 497px;
+    max-height: 337;
 }
 
 .spinner {
-    margin: 1rem auto;
+    margin: 0 auto;
+    margin-top: 10rem;
     flex: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 200px;
     position:relative;
+    transform: scale(3);
 }
 
 #spinner_loading {
@@ -35,6 +99,7 @@
 
 .delivery {
     display: none;
+    margin: 0 auto;
 }
 
 .order_details {
@@ -46,16 +111,30 @@
     width: 40%;
     cursor: pointer;
 }
-
-.card:hover {    
+/* .card {
     animation-name: cards;
-    animation-duration: 5s;
+    animation-duration: 10s;
     animation-delay: 500ms;
     animation-timing-function: ease;
     animation-iteration-count: infinite;
 }
 
 @keyframes cards {
+    0%   { transform: rotate(0deg); }
+    20% { transform: rotate(-2deg); }
+    23% { transform: rotate(0deg); }
+    100% { transform: rotate(0deg); }
+} */
+
+.card:hover {    
+    animation-name: cards-hover;
+    animation-duration: 5s;
+    animation-delay: 500ms;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+}
+
+@keyframes cards-hover {
     0%   { transform: translateY(0); }
     2.5%  { transform: translateY(-5px); }
     5%  { transform: translateY(0px); }
@@ -64,12 +143,6 @@
 
 .order_details * {
     font-size: 1rem;
-}
-
-.delivery img {
-    display: block;
-    width: 80vw;
-    margin: 0 auto;
 }
 
 .card p {

@@ -8,11 +8,32 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 
 <body>
+    <div class="login_panel animate__animated animate__slideInUp">
+        <div class="login_content">
+            <form class="login_form">
+                <div class="form-group">
+                    <label for="">Username</label>
+                    <input class="form-control" type="text" name="username" value=""
+                        placeholder="phone number or email">
+                </div>
+                <div class="form-group">
+                    <label for="">Password</label>
+                    <input class="form-control" type="password" name="password" value="">
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Keep me logged in</label>
+                </div>
+                <button type="submit" class="btn btn-warning" id="submitLogin">Login</button>
+            </form>
+        </div>
+    </div>
     <div class="container">
         <div class="makesend_logo">
             <img src="https://www.makesend.asia/wp-content/uploads/2018/06/logo-makesend.png" alt="makesend_logo">
@@ -21,7 +42,7 @@
             <!-- spinner for loading -->
             <div class="spinner">
                 <div class="d-flex justify-content-center">
-                    <div class="spinner-border text-warning" role="status">
+                    <div class="spinner-border text-warning" role="status" id="pageLoader">
                         <span class="sr-only">Loading...</span>
                     </div>
                 </div>

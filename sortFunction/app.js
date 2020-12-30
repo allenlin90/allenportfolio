@@ -15,12 +15,39 @@ window.onload = function () {
     const sender = document.querySelector('#sender');
     const receiver = document.querySelector('#receiver');
     const collapse = document.querySelector('#collapse-btn');
+    const loginPanel = document.querySelector('.login_panel');
+    const loginForm = document.querySelector('.login_content');
+    const loginBtn = document.querySelector('#driver-login');
+    const subLogin = document.querySelector('#submitLogin');
 
+    // hide login panel if user clicks any where out of the login form
+    loginPanel.addEventListener('click', function (e) {
+        if (e.target.contains(loginForm)) {
+            loginPanel.classList.add('animate__slideOutDown');
+            setTimeout(function () {
+                loginPanel.style.display = 'none';
+                loginPanel.classList.remove('animate__slideOutDown');
+            }, 1000);
+        }
+    })
+
+    // show login panel with grey filter background when user clicks 'Driver Login'
+    loginBtn.addEventListener('click', function () {
+        loginPanel.style.display = "flex";
+    });
+
+    // submit and send request server to request token
+    subLogin.addEventListener('click', function (e) {
+        e.preventDefault();
+    });
+
+    // show sender details when users clicks 'sender'
     document.querySelector('#sender').addEventListener('click', function () {
         hideCardAndShowButton('receiverShow', 'senderShow', receiver, sender, this);
         this.children[1].children[3].style.display = 'block';
     });
 
+    // show receiver details when users clicks 'receiver'
     document.querySelector('#receiver').addEventListener('click', function () {
         hideCardAndShowButton('senderShow', 'receiverShow', sender, receiver, this);
         this.children[1].children[3].style.display = 'block';

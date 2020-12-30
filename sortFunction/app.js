@@ -23,10 +23,10 @@ window.onload = function () {
     // hide login panel if user clicks any where out of the login form
     loginPanel.addEventListener('click', function (e) {
         if (e.target.contains(loginForm)) {
-            loginPanel.classList.add('animate__slideOutDown');
+            loginPanel.classList.add('animate__zoomOut');
             setTimeout(function () {
                 loginPanel.style.display = 'none';
-                loginPanel.classList.remove('animate__slideOutDown');
+                loginPanel.classList.remove('animate__zoomOut');
             }, 1000);
         }
     })

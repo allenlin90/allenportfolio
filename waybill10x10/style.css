@@ -22,7 +22,7 @@ body {
 
 @media print {          
     body{
-        zoom: 95%;
+        /* zoom: 95%; */
         margin: auto;
     }
     
@@ -39,6 +39,10 @@ body {
     page-break-after: auto;
     padding: 0.5cm;
     margin: 0.5rem auto;
+}
+
+.container > p {
+    text-align: center;
 }
 
 .content {

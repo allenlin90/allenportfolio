@@ -15,66 +15,60 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="content">
-            <div class="left">
+    <div class="buttonDiv">
+        <button class="btn btn-default">Last Page</button>
+        <button class="btn btn-default" id="printBtn">Print</button>
+    </div>
+    <div id="placeholder">
+        <div class="container">
+            <div class="content">
                 <div class="sender_info">
-                    <p><b>Sender</b></p>
+                    <p><b>Sender </b><span class="name">Allen Lin</span></p>
                     <div class="contact">
-                        <p class="name">John Doe</p>
-                        <p class="phone">0632166699</p>
+                        <p><span class="phone">0632166699 </span><span class="postcode">10110</span></p>
                     </div>
-                    <p>32/4 (5C), Regent On The Park 1, Soi Sukhumvit 26, Klongtoey, Wattana, Bangkok 10110</p>
-                    <div class="postcode">
-                        <p>อำเภอเมืองสมุทรสาคร (มหาชัยเท่านั้น) <span>10110</span></p>
-                    </div>
+                    <p>32/4 Regent On the Park 1, Soi 26 Sukhumvit, Klong Tan, Klong Toei, Bangkok 10110</p>
+                </div>
+                <div class="makesend_logo">
+                    <p>MAKESEND</p>
                 </div>
                 <div class="receiver_info">
-                    <p><b>Receiver</b></p>
+                    <p><b>Receiver </b><span class="name">Talent Yo</span></p>
                     <div class="contact">
-                        <p class="name">Jane Doe</p>
-                        <p class="phone">0632166655</p>
+                        <p><span class="phone">0632166655 </span><span class="postcode">10110</span></p>
                     </div>
-                    <p>32/4 (5C), Regent On The Park 1, Soi Sukhumvit 26, Klongtoey, Wattana, Bangkok 10110</p>
-                    <div class="postcode">
-                        <p>อำเภอเมืองสมุทรสาคร (มหาชัยเท่านั้น) <span>10110</span></p>
+                    <p>32/4 Regent On the Park 1, Soi 26 Sukhumvit, Klong Tan, Klong Toei, Bangkok 10110</p>
+                </div>
+                <div class="serviceDate">
+                    <div class="pickupDate">
+                        <p>Invoice ID: INV2020123456789</p>
+                        <p>2021/01/13</p>
+                    </div>
+                    <div class="areaCode">
+                        <p>Area Code: <span>A20</span></p>
+                    </div>
+                </div>
+                <div class="tracking">
+                    <div class="qr_code">
+                        <div id="qr_code_img"><img
+                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png"
+                                alt=""></div>
+                        <p class="shipment_id"></p>
+                    </div>
+                    <div class="parcels">
+                        <p>Box</p>
+                        <p>1 / 3</p>
                     </div>
                 </div>
                 <div class="note">
                     <div class="note_contents">
                         <p><b>Note</b></p>
-                        <p>test</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, libero!</p>
                     </div>
-                    <p>Generated at <span>2020/10/31 - 23:00</span></p>
+                    <p>Generated at <span>2021/01/12 10:00</span></p>
                 </div>
                 <div class="empty">
                     <p><b>Sorting Code</b></p>
-                </div>
-            </div>
-            <div class="right">
-                <div class="makesend_logo">
-                    <img class="makesend_logo_img"
-                        src="https://www.makesend.asia/wp-content/uploads/2020/04/cropped-logo-header-C-n.png"
-                        alt="makesend_logo">
-                </div>
-                <div class="serviceDate">
-                    <div class="pickupDate">
-                        <p>Invoice ID: INV2020123456789</p>
-                        <p>2020/10/31</p>
-                    </div>
-                    <div class="areaCode">
-                        <p>Area Code: <span>05 Klong Tan</span></p>
-                    </div>
-                </div>
-                <div class="tracking">
-                    <div class="qr_code">
-                        <div id="qr_code_img"></div>
-                        <p class="shipment_id">EX2020123456789</p>
-                    </div>
-                    <div class="parcels">
-                        <p>Box</p>
-                        <p>1 / 1</p>
-                    </div>
                 </div>
                 <div class="extraService">
                     <div class="temp">
@@ -82,13 +76,12 @@
                         <p><i class="fa fa-snowflake fa-2x"></i></p>
                     </div>
                     <div class="cod">
-                        <p>Cash on Delivery</p>
-                        <p class="cod_amount">300 Baht</p>
+                        <p>COD</p>
+                        <p class="cod_amount">500</p>
                     </div>
                     <div class="express">
-                        <p>Before 5pm</p>
-                        <p><i class="far fa-clock fa-2x"></i></p>
-                        <!-- <p><i class="mdi mdi-clock-fast fas-2x"></i></p> -->
+                        <p>Express</p>
+                        <p><span>Before 5pm</span><i class="far fa-clock fa-2x"></i></p>
                     </div>
                 </div>
             </div>

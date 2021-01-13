@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
@@ -51,16 +51,38 @@
                     </div>
                     <p id="spinner_loading">Loading...</p>
                 </div>
+
                 <div class="delivery">
                     <img src="https://image.freepik.com/free-vector/delivery-concept-illustration_114360-130.jpg"
                         alt="delivery_img">
+                    <div class="size">
+                        <div class="card shadow bg-white rounded">
+                            <p>Parcel Size: <span id="parcel_size">s120</span></p>
+                        </div>
+                    </div>
+                    <div class="extra_service">
+                        <div class="card shadow bg-white rounded">
+                            <div class="temp">
+                                <p>Temperature</p>
+                                <p><i class="fas fa-snowflake"></i></p>
+                            </div>
+                            <div class="cod">
+                                <p>COD</p>
+                                <p id="cod_amount">999 Baht</p>
+                            </div>
+                            <div class="express">
+                                <p>Express</p>
+                                <p>Before 5pm</p>
+                            </div>
+                        </div>
+                    </div>
                     <div class="order_details">
                         <div class="card shadow bg-white rounded" id="sender">
                             <p>Sender</p>
                             <div class="card-body">
                                 <p class="card-text">
-                                <p><span>Allen Lin</span></p>
-                                <p><span>0632166655</span></p>
+                                <p id="sender_name">Allen Lin</p>
+                                <p id="sender_phone">0632166655</p>
                                 <p class="address" id="receiver_address">32/4 (5C), Regent On The Park 1, Soi 26
                                     Sukhumvit ,
                                     Klongtan, Klongtoey Bangkok 10110</p>
@@ -72,8 +94,8 @@
                             <p>Receiver</p>
                             <div class="card-body">
                                 <p class="card-text">
-                                <p><span>Talent Yo</span></p>
-                                <p><span>0632166699</span></p>
+                                <p id="receiver_name">Allen Lin</p>
+                                <p id="receiver_phone">0632166655</p>
                                 <p class="address" id="receiver_address">32/4 (5C), Regent On The Park 1, Soi 26
                                     Sukhumvit ,
                                     Klongtan, Klongtoey Bangkok 10110</p>

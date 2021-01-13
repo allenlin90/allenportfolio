@@ -7,10 +7,7 @@ window.onload = function () {
         }, 500);
     }, 1500);
 
-    const state = {
-        senderShow: true,
-        receiverShow: true
-    }
+
 
     const body = document.querySelector('body');
     const sender = document.querySelector('#sender');
@@ -42,7 +39,10 @@ window.onload = function () {
     // show login panel with grey filter background when user clicks 'Driver Login'
     loginBtn.addEventListener('click', function () {
         loginPanel.style.display = "flex";
-        loginBtn.style.display = 'none';
+        loginBtnState = loginBtn.style.display;
+        if (loginBtnState !== 'none') {
+            loginBtnState = 'none';
+        }
     });
 
     // submit and send request server to request token
@@ -53,6 +53,10 @@ window.onload = function () {
         }
     });
 
+    const state = {
+        senderShow: true,
+        receiverShow: true
+    }
     // show sender details when users clicks 'sender'
     document.querySelector('#sender').addEventListener('click', function () {
         hideCardAndShowButton('receiverShow', 'senderShow', receiver, sender, this);
@@ -68,7 +72,7 @@ window.onload = function () {
     function hideCardAndShowButton(updateStateTo, currentObjState, partyToHide, partyToShow, jsNode) {
         state[updateStateTo] = false;
         partyToHide.style.cssText = 'display: none';
-        partyToShow.style.width = `80%`;
+        partyToShow.style.width = `100%`;
 
         // show return button
         collapse.style.display = 'block';
@@ -78,7 +82,7 @@ window.onload = function () {
                 console.log(`${updateStateTo} is returned`)
                 state[updateStateTo] = true;
                 partyToHide.style.cssText = 'display: block';
-                partyToShow.style.width = '40%';
+                partyToShow.style.width = '50%';
                 collapse.style.display = 'none';
                 jsNode.children[1].children[3].style.display = 'none';
             }

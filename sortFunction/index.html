@@ -14,6 +14,7 @@
 </head>
 
 <body>
+    <!-- login panel starts -->
     <div class="login_panel animate__animated animate__zoomIn">
         <div class="login_content">
             <form class="login_form">
@@ -27,58 +28,65 @@
                     <input class="form-control" type="password" name="password" value="">
                 </div>
                 <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Keep me logged in</label>
+                    <input type="checkbox" class="form-check-input" id="keptLogin" checked>
+                    <label class="form-check-label" for="keptLogin">Keep me logged in</label>
                 </div>
                 <button type="submit" class="btn btn-warning" id="submitLogin">Login</button>
             </form>
         </div>
     </div>
-    <div class="container">
-        <div class="makesend_logo">
-            <img src="https://www.makesend.asia/wp-content/uploads/2018/06/logo-makesend.png" alt="makesend_logo">
+    <!-- login panel ends -->
+    <div class="wrapper">
+        <div class="container">
+            <div class="makesend_logo">
+                <img src="https://www.makesend.asia/wp-content/uploads/2018/06/logo-makesend.png" alt="makesend_logo">
+            </div>
+            <div class="contents">
+                <!-- spinner for loading -->
+                <div class="spinner">
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border text-warning" role="status" id="pageLoader">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                    <p id="spinner_loading">Loading...</p>
+                </div>
+                <div class="delivery">
+                    <img src="https://image.freepik.com/free-vector/delivery-concept-illustration_114360-130.jpg"
+                        alt="delivery_img">
+                    <div class="order_details">
+                        <div class="card shadow bg-white rounded" id="sender">
+                            <p>Sender</p>
+                            <div class="card-body">
+                                <p class="card-text">
+                                <p><span>Allen Lin</span></p>
+                                <p><span>0632166655</span></p>
+                                <p class="address" id="receiver_address">32/4 (5C), Regent On The Park 1, Soi 26
+                                    Sukhumvit ,
+                                    Klongtan, Klongtoey Bangkok 10110</p>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card shadow bg-white rounded" id="receiver">
+                            <!-- <img src="..." class="card-img-top" alt="..."> -->
+                            <p>Receiver</p>
+                            <div class="card-body">
+                                <p class="card-text">
+                                <p><span>Talent Yo</span></p>
+                                <p><span>0632166699</span></p>
+                                <p class="address" id="receiver_address">32/4 (5C), Regent On The Park 1, Soi 26
+                                    Sukhumvit ,
+                                    Klongtan, Klongtoey Bangkok 10110</p>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id="collapse-btn"></button>
+                </div>
+            </div>
         </div>
-        <div class="contents">
-            <!-- spinner for loading -->
-            <div class="spinner">
-                <div class="d-flex justify-content-center">
-                    <div class="spinner-border text-warning" role="status" id="pageLoader">
-                        <span class="sr-only">Loading...</span>
-                    </div>
-                </div>
-                <p id="spinner_loading">Loading...</p>
-            </div>
-            <div class="delivery">
-                <img src="https://image.freepik.com/free-vector/delivery-concept-illustration_114360-130.jpg"
-                    alt="delivery_img">
-                <div class="order_details">
-                    <div class="card shadow bg-white rounded" id="sender">
-                        <p>Sender</p>
-                        <div class="card-body">
-                            <p class="card-text">
-                            <p><span>Allen Lin</span></p>
-                            <p><span>0632166655</span></p>
-                            <p class="address" id="receiver_address">32/4 (5C), Regent On The Park 1, Soi 26 Sukhumvit ,
-                                Klongtan, Klongtoey Bangkok 10110</p>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card shadow bg-white rounded" id="receiver">
-                        <!-- <img src="..." class="card-img-top" alt="..."> -->
-                        <p>Receiver</p>
-                        <div class="card-body">
-                            <p class="card-text">
-                            <p><span>Talent Yo</span></p>
-                            <p><span>0632166699</span></p>
-                            <p class="address" id="receiver_address">32/4 (5C), Regent On The Park 1, Soi 26 Sukhumvit ,
-                                Klongtan, Klongtoey Bangkok 10110</p>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <button class="btn btn-primary" id="collapse-btn"></button>
-                <button class="btn btn-warning" id="driver-login">Driver Login</button>
-            </div>
+        <div class="login_button">
+            <button class="btn btn-warning" id="driver-login">Driver Login</button>
         </div>
     </div>
 

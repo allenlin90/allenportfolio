@@ -12,6 +12,7 @@ window.onload = function () {
         receiverShow: true
     }
 
+    const body = document.querySelector('body');
     const sender = document.querySelector('#sender');
     const receiver = document.querySelector('#receiver');
     const collapse = document.querySelector('#collapse-btn');
@@ -19,6 +20,12 @@ window.onload = function () {
     const loginForm = document.querySelector('.login_content');
     const loginBtn = document.querySelector('#driver-login');
     const subLogin = document.querySelector('#submitLogin');
+
+    body.addEventListener('click', function () {
+        if (loginPanel.style.display === 'none' && loginBtn.style.display === 'none') {
+            loginBtn.style.display = 'block';
+        }
+    });
 
     // hide login panel if user clicks any where out of the login form
     loginPanel.addEventListener('click', function (e) {
@@ -28,17 +35,22 @@ window.onload = function () {
                 loginPanel.style.display = 'none';
                 loginPanel.classList.remove('animate__zoomOut');
             }, 1000);
+            loginBtn.style.display = 'block';
         }
     })
 
     // show login panel with grey filter background when user clicks 'Driver Login'
     loginBtn.addEventListener('click', function () {
         loginPanel.style.display = "flex";
+        loginBtn.style.display = 'none';
     });
 
     // submit and send request server to request token
     subLogin.addEventListener('click', function (e) {
         e.preventDefault();
+        if (document.querySelector('#keptLogin').checked) {
+            console.log('logged in');
+        }
     });
 
     // show sender details when users clicks 'sender'

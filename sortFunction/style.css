@@ -42,18 +42,6 @@ body {
     border-radius: 10px;
 }
 
-@media (min-width:500px) and (max-width:767px) {
-    .login_content {
-        width: 60%;
-    }
-}
-
-@media (min-width: 768px) {
-    .login_content {
-        width: 40%;
-    }
-}
-
 #close_panel {
     text-align: right;
     margin: 0 25px;
@@ -172,11 +160,50 @@ body {
 #driver-login {
     background: #ffc107;
     font-weight: bold;
-    margin: 20px auto;
+    /* margin: 20px auto; */
     display: block;
-    width: 120px;
+    width: 100vw;
+    height: 60px;
+    position: absolute;
+    bottom: 0;
+    /* border-radius: 0; */
 }
 
 .address { 
     display: none;
+}
+
+
+@media (min-width:500px) and (max-width:767px) {
+    .login_content {
+        width: 60%;
+    }
+
+    #driver-login {
+        position: static;
+        width: 500px;
+        margin: 0 auto;
+        border-radius: 4px;
+    }
+
+    .login_button {
+        margin: 40px auto;
+    }
+}
+
+@media (min-width: 768px) {
+    .login_content {
+        width: 40%;
+    }
+
+    #driver-login {
+        position: static;
+        width: 500px;
+        margin: 0 auto;
+        border-radius: 4px;
+    }
+
+    .login_button {
+        margin: 40px auto;
+    }
 }

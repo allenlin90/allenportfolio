@@ -20,12 +20,12 @@
             <form class="login_form">
                 <div class="form-group">
                     <label for="">Username</label>
-                    <input class="form-control" type="text" name="username" value=""
+                    <input id="username" class="form-control" type="text" name="username" value=""
                         placeholder="phone number or email">
                 </div>
                 <div class="form-group">
                     <label for="">Password</label>
-                    <input class="form-control" type="password" name="password" value="">
+                    <input id="password" class="form-control" type="password" name="password" value="">
                 </div>
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="keptLogin" checked>
@@ -37,21 +37,20 @@
     </div>
     <!-- login panel ends -->
     <div class="wrapper">
-        <div class="container" id="delivery_details">
-            <div class="makesend_logo">
-                <img src="https://www.makesend.asia/wp-content/uploads/2018/06/logo-makesend.png" alt="makesend_logo">
-            </div>
-            <div class="contents">
-                <!-- spinner for loading starts -->
-                <div class="spinner">
-                    <div class="d-flex justify-content-center">
-                        <div class="spinner-border text-warning" role="status" id="pageLoader">
-                            <span class="sr-only">Loading...</span>
-                        </div>
-                    </div>
-                    <p id="spinner_loading">Loading...</p>
+        <div class="makesend_logo">
+            <img src="https://www.makesend.asia/wp-content/uploads/2018/06/logo-makesend.png" alt="makesend_logo">
+        </div>
+        <div class="spinner">
+            <div class="d-flex justify-content-center">
+                <div class="spinner-border text-warning" role="status" id="pageLoader">
+                    <span class="sr-only">Loading...</span>
                 </div>
-                <!-- spinner for loading ends -->
+            </div>
+            <p id="spinner_loading">Loading...</p>
+        </div>
+        <div class="container" id="delivery_details">
+
+            <div class="contents">
                 <div class="delivery">
                     <img src="https://image.freepik.com/free-vector/delivery-concept-illustration_114360-130.jpg"
                         alt="delivery_img" id="delivery_image">

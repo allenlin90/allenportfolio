@@ -2,7 +2,8 @@ window.onload = function () {
     setTimeout(function () {
         document.querySelector('.spinner').style.display = 'none';
         setTimeout(function () {
-            document.querySelector('.delivery').style.cssText = `display: block`;
+            document.querySelector('#delivery_details').style.cssText = `display: block`;
+            document.querySelector('.login_button').style.cssText = `display: block`;
         }, 500);
     }, 1500);
 
@@ -16,11 +17,15 @@ window.onload = function () {
     const subLogin = document.querySelector('#submitLogin');
     const appContents = document.querySelector('.container');
     const loginBtnDiv = document.querySelector('.login_button');
-    const deliveryWhiteSpace = document.querySelector('#delivery_whitespace');
     const deliveryImage = document.querySelector('#delivery_image');
 
+    const state = {
+        senderShow: true,
+        receiverShow: true,
+        loggedIn: false
+    }
+
     window.addEventListener('resize', function () {
-        console.log('window size change');
         loginBtnDiv.style.position = 'static';
         changeLoginButtonProperty();
     });
@@ -47,7 +52,6 @@ window.onload = function () {
     loginBtn.addEventListener('click', function () {
         loginPanel.style.display = "flex";
         loginBtnState = loginBtn.style.display;
-        console.log(loginBtnState)
         if (loginBtn.style.display !== 'none') {
             loginBtn.style.display = 'none';
         }
@@ -56,15 +60,15 @@ window.onload = function () {
     // submit and send request server to request token
     subLogin.addEventListener('click', function (e) {
         e.preventDefault();
-        if (document.querySelector('#keptLogin').checked) {
+        const username = document.querySelector('#username').value;
+        const password = document.querySelector('#password').value;
+        if (document.querySelector('#keptLogin').checked && !username && !password) {
             console.log('logged in');
+            state.loggedIn = true;
         }
     });
 
-    const state = {
-        senderShow: true,
-        receiverShow: true
-    }
+
     // show sender details when users clicks 'sender'
     document.querySelector('#sender').addEventListener('click', function () {
         hideCardAndShowButton('receiverShow', 'senderShow', receiver, sender, this);

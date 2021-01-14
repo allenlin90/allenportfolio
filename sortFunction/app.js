@@ -46,7 +46,7 @@ window.onload = function () {
             }, 1000);
             loginBtn.style.display = 'block';
         }
-    })
+    });
 
     // show login panel with grey filter background when user clicks 'Driver Login'
     loginBtn.addEventListener('click', function () {

@@ -183,6 +183,26 @@ body {
     display: none;
 }
 
+/* After login */
+.navigation {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+}
+
+.btn_navi {
+    display: inline-block;
+    background: grey;
+    border: grey;
+    color: white;
+    border-radius: 0;
+}
+
+.active {
+    background: yellow;
+    border: orange;
+    color: black;
+}
 
 @media (min-width:500px) and (max-width:767px) {
     .login_content {

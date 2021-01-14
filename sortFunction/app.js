@@ -2,7 +2,6 @@ window.onload = function () {
     setTimeout(function () {
         document.querySelector('.spinner').style.display = 'none';
         setTimeout(function () {
-            // document.querySelector('.order_details').style.cssText = `display: flex; justify-content: space-between;`;
             document.querySelector('.delivery').style.cssText = `display: block`;
         }, 500);
     }, 1500);
@@ -18,6 +17,7 @@ window.onload = function () {
     const appContents = document.querySelector('.container');
     const loginBtnDiv = document.querySelector('.login_button');
     const deliveryWhiteSpace = document.querySelector('#delivery_whitespace');
+    const deliveryImage = document.querySelector('#delivery_image');
 
     window.addEventListener('resize', function () {
         console.log('window size change');
@@ -100,8 +100,9 @@ window.onload = function () {
             }
 
             changeLoginButtonProperty();
+            deliveryImage.style.display = 'block';
         });
-        deliveryWhiteSpace.style.display = 'block';
+        deliveryImage.style.display = 'none';
     }
 
 

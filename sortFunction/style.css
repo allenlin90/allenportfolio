@@ -73,7 +73,7 @@ body {
     max-height: 110px;
 }
 
-.delivery img {
+#delivery_image {
     display: block;
     width: 100%;
     margin: 0 auto;

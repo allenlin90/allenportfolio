@@ -7,8 +7,6 @@ window.onload = function () {
         }, 500);
     }, 1500);
 
-
-
     const body = document.querySelector('body');
     const sender = document.querySelector('#sender');
     const receiver = document.querySelector('#receiver');
@@ -17,6 +15,14 @@ window.onload = function () {
     const loginForm = document.querySelector('.login_content');
     const loginBtn = document.querySelector('#driver-login');
     const subLogin = document.querySelector('#submitLogin');
+    const appContents = document.querySelector('.container');
+    const loginBtnDiv = document.querySelector('.login_button');
+
+    window.addEventListener('resize', function () {
+        console.log('window size change');
+        loginBtnDiv.style.position = 'static';
+        changeLoginButtonProperty();
+    });
 
     body.addEventListener('click', function () {
         if (loginPanel.style.display === 'none' && loginBtn.style.display === 'none') {
@@ -40,8 +46,9 @@ window.onload = function () {
     loginBtn.addEventListener('click', function () {
         loginPanel.style.display = "flex";
         loginBtnState = loginBtn.style.display;
-        if (loginBtnState !== 'none') {
-            loginBtnState = 'none';
+        console.log(loginBtnState)
+        if (loginBtn.style.display !== 'none') {
+            loginBtn.style.display = 'none';
         }
     });
 
@@ -61,12 +68,16 @@ window.onload = function () {
     document.querySelector('#sender').addEventListener('click', function () {
         hideCardAndShowButton('receiverShow', 'senderShow', receiver, sender, this);
         this.children[1].children[3].style.display = 'block';
+
+        changeLoginButtonProperty();
     });
 
     // show receiver details when users clicks 'receiver'
     document.querySelector('#receiver').addEventListener('click', function () {
         hideCardAndShowButton('senderShow', 'receiverShow', sender, receiver, this);
         this.children[1].children[3].style.display = 'block';
+
+        changeLoginButtonProperty();
     });
 
     function hideCardAndShowButton(updateStateTo, currentObjState, partyToHide, partyToShow, jsNode) {
@@ -86,6 +97,23 @@ window.onload = function () {
                 collapse.style.display = 'none';
                 jsNode.children[1].children[3].style.display = 'none';
             }
+
+            changeLoginButtonProperty();
         });
+    }
+
+
+    function changeLoginButtonProperty() {
+        if (window.innerWidth > 500) {
+            return;
+        }
+
+        if (appContents.clientHeight >= (window.innerHeight - loginBtnDiv.clientHeight)) {
+            loginBtnDiv.style.position = 'static';
+        }
+
+        if (appContents.clientHeight < (window.innerHeight - loginBtnDiv.clientHeight)) {
+            loginBtnDiv.style.position = 'absolute';
+        }
     }
 }

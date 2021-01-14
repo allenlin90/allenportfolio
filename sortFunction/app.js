@@ -17,6 +17,7 @@ window.onload = function () {
     const subLogin = document.querySelector('#submitLogin');
     const appContents = document.querySelector('.container');
     const loginBtnDiv = document.querySelector('.login_button');
+    const deliveryWhiteSpace = document.querySelector('#delivery_whitespace');
 
     window.addEventListener('resize', function () {
         console.log('window size change');
@@ -100,6 +101,7 @@ window.onload = function () {
 
             changeLoginButtonProperty();
         });
+        deliveryWhiteSpace.style.display = 'block';
     }
 
 

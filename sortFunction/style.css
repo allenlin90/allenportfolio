@@ -5,9 +5,17 @@
     font-family: 'Roboto', sans-serif;
 }
 
-html {
-    height: 100%;
+body {
+    position: absolute;
+    top:0;
     width: 100%;
+    min-height:100%;
+}
+
+#delivery_whitespace {
+    display: none;
+    width: 100%;
+    height: 100px;
 }
 
 .contents{
@@ -15,13 +23,6 @@ html {
     margin: 0.2rem;
     padding: 0.2rem;
     display: flex;    
-}
-
-body {
-    position: absolute;
-    top:0;
-    width: 100%;
-    min-height:100%;
 }
 
 .login_panel {

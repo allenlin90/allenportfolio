@@ -6,10 +6,10 @@ window.onload = function () {
     const collapse = document.querySelector('#collapse-btn');
     const loginPanel = document.querySelector('.login_panel');
     const loginForm = document.querySelector('.login_content');
-    const loginBtn = document.querySelector('#driver-login');
     const subLogin = document.querySelector('#submitLogin');
     const deliveryDetails = document.querySelector('#delivery_details');
     const loginBtnDiv = document.querySelector('.login_button');
+    const loginBtn = document.querySelector('#driver-login');
     const deliveryImage = document.querySelector('#delivery_image');
     const navigation = document.querySelector('.navigation');
     const orderInfoBtn = document.querySelector('#order_info');
@@ -20,7 +20,7 @@ window.onload = function () {
         senderShow: true,
         receiverShow: true,
         loggedIn: false,
-        seletcedPanel: 'order_info'
+        selectedPanel: ''
     }
 
     setTimeout(function () {
@@ -39,8 +39,8 @@ window.onload = function () {
     });
 
     body.addEventListener('click', function () {
-        if (loginPanel.style.display === 'none' && loginBtn.style.display === 'none' && !state.loggedIn) {
-            loginBtn.style.display = 'block';
+        if (loginPanel.style.display === 'none' && loginBtnDiv.style.display === 'none' && !state.loggedIn) {
+            loginBtnDiv.style.display = 'block';
         }
     });
 
@@ -52,15 +52,15 @@ window.onload = function () {
                 loginPanel.style.display = 'none';
                 loginPanel.classList.remove('animate__zoomOut');
             }, 1000);
-            loginBtn.style.display = 'block';
+            loginBtnDiv.style.display = 'block';
         }
     });
 
     // show login panel with grey filter background when user clicks 'Driver Login'
     loginBtn.addEventListener('click', function () {
         loginPanel.style.display = "flex";
-        if (loginBtn.style.display !== 'none') {
-            loginBtn.style.display = 'none';
+        if (loginBtnDiv.style.display !== 'none') {
+            loginBtnDiv.style.display = 'none';
         }
     });
 
@@ -74,9 +74,12 @@ window.onload = function () {
             loginPanel.classList.add('animate__zoomOut');
             deliveryDetails.style.display = 'none';
             spinner.style.display = 'block';
+            instructionBtn.classList.remove('selected');
+            orderInfoBtn.classList.add('selected');
             setTimeout(function () {
                 loginPanel.style.display = 'none';
                 loginPanel.classList.remove('animate__zoomOut');
+                navigation.classList.add('animate__slideInUp');
                 setTimeout(function () {
                     spinner.style.display = 'none';
                     deliveryDetails.style.display = 'block';
@@ -84,7 +87,7 @@ window.onload = function () {
                 }, 500);
             }, 1000);
             state.loggedIn = true;
-            loginBtn.style.display = 'none';
+            loginBtnDiv.style.display = 'none';
         }
     });
 
@@ -108,27 +111,57 @@ window.onload = function () {
     /* switch selected panel in navigation */
     orderInfoBtn.addEventListener('click', function (e) {
         e.stopPropagation();
-        state.selectedPanel = 'order_info';
-        orderInfoBtn.classList.add('selected');
-        instructionBtn.classList.remove('selected');
-        logoutBtn.classList.remove('selected');
         console.log(state);
+        if (state.selectedPanel !== 'order_info') {
+            state.selectedPanel = 'order_info';
+            orderInfoBtn.classList.add('selected');
+            instructionBtn.classList.remove('selected');
+            logoutBtn.classList.remove('selected');
+            deliveryDetails.classList.add('animate__slideInLeft');
+            deliveryDetails.style.display = 'block';
+            setTimeout(function () {
+                deliveryDetails.classList.remove('animate__slideInLeft');
+            }, 1000);
+        }
     });
 
     instructionBtn.addEventListener('click', function (e) {
         e.stopPropagation();
         state.selectedPanel = 'instruction';
+        console.log(state);
         orderInfoBtn.classList.remove('selected');
         instructionBtn.classList.add('selected');
         logoutBtn.classList.remove('selected');
-        console.log(state);
+        deliveryDetails.classList.add('animate__slideOutLeft');
+        setTimeout(function () {
+            deliveryDetails.style.display = 'none';
+            deliveryDetails.classList.remove('animate__slideOutLeft');
+        }, 1000);
     });
 
     logoutBtn.addEventListener('click', function (e) {
         e.stopPropagation();
         state.loggedIn = false;
-        navigation.style.display = 'none';
-        loginBtn.style.cssText = `display: block`;
+        deliveryDetails.style.display = 'none';
+        spinner.style.display = 'block';
+        if (window.innerWidth > 500) {
+            navigation.style.display = 'none';
+        }
+        navigation.classList.add('animate__slideOutDown');
+        setTimeout(function () {
+            loginBtnDiv.classList.add('animate__slideInUp');
+            navigation.style.display = 'none';
+            spinner.style.display = 'none';
+            deliveryDetails.style.display = 'block';
+            setTimeout(function () {
+                loginBtnDiv.style.display = 'block';
+                changeLoginButtonProperty();
+                navigation.classList.remove('animate__slideOutDown');
+                setTimeout(function () {
+                    loginBtnDiv.classList.remove('animate__slideInUp');
+                }, 1000);
+            }, 1000);
+        }, 1000);
     });
 
     function hideCardAndShowButton(updateStateTo, currentObjState, partyToHide, partyToShow, jsNode) {
@@ -150,11 +183,8 @@ window.onload = function () {
             }
 
             changeLoginButtonProperty();
-            deliveryImage.style.display = 'block';
         });
-        deliveryImage.style.display = 'none';
     }
-
 
     function changeLoginButtonProperty() {
         if (window.innerWidth > 500) {

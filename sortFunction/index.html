@@ -48,12 +48,15 @@
             </div>
             <p id="spinner_loading">Loading...</p>
         </div>
-        <div class="container" id="delivery_details">
+        <div class="container animate__animated" id="delivery_details">
             <div class="contents">
                 <div class="delivery">
                     <img src="https://image.freepik.com/free-vector/delivery-concept-illustration_114360-130.jpg"
-                        alt="delivery_img" id="delivery_image">
+                        alt="delivery_img" class="animate__animated" id="delivery_image">
                     <div class="size">
+                        <div class="card shadow bg-white rounded">
+                            <p><span id="parcel_id">EX2012201138691</span></p>
+                        </div>
                         <div class="card shadow bg-white rounded">
                             <p>Parcel Size: <span id="parcel_size">s120</span></p>
                         </div>
@@ -80,7 +83,7 @@
                             <div class="card-body">
                                 <p class="card-text">
                                 <p id="sender_name">Allen Lin</p>
-                                <p id="sender_phone">0632166655</p>
+                                <p id="sender_phone"><a href="tel:0632166655">0632166655</a></p>
                                 <p class="address" id="receiver_address">32/4 (5C), Regent On The Park 1, Soi 26
                                     Sukhumvit ,
                                     Klongtan, Klongtoey Bangkok 10110</p>
@@ -92,7 +95,7 @@
                             <div class="card-body">
                                 <p class="card-text">
                                 <p id="receiver_name">Allen Lin</p>
-                                <p id="receiver_phone">0632166655</p>
+                                <p id="receiver_phone"><a href="tel:0632166699">0632166699</a></p>
                                 <p class="address" id="receiver_address">32/4 (5C), Regent On The Park 1, Soi 26
                                     Sukhumvit ,
                                     Klongtan, Klongtoey Bangkok 10110</p>
@@ -104,7 +107,7 @@
                 </div>
             </div>
         </div>
-        <div class="navigation">
+        <div class="navigation animate__animated">
             <div class="btn btn-warning btn_navi selected" id="order_info">
                 <p>Order Info</p>
             </div>
@@ -115,7 +118,7 @@
                 <p>Log Out</p>
             </div>
         </div>
-        <div class="login_button">
+        <div class="login_button animate__animated">
             <button class="btn btn-warning" id="driver-login">Driver Login</button>
         </div>
     </div>

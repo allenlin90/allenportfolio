@@ -185,26 +185,39 @@ body {
 
 /* After login */
 .navigation {
-    display: flex;
+    display: none;
+    grid-template-columns: 1fr 1fr 1fr;
     position: absolute;
     bottom: 0;
+    width: 100vw;
+    margin: 0 auto;
 }
 
 .btn_navi {
-    display: inline-block;
+    display: block;
     background: grey;
     border: grey;
     color: white;
     border-radius: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
 }
 
-.active {
-    background: yellow;
+.btn_navi p {
+    margin: auto;
+    text-align: center;
+    font-weight: bold;
+}
+
+.selected {
+    background: #ffc107;
     border: orange;
     color: black;
 }
 
-@media (min-width:500px) and (max-width:767px) {
+@media (min-width:500px) /* and (max-width:767px) */{
     .login_content {
         width: 60%;
     }
@@ -224,26 +237,16 @@ body {
         position: static;
         margin: 40px auto;
     }
+
+    .navigation {
+        position: static;
+        margin: 40px auto;
+        width: 500px;
+    }
 }
 
 @media (min-width: 768px) {
     .login_content {
         width: 40%;
-    }
-
-    .contents {
-        width: 500px;
-        margin: 0 auto;
-    }
-
-    #driver-login {
-        width: 500px;
-        margin: 0 auto;
-        border-radius: 4px;
-    }
-
-    .login_button {
-        position: static;
-        margin: 40px auto;
     }
 }

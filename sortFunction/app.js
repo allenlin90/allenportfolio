@@ -100,7 +100,8 @@ window.onload = function () {
 
 
     // show sender details when users clicks 'sender'
-    sender.addEventListener('click', function () {
+    sender.addEventListener('click', function (e) {
+        e.stopPropagation();
         if (state.senderShow && state.receiverShow) {
             freezeScreen();
             hideCardAndShowButton('receiverShow', 'senderShow', receiver, sender, this);
@@ -111,10 +112,12 @@ window.onload = function () {
                 rerenderBottomBtn(loginBtnDiv);
             }
         }
+        changeLoginButtonProperty();
     });
 
     // show receiver details when users clicks 'receiver'
-    receiver.addEventListener('click', function () {
+    receiver.addEventListener('click', function (e) {
+        e.stopPropagation();
         if (state.senderShow && state.receiverShow) {
             freezeScreen();
             hideCardAndShowButton('senderShow', 'receiverShow', sender, receiver, this);
@@ -125,6 +128,7 @@ window.onload = function () {
                 rerenderBottomBtn(loginBtnDiv);
             }
         }
+        changeLoginButtonProperty();
     });
 
     /* switch selected panel in navigation */
@@ -201,6 +205,7 @@ window.onload = function () {
         setTimeout(function () {
             deliveryImage.style.display = 'none';
             deliveryImage.style.visibility = 'visible';
+            changeLoginButtonProperty();
         }, 1000);
         /* hide delivery image ends */
 
@@ -220,6 +225,7 @@ window.onload = function () {
                 if (state.loggedIn) {
                     navigation.style.display = `none`;
                 } else {
+                    console.log('loginBtnDiv triggered')
                     loginBtnDiv.style.display = `none`;
                 }
                 climbingAnimation(state.deliveryImageHeight, orderBody, false)

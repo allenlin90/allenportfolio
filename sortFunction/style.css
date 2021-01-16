@@ -224,6 +224,11 @@ body {
     color: black;
 }
 
+#whitespace {
+    width: 100%;
+    height: 60px;
+}
+
 @media (min-width:500px) /* and (max-width:767px) */{
     .login_content {
         width: 60%;
@@ -253,6 +258,10 @@ body {
         position: static;
         margin: 40px auto;
         width: 500px;
+    }
+
+    #whitespace {
+        display: none;
     }
 }
 

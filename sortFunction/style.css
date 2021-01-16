@@ -5,6 +5,10 @@
     font-family: 'Roboto', sans-serif;
 }
 
+.freeze {
+    pointer-events: none;
+}
+
 body {
     position: absolute;
     top:0;
@@ -69,6 +73,7 @@ body {
     width: 40%;
     max-width: 370px;
     max-height: 110px;
+    z-index: 500;
 }
 
 #delivery_image {
@@ -77,6 +82,7 @@ body {
     margin: 0 auto;
     max-width: 497px;
     max-height: 337;
+
 }
 
 .spinner {
@@ -126,6 +132,7 @@ body {
 .delivery {
     display: block;
     margin: 0 auto;
+    width: 100vw;
 }
 
 .size p {
@@ -220,6 +227,10 @@ body {
 @media (min-width:500px) /* and (max-width:767px) */{
     .login_content {
         width: 60%;
+    }
+
+    .delivery {
+        width: 100%;
     }
 
     .contents {

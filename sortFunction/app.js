@@ -192,6 +192,7 @@ window.onload = function () {
 
     function hideCardAndShowButton(updateStateTo, currentObjState, partyToHide, partyToShow, jsNode) {
         freezeScreen();
+        scrollToTop(true);
         state[updateStateTo] = false;
         partyToHide.style.cssText = 'display: none';
         partyToShow.style.width = `100%`;
@@ -212,7 +213,8 @@ window.onload = function () {
         // show return button
         collapse.style.display = 'block';
         collapse.innerText = 'Return';
-        collapse.addEventListener('click', function () {
+        collapse.addEventListener('click', function (e) {
+            e.stopPropagation();
             if (!state[updateStateTo] && state[currentObjState]) {
                 freezeScreen();
                 console.log(`${updateStateTo} is returned`)
@@ -297,5 +299,13 @@ window.onload = function () {
         setTimeout(function () {
             body.classList.remove(`freeze`);
         }, duration);
+    }
+
+    function scrollToTop(smooth = false) {
+        const config = { top: 0, left: 0, behavior: 'smooth' };
+        if (!smooth) {
+            delete config.behavior;
+        }
+        window.scroll(config);
     }
 }

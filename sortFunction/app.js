@@ -262,7 +262,7 @@ window.onload = function () {
         }
 
         if (deliveryDetails.clientHeight < (window.innerHeight - loginBtnDiv.clientHeight)) {
-            loginBtnDiv.style.position = 'absolute';
+            loginBtnDiv.style.position = 'fixed';
         }
     }
 

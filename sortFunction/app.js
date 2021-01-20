@@ -1,7 +1,7 @@
 window.onload = function () {
+    const transitionTime = 1000;
     const body = document.querySelector('body');
     const spinner = document.querySelector('.spinner');
-    const contentPanel = document.querySelector('.delivery');
     const sender = document.querySelector('#sender');
     const receiver = document.querySelector('#receiver');
     const collapse = document.querySelector('#collapse-btn');
@@ -18,22 +18,90 @@ window.onload = function () {
     const instructionBtn = document.querySelector('#instruction');
     const logoutBtn = document.querySelector('#logout');
 
+    // endpoitnt
+    const server = 'ninja'
+    const waybillEndpoint = `https://api.airportels.${server}/api/waybill/detail`;
+
+    // app state object
     const state = {
         senderShow: true,
         receiverShow: true,
         loggedIn: false,
         selectedPanel: '',
         deliveryImageHeight: 0,
-        deliveryImageWidth: 0
+        deliveryImageWidth: 0,
+        fetchedShipment: null,
+        trackingId: ''
     }
 
-    setTimeout(function () {
-        spinner.style.display = 'none';
-        setTimeout(function () {
+    // query string
+    const urlParams = new URLSearchParams(window.location.search);
+    state.trackingId = urlParams.get('trackingid') ? urlParams.get('trackingid') : 'EX2101181126620';
+
+    pageStartup();
+    async function pageStartup() {
+        await fetchParcelDetails(waybillEndpoint, state.trackingId);
+        const solution = `<div><h3 style="text-align: center;">Please contact <a href="tel: 0632166655">0632166655</a><br>OR</h3></div>`
+        const resetBtn = `<button id="reset_button" style="display: block; margin: 25px auto;" class="btn btn-danger">Reload the Page</button>`;
+        const reload = setTimeout(function () { // timeout the process as the server is too slow
+            spinner.style.display = 'none';
+            const fetchFailed = `<div><h3 style="text-align: center; margin-top: 20px;">Server is not responding...</h3></div>`;
+            spinner.insertAdjacentHTML('afterend', fetchFailed + solution + resetBtn);
+            document.querySelector('#reset_button').addEventListener('click', function (e) {
+                e.stopPropagation();
+                location.reload();
+            });
+        }, 10000); // 10 seconds to timeout
+        if (state.fetchedShipment.results.length) {
+            clearTimeout(reload);
+            spinner.style.display = 'none';
+            updateDetails();
             deliveryDetails.style.cssText = `display: block`;
             loginBtnDiv.style.cssText = `display: block`;
-        }, 500);
-    }, 1500);
+        } else {
+            if (state.fetchedShipment.resCode === 200) {
+                clearTimeout(reload);
+                spinner.style.display = 'none';
+                const noResult = `<div><h3 style="text-align: center; margin-top: 20px;">The Tracking ID is invalid</h3></div>`;
+                spinner.insertAdjacentHTML('afterend', noResult);
+            }
+        }
+    }
+
+    function updateDetails() {
+        document.querySelector('#parcel_id').innerText = state.fetchedShipment.waybills[0].shipmentID;
+        document.querySelector('#parcel_size').innerText = state.fetchedShipment.waybills[0].size; // this should be updated because the endpoint has not size
+        document.querySelector('.temp').style.display = state.fetchedShipment.waybills[0].temp ? 'flex' : 'none';
+        document.querySelector('.cod').style.display = state.fetchedShipment.waybills[0].cod ? 'flex' : 'none';
+        document.querySelector('#cod_amount').innerText = `${state.fetchedShipment.waybills[0].cod} Baht`;
+        document.querySelector('.express').style.display = state.fetchedShipment.waybills[0].express ? 'flex' : 'none';
+        document.querySelector('#sender_name').innerText = state.fetchedShipment.waybills[0].sender.name;
+        document.querySelector('#sender_phone').innerHTML = `<a href=tel:${state.fetchedShipment.waybills[0].sender.contact}>${state.fetchedShipment.waybills[0].sender.contact}</a>`;
+        document.querySelector('#sender_address').innerText = state.fetchedShipment.waybills[0].sender.address;
+        document.querySelector('#receiver_name').innerText = state.fetchedShipment.waybills[0].receiver.name;
+        document.querySelector('#receiver_phone').innerHTML = `<a href=tel:${state.fetchedShipment.waybills[0].receiver.contact}>${state.fetchedShipment.waybills[0].receiver.contact}</a>`;
+        document.querySelector('#receiver_address').innerText = state.fetchedShipment.waybills[0].receiver.address;
+    }
+
+    async function fetchParcelDetails(url = '', shipmentId = 'EX2101181126620') {
+        const options = {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                shipmentIDs: [shipmentId]
+            })
+        };
+
+        const data = await fetch(url, options)
+            .then(res => res.json())
+            .then(data => data);
+
+        state.fetchedShipment = data;
+        console.log(data);
+    }
 
     window.addEventListener('resize', function () {
         if (!state.loggedIn) {
@@ -55,7 +123,7 @@ window.onload = function () {
             setTimeout(function () {
                 loginPanel.style.display = 'none';
                 loginPanel.classList.remove('animate__zoomOut');
-            }, 1000);
+            }, transitionTime);
             loginBtnDiv.style.display = 'block';
         }
         freezeScreen();
@@ -91,8 +159,8 @@ window.onload = function () {
                     spinner.style.display = 'none';
                     deliveryDetails.style.display = 'block';
                     navigation.style.display = 'grid';
-                }, 500);
-            }, 1000);
+                }, (transitionTime / 2));
+            }, transitionTime);
             state.loggedIn = true;
             loginBtnDiv.style.display = 'none';
         }
@@ -135,7 +203,6 @@ window.onload = function () {
     orderInfoBtn.addEventListener('click', function (e) {
         e.stopPropagation();
         freezeScreen();
-        console.log(state);
         if (state.selectedPanel !== 'order_info') {
             state.selectedPanel = 'order_info';
             orderInfoBtn.classList.add('selected');
@@ -145,7 +212,7 @@ window.onload = function () {
             deliveryDetails.style.display = 'block';
             setTimeout(function () {
                 deliveryDetails.classList.remove('animate__slideInLeft');
-            }, 1000);
+            }, transitionTime);
         }
     });
 
@@ -153,7 +220,6 @@ window.onload = function () {
         e.stopPropagation();
         freezeScreen();
         state.selectedPanel = 'instruction';
-        console.log(state);
         orderInfoBtn.classList.remove('selected');
         instructionBtn.classList.add('selected');
         logoutBtn.classList.remove('selected');
@@ -161,7 +227,7 @@ window.onload = function () {
         setTimeout(function () {
             deliveryDetails.style.display = 'none';
             deliveryDetails.classList.remove('animate__slideOutLeft');
-        }, 1000);
+        }, transitionTime);
     });
 
     logoutBtn.addEventListener('click', function (e) {
@@ -185,10 +251,12 @@ window.onload = function () {
                 navigation.classList.remove('animate__slideOutDown');
                 setTimeout(function () {
                     loginBtnDiv.classList.remove('animate__slideInUp');
-                }, 1000);
-            }, 1000);
-        }, 1000);
+                }, transitionTime);
+            }, transitionTime);
+        }, transitionTime);
     });
+
+    /* functions */
 
     function hideCardAndShowButton(updateStateTo, currentObjState, partyToHide, partyToShow, jsNode) {
         freezeScreen();
@@ -207,7 +275,7 @@ window.onload = function () {
             deliveryImage.style.display = 'none';
             deliveryImage.style.visibility = 'visible';
             changeLoginButtonProperty();
-        }, 1000);
+        }, transitionTime);
         /* hide delivery image ends */
 
         // show return button
@@ -217,7 +285,7 @@ window.onload = function () {
             e.stopPropagation();
             if (!state[updateStateTo] && state[currentObjState]) {
                 freezeScreen();
-                console.log(`${updateStateTo} is returned`)
+                // console.log(`${updateStateTo} is returned`)
                 state[updateStateTo] = true;
                 partyToHide.style.cssText = 'display: block';
                 partyToShow.style.width = '50%';
@@ -227,7 +295,6 @@ window.onload = function () {
                 if (state.loggedIn) {
                     navigation.style.display = `none`;
                 } else {
-                    console.log('loginBtnDiv triggered')
                     loginBtnDiv.style.display = `none`;
                 }
                 climbingAnimation(state.deliveryImageHeight, orderBody, false)
@@ -236,10 +303,10 @@ window.onload = function () {
                     deliveryImage.style.display = 'block';
                     setTimeout(function () {
                         deliveryImage.classList.remove('animate__slideInLeft');
-                    }, 1000);
+                    }, transitionTime);
                     /* show image ends */
 
-                }, 1000);
+                }, transitionTime);
                 if (state.loggedIn) {
                     rerenderBottomBtn(navigation);
                 } else {
@@ -273,8 +340,8 @@ window.onload = function () {
             obj.style.display = `grid`;
             setTimeout(function () {
                 obj.classList.remove('animate__slideInUp');
-            }, 1000);
-        }, 1000);
+            }, transitionTime);
+        }, transitionTime);
     }
 
     function climbingAnimation(objSlideOutUpHeight, objClimbUp, rise = true, duration = 1000) {

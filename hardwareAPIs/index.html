@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
+    <title>QR Code Scanner</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav>
+            <button class="btn btn-warning" id="qrcode_scanner_nav" type="">QR Scanner</button>
+            <button class="btn btn-secondary" id="pod_nav" type="">POD</button>
+        </nav>
+        <div id="qrcode_scanner">
+            <!-- reference https://codesandbox.io/s/qr-code-scanner-ilrm9?file=/src/qrCodeScanner.js -->
+            <!-- https://www.sitepoint.com/create-qr-code-reader-mobile-website/ -->
+            <h1>QR Code Scanner</h1>
+            <a id="btn-scan-qr">
+                <img src="https://uploads.sitepoint.com/wp-content/uploads/2017/07/1499401426qr_icon.svg">
+            </a>
+
+            <canvas hidden="" id="qr-canvas"></canvas>
+
+            <div id="cancel-button">
+                <button class="btn btn-light" id="btn-cancel-scanning">Cancel Scannig</button>
+            </div>
+
+            <div id="qr-result" hidden="">
+                <b>Data:</b> <span id="outputData"></span>
+            </div>
+        </div>
+    </div>
+    <script src="./qrcodeScanner.js"></script>
+</body>
+
+</html>

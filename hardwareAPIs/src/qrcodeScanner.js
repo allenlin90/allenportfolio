@@ -16,6 +16,7 @@ let scanning = false;
 qrcode.callback = res => {
     if (res) {
         outputData.innerText = res;
+        state.qrCodeContent = res;
         scanning = false;
 
         video.srcObject.getTracks().forEach(track => {
@@ -43,6 +44,30 @@ btnScanQR.onclick = () => {
             tick();
             scan();
             cancelBtnDiv.style.display = 'block';
+        })
+        .catch(function () {
+            let message =
+                `<h1>App can't start camera!</h1>
+                <div style="width: 100%; max-width: 700px; margin: 0 auto; color: white; text-align: left;">
+                    <ol>
+                        <li>Andriod Google Chrome</li>
+                        <ol>
+                            <li>Go to Settings</li>
+                            <li>Select Site setting</li>
+                            <li>Select Camera</li>
+                            <li>Check https://app.makesend.asia/</li>
+                            <li>Select Camera</li>
+                            <li>Select 'Allow'</li>
+                        </ol>
+                        <li>iPhone Safari</li>
+                    </ol>
+                </div>
+                <div id="refresh_page" class="btn btn-light" style="margin: 0 auto;">Reload Page</div>`;
+            document.querySelector('#qrcode_scanner').innerHTML = message;
+            document.querySelector('#refresh_page').addEventListener('click', function (e) {
+                e.stopPropagation();
+                location.reload();
+            });
         });
 };
 

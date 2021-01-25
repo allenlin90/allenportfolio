@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="./style.css">
     <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
     <title>QR Code Scanner</title>
+    <!-- How to access front and rear camera with JavaScript's getUserMedia -->
+    <!-- https://www.digitalocean.com/community/tutorials/front-and-rear-camera-access-with-javascripts-getusermedia -->
 </head>
 
 <body>
@@ -39,8 +41,14 @@
                 <b>Data:</b> <span id="outputData"></span>
             </div>
         </div>
+        <div id="pod">
+            <h1>POD</h1>
+        </div>
     </div>
-    <script src="./qrcodeScanner.js"></script>
+    <script src="./src/mobileCheck.js"></script>
+    <script src="./src/qrcodeScanner.js"></script>
+    <script src="./src/pod.js"></script>
+    <script src="./src/navigation.js"></script>
 </body>
 
 </html>

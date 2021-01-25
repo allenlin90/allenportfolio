@@ -25,6 +25,7 @@ qrcode.callback = res => {
         qrResult.hidden = false;
         canvasElement.hidden = true;
         btnScanQR.hidden = false;
+        cancelBtnDiv.style.display = 'none';
     }
 };
 
@@ -45,9 +46,17 @@ btnScanQR.onclick = () => {
         });
 };
 
-btnCancelScanning.onclick = () => {
+btnCancelScanning.onclick = cancelScanning;
+
+function cancelScanning() {
     scanning = false;
+    qrResult.hidden = true;
+    btnScanQR.hidden = false;
+    canvasElement.hidden = true;
     cancelBtnDiv.style.display = 'none';
+    video.srcObject.getTracks().forEach(track => {
+        track.stop();
+    });
 }
 
 function tick() {

@@ -166,6 +166,7 @@ h1, h2 {
     height: 100%;
     border-radius: 4px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.02) inset;
+    touch-action: auto;
 }
 
 .signature-pad--footer {

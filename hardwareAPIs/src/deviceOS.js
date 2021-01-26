@@ -5,12 +5,17 @@ function mobileCheck() {
 };
 
 window.mobileCheck = mobileCheck;
-console.log(navigator.userAgent);
-document.querySelector('#pod').innerHTML =
+let re = /\((.*?)\)/g;
+let userAgent = navigator.userAgent.match(re)[0];
+userAgent = userAgent.slice(1, (userAgent.length - 1));
+console.log(userAgent);
+document.querySelector('#device_system').innerHTML =
     `
+    <h1>Device OS</h1>
     <div style="color:white;">
     <p>Agent: ${navigator.userAgent}</p>
     <p>Vendor: ${navigator.vendor}</p>
+    <p>OS: ${userAgent}</p>
     <p>Mobile Browser? ${window.mobileCheck() ? 'Yes' : 'No'}</p>
     </div>
     `;

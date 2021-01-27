@@ -10,7 +10,7 @@ window.addEventListener('load', function () {
                 if (childNode.id !== `${this.id.split('_')[0]}_upload`) {
                     childNode.style.display = 'none';
                 } else {
-                    childNode.style.display = 'block';
+                    childNode.style.display = 'flex';
                 }
             });
             console.log('height' + this.offsetHeight);
@@ -47,15 +47,18 @@ window.addEventListener('load', function () {
             podDiv.style.display = 'block';
             signatureCanvas.width = signatureCanvas.offsetWidth //* ratio;
             signatureCanvas.height = signatureCanvas.offsetHeight //* ratio;
+            signatureCanvas.clientHeight = signatureCanvas.offsetHeight //* ratio;
             podDiv.style.display = 'none';
         } else if (!podDiv.style.display) {
             podDiv.style.display = 'block';
             signatureCanvas.width = signatureCanvas.offsetWidth //* ratio;
             signatureCanvas.height = signatureCanvas.offsetHeight //* ratio;
+            signatureCanvas.clientHeight = signatureCanvas.offsetHeight //* ratio;
             podDiv.style.display = 'none';
         } else {
             signatureCanvas.width = signatureCanvas.offsetWidth
             signatureCanvas.height = signatureCanvas.offsetHeight //* ratio;
+            signatureCanvas.clientHeight = signatureCanvas.offsetHeight //* ratio;
         }
         console.log(signatureCanvas.width, signatureCanvas.height);
         signatureCanvas.getContext("2d")//.scale(2, 2);

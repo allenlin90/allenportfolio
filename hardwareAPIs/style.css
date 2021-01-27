@@ -111,6 +111,7 @@ h1, h2 {
 
 #photo_upload {
     display: none;
+    flex-direction: column;
 }
 
 #photo_upload > div:first-child {
@@ -144,7 +145,7 @@ h1, h2 {
     border-radius: 4px;
     padding: 16px;
 }
-
+/* 
 .signature-pad::before,
 .signature-pad::after {
     position: absolute;
@@ -167,7 +168,7 @@ h1, h2 {
     right: 20px;
     -webkit-transform: skew(3deg) rotate(3deg);
             transform: skew(3deg) rotate(3deg);
-}
+} */
 
 .signature-pad--body {
     position: relative;

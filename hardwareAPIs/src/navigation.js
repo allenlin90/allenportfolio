@@ -29,7 +29,7 @@ function selectDefault(option) {
     switchPanel(document.querySelector(`#${option}_nav`));
     [...container.children].forEach(child => {
         if (child.id === option) {
-            child.style.display = 'grid';
+            child.style.display = 'block';
         } else {
             child.style.display = 'none';
         }

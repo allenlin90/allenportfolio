@@ -9,7 +9,7 @@ const podMedia = document.querySelector('#pod_media');
             if (childNode.id !== `${this.id.split('_')[0]}_upload`) {
                 childNode.style.display = 'none';
             } else {
-                childNode.style.display = 'grid';
+                childNode.style.display = 'block';
             }
         });
     });
@@ -41,8 +41,8 @@ function resizeCanvas() {
 
     // This part causes the canvas to be cleared
     signatureCanvas.width = signatureCanvas.offsetWidth * ratio;
-    signatureCanvas.height = signatureCanvas.offsetHeight * ratio;
-    signatureCanvas.getContext("2d").scale(ratio, ratio);
+    signatureCanvas.height = '40vh' //signatureCanvas.offsetHeight * ratio;
+    signatureCanvas.getContext("2d")//.scale(ratio, ratio);
 
     // This library does not listen for canvas changes, so after the canvas is automatically
     // cleared by the browser, SignaturePad#isEmpty might still return false, even though the

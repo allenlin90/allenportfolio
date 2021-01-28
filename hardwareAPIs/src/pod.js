@@ -13,8 +13,6 @@ window.addEventListener('load', function () {
                     childNode.style.display = 'flex';
                 }
             });
-            console.log('height' + this.offsetHeight);
-            console.log('width' + this.offsetWidth);
         });
     });
 
@@ -39,7 +37,6 @@ window.addEventListener('load', function () {
         // some browsers report devicePixelRatio as less than 1
         // and only part of the canvas is cleared then.
         // var ratio = Math.max(window.devicePixelRatio || 1, 1);
-        const ratio = 0.6;
 
         // This part causes the canvas to be cleared
         const podDiv = document.querySelector('#pod');
@@ -60,7 +57,6 @@ window.addEventListener('load', function () {
             signatureCanvas.height = signatureCanvas.offsetHeight //* ratio;
             signatureCanvas.clientHeight = signatureCanvas.offsetHeight //* ratio;
         }
-        console.log(signatureCanvas.width, signatureCanvas.height);
         signatureCanvas.getContext("2d")//.scale(2, 2);
 
         // This library does not listen for canvas changes, so after the canvas is automatically

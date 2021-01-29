@@ -184,6 +184,8 @@ window.addEventListener('load', function () {
         canvasElement.height = video.videoHeight;
         canvasElement.width = video.videoWidth;
         canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+        console.log(video.videoHeight);
+        console.log(video.videoWidth);
 
         scanning && requestAnimationFrame(tick);
     }

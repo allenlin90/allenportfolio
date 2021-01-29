@@ -16,8 +16,7 @@ window.addEventListener('load', function () {
 
     let scanning = false;
     const state = {
-        rearCameras: [],
-        replicate: 0
+        rearCameras: []
     }
 
     videoSelect.addEventListener('change', start);
@@ -35,20 +34,13 @@ window.addEventListener('load', function () {
                 constraints = {
                     video: { deviceId: videoSource ? { exact: videoSource } : { exact: state.rearCameras[state.rearCameras.length - 1].deviceId } }
                 };
-                navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(checkDevices).catch(errorHandler);
             } else {
                 constraints = {
                     video: { deviceId: undefined }
                 };
-                if (!state.replicate) {
-                    navigator.mediaDevices.getUserMedia(constraints).then(checkDevices).then(start).catch(errorHandler);
-                    state.replicate += 1;
-                } else {
-                    navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(checkDevices).catch(errorHandler);
-                }
             }
             console.log(constraints);
-
+            navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(checkDevices).catch(errorHandler);
         } catch (err) {
             console.log(err);
         }

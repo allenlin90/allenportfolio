@@ -22,14 +22,13 @@ window.addEventListener('load', function () {
 
     videoSelect.addEventListener('change', start);
 
-    async function start() {
+    function start() {
         try {
             if (window.stream) {
                 window.stream.getTracks().forEach(track => {
                     track.stop();
                 });
             }
-            await checkDevices();
             const videoSource = videoSelect.value;
             let constraints = null;
             if (state.rearCameras.length) {

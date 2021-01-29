@@ -37,7 +37,7 @@ window.addEventListener('load', function () {
                 };
             } else {
                 constraints = {
-                    video: { deviceId: { exact: undefined } }
+                    video: { deviceId: undefined }
                 };
             }
             console.log(constraints);

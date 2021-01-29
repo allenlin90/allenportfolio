@@ -46,6 +46,7 @@ window.addEventListener('load', function () {
         }
     }
 
+    checkDevices();
     function checkDevices() {
         navigator.mediaDevices.enumerateDevices()
             .then((devices) => {

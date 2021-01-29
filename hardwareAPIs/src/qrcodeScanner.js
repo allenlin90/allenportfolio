@@ -1,4 +1,5 @@
-window.addEventListener('load', function () {
+// window.addEventListener('load',
+(function startup() {
     const video = document.createElement("video");
     const canvasElement = document.getElementById("qr-canvas");
     const canvas = canvasElement.getContext("2d");
@@ -200,4 +201,5 @@ window.addEventListener('load', function () {
             setTimeout(scan, 300);
         }
     }
-});
+})();
+// });

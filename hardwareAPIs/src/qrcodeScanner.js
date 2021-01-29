@@ -36,7 +36,7 @@ window.addEventListener('load', function () {
                 const videoSource = videoSelect.value;
                 if (rearCameras.length) {
                     constraints = {
-                        video: { deviceId: videoSource ? { exact: videoSource } : videoInputs[videoInputs.length - 1].deviceId }
+                        video: { deviceId: videoSource ? { exact: videoSource } : rearCameras[rearCameras.length - 1].deviceId }
                     };
                 } else {
                     constraints = {

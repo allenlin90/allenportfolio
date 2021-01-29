@@ -154,9 +154,6 @@ window.addEventListener('load', function () {
         tick();
         scan();
         cancelBtnDiv.style.display = 'block';
-
-        // Refresh button list in case labels have become available
-        // return navigator.mediaDevices.enumerateDevices();
     }
 
     function errorHandler(err) {
@@ -204,25 +201,6 @@ window.addEventListener('load', function () {
 
     btnScanQR.addEventListener('click', start);
     qrScaneBtn.addEventListener('click', start);
-
-    // function scanningFunc() {
-    //     navigator.mediaDevices
-    //         .getUserMedia({ video: { facingMode: "environment" } })
-    //         .then(function (stream) {
-    //             scanning = true;
-    //             qrResult.hidden = true;
-    //             btnScanQR.hidden = true;
-    //             qrScaneBtn.hidden = true;
-    //             canvasElement.hidden = false;
-    //             video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
-    //             video.srcObject = stream;
-    //             video.play();
-    //             tick();
-    //             scan();
-    //             cancelBtnDiv.style.display = 'block';
-    //         })
-    //         .catch(errorHandler);
-    // };
 
     btnCancelScanning.onclick = cancelScanning;
 

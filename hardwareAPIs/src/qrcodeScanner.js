@@ -30,9 +30,16 @@ window.addEventListener('load', function () {
             const videoInputs = devices.filter(device => device.kind === 'videoinput' && /(back|rear)/g.test(device.label.toLowerCase()));
             console.log(videoInputs);
             const videoSource = videoSelect.value;
-            const constraints = {
-                video: { deviceId: videoSource ? { exact: videoSource } : { exact: videoInputs[videoInputs.length - 1].deviceId } }
-            };
+            let constraints = null;
+            if (videoInputs.length) {
+                constraints = {
+                    video: { deviceId: videoSource ? { exact: videoSource } : { exact: videoInputs[videoInputs.length - 1].deviceId } }
+                };
+            } else {
+                constraints = {
+                    video: { deviceId: { exact: undefined } }
+                };
+            }
             console.log(constraints);
 
             navigator.mediaDevices.getUserMedia(constraints).then(gotStream).catch(err => {

@@ -95,6 +95,7 @@ window.addEventListener('load', function () {
         tick();
         scan();
         cancelBtnDiv.style.display = 'block';
+        console.log('stream arg in getStream: ', stream);
 
         // Refresh button list in case labels have become available
         // return navigator.mediaDevices.enumerateDevices();

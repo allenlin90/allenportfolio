@@ -27,9 +27,9 @@ window.addEventListener('load', function () {
                     track.stop();
                 });
             }
-            // const devices = await checkDevices();
-            // const videoInputs = devices.filter(device => device.kind === 'videoinput' && /(back|rear)/g.test(device.label.toLowerCase()));
-            // console.log(videoInputs);
+            const devices = await checkDevices();
+            const videoInputs = devices.filter(device => device.kind === 'videoinput' && /(back|rear)/g.test(device.label.toLowerCase()));
+            console.log(videoInputs);
             const videoSource = videoSelect.value;
             let constraints = null;
             if (state.rearCamera) {
@@ -57,7 +57,6 @@ window.addEventListener('load', function () {
         }
     }
 
-    checkDevices();
     async function checkDevices() {
         return await navigator.mediaDevices.getUserMedia({ video: true })
             .then(async (res) => {
@@ -76,11 +75,11 @@ window.addEventListener('load', function () {
                         videoSelect.appendChild(option);
                     });
                     videoSelect.value = videoSelectedValue;
-                    const rearInputs = devices.filter(device => device.kind === 'videoinput' && /(back|rear)/g.test(device.label.toLowerCase()));
-                    const rearCamera = rearInputs[rearInputs.length - 1];
-                    state.rearCamera = rearCamera;
-                    return rearCamera;
-                    // return devices;
+                    // const rearInputs = devices.filter(device => device.kind === 'videoinput' && /(back|rear)/g.test(device.label.toLowerCase()));
+                    // const rearCamera = rearInputs[rearInputs.length - 1];
+                    // state.rearCamera = rearCamera;
+                    // return rearCamera;
+                    return devices;
                 } else {
                     errorHandler();
                     console.log('trigger')

@@ -92,7 +92,7 @@ window.addEventListener('load', function () {
         video.setAttribute("playsinline", true);
         video.srcObject = stream;
         video.play();
-        tick();
+        // tick();
         scan();
         cancelBtnDiv.style.display = 'block';
         console.log('stream arg in getStream: ', stream);

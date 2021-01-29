@@ -31,7 +31,7 @@ window.addEventListener('load', function () {
             console.log(videoInputs);
             const videoSource = videoSelect.value;
             const constraints = {
-                video: { deviceId: videoSource ? { exact: videoSource ? videoSource : videoInputs[videoInputs.length - 1].deviceId } : undefined }
+                video: { deviceId: videoSource ? { exact: videoSource } : { exact: videoInputs[videoInputs.length - 1].deviceId } }
             };
             console.log(constraints);
 

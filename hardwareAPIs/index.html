@@ -34,6 +34,11 @@
                 <!-- reference https://codesandbox.io/s/qr-code-scanner-ilrm9?file=/src/qrCodeScanner.js -->
                 <!-- https://www.sitepoint.com/create-qr-code-reader-mobile-website/ -->
                 <h2>QR Code Scanner</h2>
+                <div class="select">
+                    <!-- <label for="videoSource">Video source: </label> -->
+                    <p style="color: #fff">Change Camera</p>
+                    <select id="videoSource" class="custom-select"></select>
+                </div>
                 <a id="btn-scan-qr">
                     <!-- <img src="https://uploads.sitepoint.com/wp-content/uploads/2017/07/1499401426qr_icon.svg"> -->
                     <img src="https://img.icons8.com/plasticine/2x/camera.png">
@@ -110,7 +115,7 @@
     <script src="./src/pod.js"></script>
     <script src="./src/navigation.js"></script>
     <script>
-        selectDefault('pod');
+        // selectDefault('pod');
     </script>
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js"></script>

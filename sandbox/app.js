@@ -1,51 +1,110 @@
-const canvas = document.querySelector('canvas');
-console.log(canvas.parentNode.offsetWidth);
-console.log(canvas.parentNode.offsetHeight);
-const divWidth = canvas.parentNode.offsetHeight;
-const divHeight = canvas.parentNode.offsetHeight;
-canvas.width = divWidth;
-canvas.height = divHeight;
+const videoElement = document.querySelector('video');
+const audioInputSelect = document.querySelector('select#audioSource');
+const audioOutputSelect = document.querySelector('select#audioOutput');
+const videoSelect = document.querySelector('select#videoSource');
+const selectors = [audioInputSelect, audioOutputSelect, videoSelect];
 
-var signaturePad = new SignaturePad(canvas, {
-    backgroundColor: 'rgb(250, 250, 250)'
-});
+audioOutputSelect.disabled = !('sinkId' in HTMLMediaElement.prototype);
 
-function resizeCanvas() {
-    canvas.width = canvas.parentNode.offsetWidth;
-    canvas.height = canvas.parentNode.offsetHeight;
-    canvas.getContext("2d");
+navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(handleError);
+// checkDevices();
+// async function checkDevices() {
+//     const devices = await navigator.mediaDevices.enumerateDevices();
+//     if (devices.length) {
+//         gotDevices(devices);
+//     } else {
+//         console.log('something goes wrong');
+//     }
+// }
 
-    signaturePad.clear();
-}
-
-window.onresize = resizeCanvas;
-resizeCanvas();
-
-function download(dataURL, filename) {
-    var blob = dataURLToBlob(dataURL);
-    var url = window.URL.createObjectURL(blob);
-
-    var a = document.createElement("a");
-    a.style = "display: none";
-    a.href = url;
-    a.download = filename;
-
-    document.body.appendChild(a);
-    a.click();
-
-    window.URL.revokeObjectURL(url);
-}
-
-function dataURLToBlob(dataURL) {
-    var parts = dataURL.split(';base64,');
-    var contentType = parts[0].split(":")[1];
-    var raw = window.atob(parts[1]);
-    var rawLength = raw.length;
-    var uInt8Array = new Uint8Array(rawLength);
-
-    for (var i = 0; i < rawLength; ++i) {
-        uInt8Array[i] = raw.charCodeAt(i);
+function gotDevices(deviceInfos) {
+    // Handles being called several times to update labels. Preserve values.
+    const values = selectors.map(select => select.value);
+    selectors.forEach(select => {
+        select.innerHTML = '';
+    });
+    for (let i = 0; i < deviceInfos.length; ++i) {
+        const deviceInfo = deviceInfos[i];
+        const option = document.createElement('option');
+        option.value = deviceInfo.deviceId;
+        if (deviceInfo.kind === 'audioinput') {
+            option.text = deviceInfo.label || `microphone ${audioInputSelect.length + 1}`;
+            audioInputSelect.appendChild(option);
+        } else if (deviceInfo.kind === 'audiooutput') {
+            option.text = deviceInfo.label || `speaker ${audioOutputSelect.length + 1}`;
+            audioOutputSelect.appendChild(option);
+        } else if (deviceInfo.kind === 'videoinput') {
+            option.text = deviceInfo.label || `camera ${videoSelect.length + 1}`;
+            videoSelect.appendChild(option);
+            console.log(deviceInfo)
+        } else {
+            console.log('Some other kind of source/device: ', deviceInfo);
+        }
     }
-
-    return new Blob([uInt8Array], { type: contentType });
+    selectors.forEach((select, selectorIndex) => {
+        // if (Array.prototype.slice.call(select.childNodes).some(n => n.value === values[selectorIndex])) {
+        if ([...select.children].some(n => n.value === values[selectorIndex])) {
+            select.value = values[selectorIndex];
+        }
+    });
 }
+
+
+// Attach audio output device to video element using device/sink ID.
+function attachSinkId(element, sinkId) {
+    if (typeof element.sinkId !== 'undefined') {
+        element.setSinkId(sinkId)
+            .then(() => {
+                console.log(`Success, audio output device attached: ${sinkId}`);
+            })
+            .catch(error => {
+                let errorMessage = error;
+                if (error.name === 'SecurityError') {
+                    errorMessage = `You need to use HTTPS for selecting audio output device: ${error}`;
+                }
+                console.error(errorMessage);
+                // Jump back to first output device in the list as it's the default.
+                audioOutputSelect.selectedIndex = 0;
+            });
+    } else {
+        console.warn('Browser does not support output device selection.');
+    }
+}
+
+function changeAudioDestination() {
+    const audioDestination = audioOutputSelect.value;
+    attachSinkId(videoElement, audioDestination);
+}
+
+function gotStream(stream) {
+    window.stream = stream; // make stream available to console
+    videoElement.srcObject = stream;
+    // Refresh button list in case labels have become available
+    return navigator.mediaDevices.enumerateDevices();
+}
+
+function handleError(error) {
+    console.log('navigator.MediaDevices.getUserMedia error: ', error.message, error.name);
+}
+
+function start() {
+    if (window.stream) {
+        window.stream.getTracks().forEach(track => {
+            track.stop();
+        });
+    }
+    const audioSource = audioInputSelect.value;
+    const videoSource = videoSelect.value;
+    const constraints = {
+        audio: { deviceId: audioSource ? { exact: audioSource } : undefined },
+        video: { deviceId: videoSource ? { exact: videoSource } : undefined }
+    };
+    navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(gotDevices).catch(handleError);
+}
+
+audioInputSelect.onchange = start;
+audioOutputSelect.onchange = changeAudioDestination;
+
+videoSelect.onchange = start;
+
+start();

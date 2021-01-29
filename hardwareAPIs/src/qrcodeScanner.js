@@ -10,11 +10,105 @@ window.addEventListener('load', function () {
     const btnCancelScanning = document.getElementById("btn-cancel-scanning");
     const cancelBtnDiv = document.getElementById("cancel-button");
 
+
+    const videoSelect = document.querySelector('#videoSource');
+
     const state = {
         qrCodeContent: ''
     }
 
     let scanning = false;
+
+    // checkDevices();
+    videoSelect.addEventListener('change', start);
+
+    function start() {
+        try {
+            if (window.stream) {
+                window.stream.getTracks().forEach(track => {
+                    track.stop();
+                });
+            }
+            const videoSource = videoSelect.value;
+            const constraints = {
+                video: { deviceId: videoSource ? { exact: videoSource } : undefined }
+            };
+            console.log(constraints);
+            navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(checkDevices).catch(err => {
+                console.log(err);
+                errorHandler();
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    function checkDevices() {
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(async (res) => {
+                const devices = await navigator.mediaDevices.enumerateDevices();
+                if (devices.length) {
+                    const videoInputs = devices.filter(device => device.kind === 'videoinput');
+                    videoSelect.innerHTML = '';
+                    videoInputs.forEach((videoInput, index) => {
+                        const option = document.createElement('option');
+                        option.value = videoInput.deviceId;
+                        option.text = videoInput.label || `camera ${index + 1}`;
+                        videoSelect.appendChild(option);
+                    });
+                } else {
+                    errorHandler();
+                    console.log('trigger')
+                }
+            })
+            .catch(err => {
+                console.log(err);
+                errorHandler();
+            });
+    }
+
+    function gotStream(stream) {
+        window.stream = stream; // make stream available to console
+        scanning = true;
+        qrResult.hidden = true;
+        btnScanQR.hidden = true;
+        qrScaneBtn.hidden = true;
+        canvasElement.hidden = false;
+        video.setAttribute("playsinline", true);
+        video.srcObject = stream;
+        video.play();
+        tick();
+        tick();
+        scan();
+        cancelBtnDiv.style.display = 'block';
+        // Refresh button list in case labels have become available
+        return navigator.mediaDevices.enumerateDevices();
+    }
+
+    function errorHandler() {
+        let message =
+            `<h1>App can't start camera!</h1>
+            <div style="width: 100%; max-width: 700px; margin: 0 auto; color: white; text-align: left;">
+                <ol>
+                    <li>Andriod Google Chrome</li>
+                    <ol>
+                        <li>Go to Settings</li>
+                        <li>Select Site setting</li>
+                        <li>Select Camera</li>
+                        <li>Check https://app.makesend.asia/</li>
+                        <li>Select Camera</li>
+                        <li>Select 'Allow'</li>
+                    </ol>
+                    <li>iPhone Safari</li>
+                </ol>
+            </div>
+            <div id="refresh_page" class="btn btn-light" style="margin: 0 auto;">Reload Page</div>`;
+        document.querySelector('#qrcode_scanner').innerHTML = message;
+        document.querySelector('#refresh_page').addEventListener('click', function (e) {
+            e.stopPropagation();
+            location.reload();
+        });
+    }
 
     qrcode.callback = res => {
         if (res) {
@@ -34,8 +128,14 @@ window.addEventListener('load', function () {
         }
     };
 
-    btnScanQR.addEventListener('click', scanningFunc);
-    qrScaneBtn.addEventListener('click', scanningFunc);
+    btnScanQR.addEventListener('click', updateAndStart);
+    qrScaneBtn.addEventListener('click', updateAndStart);
+
+    function updateAndStart() {
+        checkDevices();
+        start();
+    }
+
     function scanningFunc() {
         navigator.mediaDevices
             .getUserMedia({ video: { facingMode: "environment" } })
@@ -52,32 +152,8 @@ window.addEventListener('load', function () {
                 scan();
                 cancelBtnDiv.style.display = 'block';
             })
-            .catch(function () {
-                let message =
-                    `<h1>App can't start camera!</h1>
-                    <div style="width: 100%; max-width: 700px; margin: 0 auto; color: white; text-align: left;">
-                        <ol>
-                            <li>Andriod Google Chrome</li>
-                            <ol>
-                                <li>Go to Settings</li>
-                                <li>Select Site setting</li>
-                                <li>Select Camera</li>
-                                <li>Check https://app.makesend.asia/</li>
-                                <li>Select Camera</li>
-                                <li>Select 'Allow'</li>
-                            </ol>
-                            <li>iPhone Safari</li>
-                        </ol>
-                    </div>
-                    <div id="refresh_page" class="btn btn-light" style="margin: 0 auto;">Reload Page</div>`;
-                document.querySelector('#qrcode_scanner').innerHTML = message;
-                document.querySelector('#refresh_page').addEventListener('click', function (e) {
-                    e.stopPropagation();
-                    location.reload();
-                });
-            });
+            .catch(errorHandler);
     };
-
 
     btnCancelScanning.onclick = cancelScanning;
 

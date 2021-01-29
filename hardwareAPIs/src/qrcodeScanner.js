@@ -47,10 +47,10 @@ window.addEventListener('load', function () {
                     console.log('stream in start func: ', stream);
                     gotStream(stream);
                 })
-                .catch(err => {
-                    console.log(err);
-                    errorHandler();
-                });
+            // .catch(err => {
+            //     console.log(err);
+            //     errorHandler();
+            // });
         } catch (err) {
             console.log(err);
         }

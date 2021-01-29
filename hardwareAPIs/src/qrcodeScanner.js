@@ -16,46 +16,54 @@ window.addEventListener('load', function () {
 
     let scanning = false;
     const state = {
-        rearCameras: []
+        rearCameras: [],
+        replicate: 0
     }
 
     videoSelect.addEventListener('change', start);
 
-    function start() {
+    async function start() {
         try {
             if (window.stream) {
                 window.stream.getTracks().forEach(track => {
                     track.stop();
                 });
             }
+            await checkDevices();
             const videoSource = videoSelect.value;
             let constraints = null;
             if (state.rearCameras.length) {
                 constraints = {
                     video: { deviceId: videoSource ? { exact: videoSource } : { exact: state.rearCameras[state.rearCameras.length - 1].deviceId } }
                 };
+                navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(checkDevices).catch(errorHandler);
             } else {
                 constraints = {
                     video: { deviceId: undefined }
                 };
+                if (!state.replicate) {
+                    navigator.mediaDevices.getUserMedia(constraints).then(checkDevices).then(start).catch(errorHandler);
+                    state.replicate += 1;
+                } else {
+                    navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(checkDevices).catch(errorHandler);
+                }
             }
             console.log(constraints);
 
-            navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(checkDevices).catch(errorHandler);
         } catch (err) {
             console.log(err);
         }
     }
 
-    checkDevices();
     function checkDevices() {
         navigator.mediaDevices.enumerateDevices()
             .then((devices) => {
-                if (devices.length) {
+                const videoInputs = devices.filter(device => device.kind === 'videoinput');
+                if (videoInputs.length) {
                     videoSelectDiv.style.display = 'block';
                     videoSelectDiv.style.width = '100%';
                     videoSelectDiv.style.margin = '1rem auto';
-                    const videoInputs = devices.filter(device => device.kind === 'videoinput');
+
                     const videoSelectedValue = videoSelect.value;
                     videoSelect.innerHTML = '';
                     videoInputs.forEach((videoInput, index) => {

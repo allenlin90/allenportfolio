@@ -32,9 +32,9 @@ window.addEventListener('load', function () {
             console.log(videoInputs);
             const videoSource = videoSelect.value;
             let constraints = null;
-            if (state.rearCamera) {
+            if (videoInputs.length) {
                 constraints = {
-                    video: { deviceId: videoSource ? { exact: videoSource } : { exact: state.rearCamera.deviceId } }
+                    video: { deviceId: videoSource ? { exact: videoSource } : { exact: videoInputs[videoInputs.length - 1].deviceId } }
                 };
             } else {
                 constraints = {

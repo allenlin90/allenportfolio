@@ -57,6 +57,7 @@ window.addEventListener('load', function () {
         }
     }
 
+    checkDevices();
     async function checkDevices() {
         return await navigator.mediaDevices.getUserMedia({ video: true })
             .then(async (res) => {

@@ -11,30 +11,31 @@ window.addEventListener('load', function () {
     const cancelBtnDiv = document.getElementById("cancel-button");
 
 
+    const videoSelectDiv = document.querySelector('#videoSelect');
     const videoSelect = document.querySelector('#videoSource');
-
-    const state = {
-        qrCodeContent: ''
-    }
 
     let scanning = false;
 
     // checkDevices();
     videoSelect.addEventListener('change', start);
 
-    function start() {
+    async function start() {
         try {
             if (window.stream) {
                 window.stream.getTracks().forEach(track => {
                     track.stop();
                 });
             }
+            const devices = await checkDevices();
+            const videoInputs = devices.filter(device => device.kind === 'videoinput' && /(back|rear)/g.test(device.label.toLowerCase()));
+            console.log(videoInputs);
             const videoSource = videoSelect.value;
             const constraints = {
-                video: { deviceId: videoSource ? { exact: videoSource } : undefined }
+                video: { deviceId: videoSource ? { exact: videoSource } : videoInputs[videoInputs.length - 1].deviceId }
             };
             console.log(constraints);
-            navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(checkDevices).catch(err => {
+
+            navigator.mediaDevices.getUserMedia(constraints).then(gotStream).catch(err => {
                 console.log(err);
                 errorHandler();
             });
@@ -43,20 +44,25 @@ window.addEventListener('load', function () {
         }
     }
 
-    function checkDevices() {
-        navigator.mediaDevices.getUserMedia({ video: true })
+    async function checkDevices() {
+        return await navigator.mediaDevices.getUserMedia({ video: true })
             .then(async (res) => {
                 const devices = await navigator.mediaDevices.enumerateDevices();
                 if (devices.length) {
+                    videoSelectDiv.style.display = 'block';
+                    videoSelectDiv.style.width = canvasElement.width;
+                    videoSelectDiv.style.margin = '1rem auto';
                     const videoInputs = devices.filter(device => device.kind === 'videoinput');
+                    const videoSelectedValue = videoSelect.value;
                     videoSelect.innerHTML = '';
                     videoInputs.forEach((videoInput, index) => {
-                        console.log(videoInput);
                         const option = document.createElement('option');
                         option.value = videoInput.deviceId;
                         option.text = videoInput.label || `camera ${index + 1}`;
                         videoSelect.appendChild(option);
                     });
+                    videoSelect.value = videoSelectedValue;
+                    return devices;
                 } else {
                     errorHandler();
                     console.log('trigger')
@@ -75,15 +81,16 @@ window.addEventListener('load', function () {
         btnScanQR.hidden = true;
         qrScaneBtn.hidden = true;
         canvasElement.hidden = false;
+
         video.setAttribute("playsinline", true);
         video.srcObject = stream;
         video.play();
         tick();
-        tick();
         scan();
         cancelBtnDiv.style.display = 'block';
+
         // Refresh button list in case labels have become available
-        return navigator.mediaDevices.enumerateDevices();
+        // return navigator.mediaDevices.enumerateDevices();
     }
 
     function errorHandler() {
@@ -114,7 +121,6 @@ window.addEventListener('load', function () {
     qrcode.callback = res => {
         if (res) {
             outputData.innerText = res;
-            state.qrCodeContent = res;
             scanning = false;
 
             video.srcObject.getTracks().forEach(track => {
@@ -129,13 +135,8 @@ window.addEventListener('load', function () {
         }
     };
 
-    btnScanQR.addEventListener('click', updateAndStart);
-    qrScaneBtn.addEventListener('click', updateAndStart);
-
-    function updateAndStart() {
-        checkDevices();
-        start();
-    }
+    btnScanQR.addEventListener('click', start);
+    qrScaneBtn.addEventListener('click', start);
 
     function scanningFunc() {
         navigator.mediaDevices
@@ -165,6 +166,7 @@ window.addEventListener('load', function () {
         qrScaneBtn.hidden = false;
         canvasElement.hidden = true;
         cancelBtnDiv.style.display = 'none';
+        videoSelectDiv.style.display = 'none';
         video.srcObject.getTracks().forEach(track => {
             track.stop();
         });

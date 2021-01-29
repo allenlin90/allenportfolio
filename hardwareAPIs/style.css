@@ -54,6 +54,11 @@ h1, h2 {
     text-align: center;
 }
 
+#videoSelect {
+    display: none;
+    margin: 1rem auto;
+}
+
 #qrcode_scanner {
     text-align: center;
     margin: 0;

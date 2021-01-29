@@ -5,7 +5,6 @@ window.addEventListener('load', function () {
         return check;
     };
 
-    window.mobileCheck = mobileCheck;
     let re = /\((.*?)\)/g;
     let userAgent = navigator.userAgent.match(re)[0];
     userAgent = userAgent.slice(1, (userAgent.length - 1));
@@ -17,7 +16,7 @@ window.addEventListener('load', function () {
     <p>Agent: ${navigator.userAgent}</p>
     <p>Vendor: ${navigator.vendor}</p>
     <p>OS: ${userAgent}</p>
-    <p>Mobile Browser? ${window.mobileCheck() ? 'Yes' : 'No'}</p>
+    <p>Mobile Browser? ${mobileCheck() ? 'Yes' : 'No'}</p>
     </div>
     `;
 });

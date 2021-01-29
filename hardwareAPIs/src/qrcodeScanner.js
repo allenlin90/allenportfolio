@@ -35,6 +35,7 @@ window.addEventListener('load', function () {
                 constraints = {
                     video: { deviceId: videoSource ? { exact: videoSource } : { exact: state.rearCameras[state.rearCameras.length - 1].deviceId } }
                 };
+                navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(checkDevices).catch(errorHandler);
             } else {
                 constraints = {
                     video: { deviceId: undefined }
@@ -47,7 +48,7 @@ window.addEventListener('load', function () {
                 }
             }
             console.log(constraints);
-            navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(checkDevices).catch(errorHandler);
+
         } catch (err) {
             console.log(err);
         }

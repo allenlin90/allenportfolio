@@ -51,6 +51,7 @@ window.addEventListener('load', function () {
                     const videoInputs = devices.filter(device => device.kind === 'videoinput');
                     videoSelect.innerHTML = '';
                     videoInputs.forEach((videoInput, index) => {
+                        console.log(videoInput);
                         const option = document.createElement('option');
                         option.value = videoInput.deviceId;
                         option.text = videoInput.label || `camera ${index + 1}`;

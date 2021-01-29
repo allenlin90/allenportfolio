@@ -16,8 +16,7 @@ window.addEventListener('load', function () {
 
     let scanning = false;
     const state = {
-        rearCameras: [],
-        replicate: 0
+        rearCameras: []
     }
 
     videoSelect.addEventListener('change', start);
@@ -40,10 +39,12 @@ window.addEventListener('load', function () {
                 constraints = {
                     video: { deviceId: undefined }
                 };
-                if (!state.replicate) {
-                    navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(checkDevices).then(start).catch(errorHandler);
-                    state.replicate += 1;
-                } else {
+                try {
+                    constrains = { video: { facingMode: 'environment' } };
+                    navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(checkDevices).catch(errorHandler);
+                } catch (err) {
+                    console.log('no rear camera');
+                    constrains = { video: true };
                     navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(checkDevices).catch(errorHandler);
                 }
             }
@@ -80,9 +81,7 @@ window.addEventListener('load', function () {
                     errorHandler('This device has no media in/output');
                 }
             })
-            .catch(err => {
-                errorHandler(err);
-            });
+            .catch(errorHandler);
     }
 
     function gotStream(stream) {

@@ -42,10 +42,15 @@ window.addEventListener('load', function () {
             }
             console.log(constraints);
 
-            navigator.mediaDevices.getUserMedia(constraints).then(gotStream).catch(err => {
-                console.log(err);
-                errorHandler();
-            });
+            navigator.mediaDevices.getUserMedia(constraints)
+                .then(stream => {
+                    console.log('stream in start func: ', stream);
+                    gotStream(stream);
+                })
+                .catch(err => {
+                    console.log(err);
+                    errorHandler();
+                });
         } catch (err) {
             console.log(err);
         }
@@ -83,6 +88,7 @@ window.addEventListener('load', function () {
 
     function gotStream(stream) {
         window.stream = stream; // make stream available to console
+        console.log('stream arg in getStream: ', stream);
         scanning = true;
         qrResult.hidden = true;
         btnScanQR.hidden = true;
@@ -95,7 +101,6 @@ window.addEventListener('load', function () {
         tick();
         scan();
         cancelBtnDiv.style.display = 'block';
-        console.log('stream arg in getStream: ', stream);
 
         // Refresh button list in case labels have become available
         // return navigator.mediaDevices.enumerateDevices();
@@ -184,8 +189,6 @@ window.addEventListener('load', function () {
         canvasElement.height = video.videoHeight;
         canvasElement.width = video.videoWidth;
         canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
-        console.log(video.videoHeight);
-        console.log(video.videoWidth);
 
         scanning && requestAnimationFrame(tick);
     }

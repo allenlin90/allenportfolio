@@ -42,7 +42,7 @@ window.addEventListener('load', function () {
             }
             console.log(constraints);
 
-            navigator.mediaDevices.getUserMedia(constraints).then(gotStream).catch(err => {
+            navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(checkDevices).catch(err => {
                 console.log(err);
                 errorHandler();
             });

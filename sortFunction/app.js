@@ -1,4 +1,5 @@
 window.onload = function () {
+    const localStorage = window.localStorage;
     const transitionTime = 1000;
     const body = document.querySelector('body');
     const spinner = document.querySelector('.spinner');
@@ -38,6 +39,8 @@ window.onload = function () {
     const urlParams = new URLSearchParams(window.location.search);
     state.trackingId = urlParams.get('trackingid') ? urlParams.get('trackingid') : 'EX2101181126620';
 
+    console.log(localStorage)
+
     pageStartup();
     async function pageStartup() {
         await fetchParcelDetails(waybillEndpoint, state.trackingId);
@@ -65,6 +68,14 @@ window.onload = function () {
                 const noResult = `<div><h3 style="text-align: center; margin-top: 20px;">The Tracking ID is invalid</h3></div>`;
                 spinner.insertAdjacentHTML('afterend', noResult);
             }
+        }
+        // check if the user has logged in
+        JSON.parse(localStorage.getItem('loginState')) === true ? isLoggedIn() : localStorage.setItem('loginState', JSON.stringify(false));
+        function isLoggedIn() {
+            deliveryDetails.style.display = 'block';
+            loginBtnDiv.style.display = 'none';
+            navigation.style.display = 'grid';
+            state.loggedIn = true;
         }
     }
 
@@ -139,13 +150,15 @@ window.onload = function () {
     });
 
     // LOGIN. submit and send request server to request token
-    subLogin.addEventListener('click', function (e) {
+    subLogin.addEventListener('click', loginIn);
+
+    function loginIn(e) {
         e.preventDefault();
         const username = document.querySelector('#username').value;
         const password = document.querySelector('#password').value;
+        localStorage.setItem('loginState', JSON.stringify(true));
         if (document.querySelector('#keptLogin').checked && !username && !password) {
             freezeScreen();
-            console.log('logged in');
             loginPanel.classList.add('animate__zoomOut');
             deliveryDetails.style.display = 'none';
             spinner.style.display = 'block';
@@ -164,7 +177,7 @@ window.onload = function () {
             state.loggedIn = true;
             loginBtnDiv.style.display = 'none';
         }
-    });
+    }
 
 
     // show sender details when users clicks 'sender'
@@ -230,9 +243,12 @@ window.onload = function () {
         }, transitionTime);
     });
 
-    logoutBtn.addEventListener('click', function (e) {
+    logoutBtn.addEventListener('click', logout);
+
+    function logout(e) {
         e.stopPropagation();
         freezeScreen();
+        localStorage.setItem('loginState', JSON.stringify(false));
         state.loggedIn = false;
         deliveryDetails.style.display = 'none';
         spinner.style.display = 'block';
@@ -254,7 +270,7 @@ window.onload = function () {
                 }, transitionTime);
             }, transitionTime);
         }, transitionTime);
-    });
+    }
 
     /* functions */
 

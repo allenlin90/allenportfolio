@@ -156,8 +156,8 @@ window.onload = function () {
         e.preventDefault();
         const username = document.querySelector('#username').value;
         const password = document.querySelector('#password').value;
-        localStorage.setItem('loginState', JSON.stringify(true));
         if (document.querySelector('#keptLogin').checked && !username && !password) {
+            localStorage.setItem('loginState', JSON.stringify(true));
             freezeScreen();
             loginPanel.classList.add('animate__zoomOut');
             deliveryDetails.style.display = 'none';
@@ -273,7 +273,6 @@ window.onload = function () {
     }
 
     /* functions */
-
     function hideCardAndShowButton(updateStateTo, currentObjState, partyToHide, partyToShow, jsNode) {
         freezeScreen();
         scrollToTop(true);

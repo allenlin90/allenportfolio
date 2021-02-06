@@ -1,110 +1,82 @@
-const videoElement = document.querySelector('video');
-const audioInputSelect = document.querySelector('select#audioSource');
-const audioOutputSelect = document.querySelector('select#audioOutput');
-const videoSelect = document.querySelector('select#videoSource');
-const selectors = [audioInputSelect, audioOutputSelect, videoSelect];
+const slider = document.querySelector('.slider-container');
+const slides = [...document.querySelectorAll('.slide')];
 
-audioOutputSelect.disabled = !('sinkId' in HTMLMediaElement.prototype);
+let isDragging = false;
+let startPos = 0;
+let currentTranslate = 0;
+let prevTranslate = 0;
+let animationID = 0;
+let currentIndex = 0;
 
-navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(handleError);
-// checkDevices();
-// async function checkDevices() {
-//     const devices = await navigator.mediaDevices.enumerateDevices();
-//     if (devices.length) {
-//         gotDevices(devices);
-//     } else {
-//         console.log('something goes wrong');
-//     }
-// }
+slides.forEach((slide, index) => {
+    const slideImage = slide.querySelector('img');
+    slideImage.addEventListener('dragstart', (e) => e.preventDefault());
+    // Touch events
+    slide.addEventListener('touchstart', touchStart(index));
+    slide.addEventListener('touchend', touchEnd);
+    slide.addEventListener('touchmove', touchMove);
 
-function gotDevices(deviceInfos) {
-    // Handles being called several times to update labels. Preserve values.
-    const values = selectors.map(select => select.value);
-    selectors.forEach(select => {
-        select.innerHTML = '';
-    });
-    for (let i = 0; i < deviceInfos.length; ++i) {
-        const deviceInfo = deviceInfos[i];
-        const option = document.createElement('option');
-        option.value = deviceInfo.deviceId;
-        if (deviceInfo.kind === 'audioinput') {
-            option.text = deviceInfo.label || `microphone ${audioInputSelect.length + 1}`;
-            audioInputSelect.appendChild(option);
-        } else if (deviceInfo.kind === 'audiooutput') {
-            option.text = deviceInfo.label || `speaker ${audioOutputSelect.length + 1}`;
-            audioOutputSelect.appendChild(option);
-        } else if (deviceInfo.kind === 'videoinput') {
-            option.text = deviceInfo.label || `camera ${videoSelect.length + 1}`;
-            videoSelect.appendChild(option);
-            console.log(deviceInfo)
-        } else {
-            console.log('Some other kind of source/device: ', deviceInfo);
-        }
-    }
-    selectors.forEach((select, selectorIndex) => {
-        // if (Array.prototype.slice.call(select.childNodes).some(n => n.value === values[selectorIndex])) {
-        if ([...select.children].some(n => n.value === values[selectorIndex])) {
-            select.value = values[selectorIndex];
-        }
-    });
+    // Mouse events
+    slide.addEventListener('mousedown', touchStart(index));
+    slide.addEventListener('mouseup', touchEnd); // when the user release the mouse click
+    slide.addEventListener('mouseleave', touchEnd); // when mouse cursor leaves the browser
+    slide.addEventListener('mousemove', touchMove);
+});
+
+window.oncontextmenu = function (event) { // prevent showing context menu by touching or right click with mouse
+    event.preventDefault();
+    event.stopPropagation();
+    return false;
 }
 
+function touchStart(index) {
+    return function (event) {
+        currentIndex = index;
+        startPos = getPositionX(event);
+        isDragging = true;
 
-// Attach audio output device to video element using device/sink ID.
-function attachSinkId(element, sinkId) {
-    if (typeof element.sinkId !== 'undefined') {
-        element.setSinkId(sinkId)
-            .then(() => {
-                console.log(`Success, audio output device attached: ${sinkId}`);
-            })
-            .catch(error => {
-                let errorMessage = error;
-                if (error.name === 'SecurityError') {
-                    errorMessage = `You need to use HTTPS for selecting audio output device: ${error}`;
-                }
-                console.error(errorMessage);
-                // Jump back to first output device in the list as it's the default.
-                audioOutputSelect.selectedIndex = 0;
-            });
-    } else {
-        console.warn('Browser does not support output device selection.');
+        animationID = requestAnimationFrame(animation); // keep animating the effect, while we can use setInterval, this provides better performance
+        slider.classList.add('grabbing');
     }
 }
 
-function changeAudioDestination() {
-    const audioDestination = audioOutputSelect.value;
-    attachSinkId(videoElement, audioDestination);
+function touchEnd() {
+    isDragging = false;
+    cancelAnimationFrame(animationID);
+
+    const movedBy = currentTranslate - prevTranslate;
+
+    if (movedBy < -100 && currentIndex < slides.length - 1) currentIndex += 1;
+
+    if (movedBy > 100 && currentIndex > 0) currentIndex -= 1;
+
+    setPositionByIndex();
+
+    slider.classList.remove('grabbing');
 }
 
-function gotStream(stream) {
-    window.stream = stream; // make stream available to console
-    videoElement.srcObject = stream;
-    // Refresh button list in case labels have become available
-    return navigator.mediaDevices.enumerateDevices();
-}
-
-function handleError(error) {
-    console.log('navigator.MediaDevices.getUserMedia error: ', error.message, error.name);
-}
-
-function start() {
-    if (window.stream) {
-        window.stream.getTracks().forEach(track => {
-            track.stop();
-        });
+function touchMove(event) {
+    if (isDragging) {
+        const currentPosition = getPositionX(event);
+        currentTranslate = prevTranslate + currentPosition - startPos;
     }
-    const audioSource = audioInputSelect.value;
-    const videoSource = videoSelect.value;
-    const constraints = {
-        audio: { deviceId: audioSource ? { exact: audioSource } : undefined },
-        video: { deviceId: videoSource ? { exact: videoSource } : undefined }
-    };
-    navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(gotDevices).catch(handleError);
 }
 
-audioInputSelect.onchange = start;
-audioOutputSelect.onchange = changeAudioDestination;
+function getPositionX(event) {
+    return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+}
 
-videoSelect.onchange = start;
+function animation() {
+    setSliderPosition();
+    if (isDragging) requestAnimationFrame(animation); // call the function itself recursively as long as 'isDragging' is true
+}
 
-start();
+function setSliderPosition() {
+    slider.style.transform = `translateX(${currentTranslate}px)`;
+}
+
+function setPositionByIndex() {
+    currentTranslate = currentIndex * (-window.innerWidth);
+    prevTranslate = currentTranslate;
+    setSliderPosition();
+}

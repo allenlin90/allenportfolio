@@ -1,0 +1,27 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+.container {
+    position: relative;
+    height: 100vh;
+}
+
+.cards {
+    height: 10rem;
+    background: pink;
+}
+
+footer {
+    background: burlywood;
+    width: 100%;
+    height: 2rem;
+    position: fixed;
+    bottom: 0;
+}

@@ -27,7 +27,7 @@ html, body {
     margin: 0 auto;
     margin-top: 3rem;
     background-color: #fff;
-    grid-template-rows: 0.5fr 1fr 2fr 1fr;
+    grid-template-rows: 0.5fr 1fr 3fr 1fr;
     grid-template-columns: 1fr;
     flex-direction: column;
     justify-content: center;

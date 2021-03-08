@@ -37,7 +37,7 @@ html, body {
 #qrcode_scanner > div:first-child {
     display: flex;
     height: 100%;
-    padding: 0.5rem;
+    padding: 10px;
     background-color: #ffc107;
     justify-content: center;
     align-items: center;
@@ -46,11 +46,12 @@ html, body {
 #qrcode_scanner h1 {
     font-size: bold;
     margin: 0;
+    padding: 0;
 }
 
 #videoSelect {
     width: 100%;
-    padding: 1rem;
+    padding: 10px;
 }
 
 #qr-canvas {

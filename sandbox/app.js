@@ -6,8 +6,11 @@ window.addEventListener('load', async function () {
     const canvasElement = document.querySelector("#qr-canvas");
     const canvas = canvasElement.getContext("2d");
 
+    const qrResult = document.querySelector("#qr-result");
     const outputData = document.querySelector("#outputData");
     const videoSelect = document.querySelector('#videoSource');
+
+    const startScanBtn = document.querySelector('#startScanBtn');
 
     let scanning = false;
     const state = {
@@ -20,9 +23,13 @@ window.addEventListener('load', async function () {
 
     qrcode.callback = readResult;
 
+    startScanBtn.onclick = start;
+
     function readResult(res) {
         if (res) {
+            qrResult.style.display = `block`;
             outputData.innerText = res;
+            startScanBtn.style.display = `block`;
             scanning = false;
 
             video.srcObject.getTracks().forEach(track => {
@@ -34,6 +41,9 @@ window.addEventListener('load', async function () {
     };
 
     async function start() {
+        qrResult.style.display = `none`;
+        startScanBtn.style.display = `none`;
+        canvasElement.hidden = false;
         if (/iphone|ipad|mac|apple|os\sx/.test(deviceAgent().toLowerCase())) {
             try {
                 if (window.stream) {

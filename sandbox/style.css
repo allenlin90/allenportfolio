@@ -59,18 +59,24 @@ html, body {
     margin: 0 auto;
     padding: 1.3rem 0;
     /* width: calc(100% - 20px); */
-    /* max-width: 300px; */
+    max-width: calc(100% - 20px);
     max-height: 50vh;
 }
 
 #startScanBtn {
     display: none;
     height: 100%;
+    padding: 16px;
+}
+
+#startScanBtn p {
+    font-weight: bold;
+    font-size: 1.3rem;
 }
 
 #startScanBtn img {
-    /* height: 10rem; */
-    height: 100%;
+    height: 10rem;
+    /* height: 100%; */
 }
 
 #qr-result {

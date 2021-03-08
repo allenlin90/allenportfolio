@@ -1,13 +1,12 @@
-window.addEventListener('load', function () {
+window.addEventListener('load', async function () {
     const container = document.querySelector(".container");
     container.style.justifyContent = `space-between`;
 
     const video = document.createElement("video");
-    const canvasElement = document.getElementById("qr-canvas");
+    const canvasElement = document.querySelector("#qr-canvas");
     const canvas = canvasElement.getContext("2d");
 
-    const outputData = document.getElementById("outputData");
-
+    const outputData = document.querySelector("#outputData");
     const videoSelect = document.querySelector('#videoSource');
 
     let scanning = false;
@@ -15,9 +14,24 @@ window.addEventListener('load', function () {
         rearCameras: []
     }
 
-    videoSelect.addEventListener('change', start);
-    checkDevices();
+    videoSelect.onchange = start;
+    await checkDevices();
     start();
+
+    qrcode.callback = readResult;
+
+    function readResult(res) {
+        if (res) {
+            outputData.innerText = res;
+            scanning = false;
+
+            video.srcObject.getTracks().forEach(track => {
+                track.stop();
+            });
+
+            canvasElement.hidden = true;
+        }
+    };
 
     async function start() {
         if (/iphone|ipad|mac|apple|os\sx/.test(deviceAgent().toLowerCase())) {
@@ -90,11 +104,11 @@ window.addEventListener('load', function () {
                         video: { deviceId: undefined }
                     };
                     try {
-                        constrains = { video: { facingMode: 'environment' } };
+                        constraints = { video: { facingMode: 'environment' } };
                         navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(checkDevices).catch(errorHandler);
                     } catch (err) {
                         console.log('no rear camera');
-                        constrains = { video: true };
+                        constraints = { video: true };
                         navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(checkDevices).catch(errorHandler);
                     }
                 }
@@ -106,28 +120,25 @@ window.addEventListener('load', function () {
         }
     }
 
-    function checkDevices() {
-        navigator.mediaDevices.enumerateDevices()
-            .then((devices) => {
-                const videoInputs = devices.filter(device => device.kind === 'videoinput');
-                if (videoInputs.length) {
-                    const videoSelectedValue = videoSelect.value;
-                    videoSelect.innerHTML = '';
-                    videoInputs.forEach((videoInput, index) => {
-                        const option = document.createElement('option');
-                        option.value = videoInput.deviceId;
-                        option.text = videoInput.label || `camera ${index + 1}`;
-                        videoSelect.appendChild(option);
-                    });
-                    videoSelect.value = videoSelectedValue;
-                    const rearCameras = devices.filter(device => /(back|rear)/g.test(device.label.toLowerCase()));
-                    state.rearCameras = rearCameras;
-                    return devices;
-                } else {
-                    errorHandler('This device has no media in/output');
-                }
-            })
-            .catch(errorHandler);
+    async function checkDevices() {
+        const devices = await navigator.mediaDevices.enumerateDevices().then((devices) => devices).catch(err => err);
+        const videoInputs = devices.filter(device => device.kind === 'videoinput');
+        if (videoInputs.length) {
+            const videoSelectedValue = videoSelect.value;
+            videoSelect.innerHTML = '';
+            videoInputs.forEach((videoInput, index) => {
+                const option = document.createElement('option');
+                option.value = videoInput.deviceId;
+                option.text = videoInput.label || `camera ${index + 1}`;
+                videoSelect.appendChild(option);
+            });
+            videoSelect.value = videoSelectedValue;
+            const rearCameras = devices.filter(device => /(back|rear)/g.test(device.label.toLowerCase()));
+            state.rearCameras = rearCameras;
+            return devices;
+        } else {
+            errorHandler('This device has no available camera');
+        }
     }
 
     function gotStream(stream) {
@@ -143,21 +154,8 @@ window.addEventListener('load', function () {
 
     function errorHandler(err) {
         let message =
-            `<h1>App can't start camera!</h1>
-            <div style="width: 100%; max-width: 700px; margin: 0 auto; color: white; text-align: left;">
-                <ol>
-                    <li>Andriod Google Chrome</li>
-                    <ol>
-                        <li>Go to Settings</li>
-                        <li>Select Site setting</li>
-                        <li>Select Camera</li>
-                        <li>Check https://app.makesend.asia/</li>
-                        <li>Select Camera</li>
-                        <li>Select 'Allow'</li>
-                    </ol>
-                    <li>iPhone Safari</li>
-                </ol>
-            </div>
+            `<h1>App can't start camera because </h1>
+            <p>"${err}"</p>
             <div id="refresh_page" class="btn btn-light" style="margin: 0 auto;">Reload Page</div>`;
         document.querySelector('#qrcode_scanner').innerHTML = message;
         document.querySelector('#refresh_page').addEventListener('click', function (e) {
@@ -166,19 +164,6 @@ window.addEventListener('load', function () {
         });
         console.log(err);
     }
-
-    qrcode.callback = res => {
-        if (res) {
-            outputData.innerText = res;
-            scanning = false;
-
-            video.srcObject.getTracks().forEach(track => {
-                track.stop();
-            });
-
-            canvasElement.hidden = true;
-        }
-    };
 
     function tick() {
         canvasElement.height = video.videoHeight;

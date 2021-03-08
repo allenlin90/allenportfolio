@@ -95,11 +95,11 @@ window.addEventListener('load', function () {
                         video: { deviceId: undefined }
                     };
                     try {
-                        constrains = { video: { facingMode: 'environment' } };
+                        constraints = { video: { facingMode: 'environment' } };
                         navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(checkDevices).catch(errorHandler);
                     } catch (err) {
                         console.log('no rear camera');
-                        constrains = { video: true };
+                        constraints = { video: true };
                         navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(checkDevices).catch(errorHandler);
                     }
                 }

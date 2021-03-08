@@ -21,14 +21,14 @@ html, body {
 }
 
 #qrcode_scanner {
-    display: grid;
+    display: flex;
     text-align: center;
     width: 100%;
     margin: 0 auto;
     margin-top: 3rem;
     background-color: #fff;
     /* grid-template-rows: 0.5fr 0.5fr 3fr 1fr; */
-    grid-template-columns: 1fr;
+    /* grid-template-columns: 1fr; */
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -37,6 +37,7 @@ html, body {
 #qrcode_scanner > div:first-child {
     display: flex;
     height: 100%;
+    width: 100%;
     padding: 10px;
     background-color: #ffc107;
     justify-content: center;

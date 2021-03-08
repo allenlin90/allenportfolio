@@ -5,27 +5,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" />
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 
 <body>
     <div class="container">
-        <div class="content">
-            <div class="cards">Hello</div>
-            <div class="cards">Hello</div>
-            <div class="cards">Hello</div>
-            <div class="cards">
-                Hello
-                <div class="object">red</div>
+        <div id="qrcode_scanner">
+            <!-- reference https://codesandbox.io/s/qr-code-scanner-ilrm9?file=/src/qrCodeScanner.js -->
+            <!-- https://www.sitepoint.com/create-qr-code-reader-mobile-website/ -->
+            <div>
+                <h1>QR Code Scanner</h1>
             </div>
-            <div class="cards">
-                Hello
-                <div class="object">red</div>
+            <div id="videoSelect">
+                <label for="videoSource">Change Camera</label>
+                <select id="videoSource" class="custom-select"></select>
+            </div>
+            <canvas id="qr-canvas"></canvas>
+            <div id="qr-result">
+                <b>Result:</b><span id="outputData"></span>
             </div>
         </div>
-        <footer>Hi</footer>
+        <footer>
+            <div class="navigator">
+                <div>
+                    <a href="#scanner" class="selected" id="navi_scanner">
+                        <i class="fas fa-qrcode"></i>
+                        <span>Scan</span>
+                    </a>
+                </div>
+                <div>
+                    <a href="#search" class="" id="navi_search">
+                        <i class="fas fa-search"></i>
+                        <span>Search</span>
+                    </a>
+                </div>
+                <div>
+                    <a href="#profile" class="" id="navi_profile">
+                        <i class="fas fa-users"></i>
+                        <span>Profile</span>
+                    </a>
+                </div>
+                <div>
+                    <a href="#" class="" id="navi_logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </div>
+        </footer>
     </div>
+    <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
+    <script src="app.js"></script>
 </body>
 
 </html>

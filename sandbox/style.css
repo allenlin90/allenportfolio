@@ -1,47 +1,130 @@
-* {
-    box-sizing: border-box;
+html, body {
     padding: 0;
     margin: 0;
-}
-
-html, body {
+    box-sizing: border-box;
     height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     position: relative;
-    height: 100vh;    
+    height: 100%;
 }
 
-.content {
-    padding-bottom: 2rem;
-}
-
-.cards {
-    height: 10rem;
-    background: pink;
-    border: black 3px solid;
-}
-
-.cards:last-child {
-    position: relative;
-}
-
-.object {
-    position: absolute;
-    background: red;
+#qrcode_scanner {
+    display: grid;
+    text-align: center;
+    height: 50%;
     width: 100%;
-    bottom: 0;
-    left: 0;
-    border: green solid 2px;
+    margin: 0 auto;
+    margin-top: 3rem;
+    background-color: #fff;
+    grid-template-rows: 1fr 1fr 4fr 1fr;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+}
+
+#qrcode_scanner > div {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#qrcode_scanner > div:first-child {
+    display: flex;
+    height: 100%;
+    background-color: #ffc107;
+    justify-content: center;
+    align-items: center;
+}
+
+#qrcode_scanner h1 {
+    font-size: bold;
+    margin: 0;
+}
+
+#videoSelect {
+    width: 100%;
+    margin: 1rem auto;
+}
+
+#qr-canvas {
+    margin: auto;
+    width: calc(100% - 20px);
+    max-width: 250px;
+}
+
+#qr-result {
+    font-size: 1.2em;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 500px;
+    background-color: white;
+}
+
+@media (min-width: 500px) {
+    #qrcode_scanner {
+        max-width: 500px;
+    }
 }
 
 footer {
-    display: block;
-    background: burlywood;
-    width: 100%;
-    height: 2rem;
     position: fixed;
+    width: 100%;
     bottom: 0;
+}
+
+.navigator {
+    margin: 0 auto;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    background: #ffc107;
+    height: 56px;
+}
+
+.navigator div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navigator a {
+    color: rgb(100, 100, 100);
     text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0 12px;
+    min-width: 80px;
+    max-width: 168px;
+    margin: 0;
+}
+
+.navigator a > i {
+    display: block;
+}
+
+.navigator .selected {
+    color: #000;
+}
+
+@media (min-width: 500px) {
+    .navigator {
+        max-width: 500px;
+    }
+    footer {
+        margin-bottom: 2rem;
+    }
 }

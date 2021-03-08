@@ -4,6 +4,7 @@ window.addEventListener('load', async function () {
 
     const video = document.createElement("video");
     const canvasElement = document.querySelector("#qr-canvas");
+    canvasElement.width = (canvasElement.offsetHeight / 3) * 4;
     const canvas = canvasElement.getContext("2d");
 
     const qrResult = document.querySelector("#qr-result");

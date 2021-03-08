@@ -23,12 +23,10 @@ html, body {
 #qrcode_scanner {
     display: grid;
     text-align: center;
-    height: 50%;
     width: 100%;
     margin: 0 auto;
     margin-top: 3rem;
     background-color: #fff;
-    grid-template-rows: 1fr 1fr 4fr 1fr;
     grid-template-columns: 1fr;
     justify-content: center;
     align-items: center;
@@ -63,19 +61,17 @@ html, body {
 #qr-canvas {
     margin: auto;
     width: calc(100% - 20px);
-    max-width: 250px;
+    max-width: 300px;
 }
 
 #qr-result {
     font-size: 1.2em;
-    margin: 20px auto;
-    padding: 20px;
-    max-width: 500px;
+    padding: 1.4rem;
     background-color: white;
 }
 
 @media (min-width: 500px) {
-    #qrcode_scanner {
+    #qrcode_scanner, #qr-result {
         max-width: 500px;
     }
 }

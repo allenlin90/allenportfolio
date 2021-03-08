@@ -7,7 +7,6 @@ window.addEventListener('load', function () {
     const canvas = canvasElement.getContext("2d");
 
     const outputData = document.getElementById("outputData");
-    const btnCancelScanning = document.getElementById("btn-cancel-scanning");
 
     const videoSelect = document.querySelector('#videoSource');
 
@@ -17,6 +16,7 @@ window.addEventListener('load', function () {
     }
 
     videoSelect.addEventListener('change', start);
+    checkDevices();
     start();
 
     async function start() {
@@ -106,7 +106,6 @@ window.addEventListener('load', function () {
         }
     }
 
-    checkDevices();
     function checkDevices() {
         navigator.mediaDevices.enumerateDevices()
             .then((devices) => {
@@ -180,16 +179,6 @@ window.addEventListener('load', function () {
             canvasElement.hidden = true;
         }
     };
-
-
-    btnCancelScanning.onclick = cancelScanning;
-
-    function cancelScanning() {
-        scanning = false;
-        video.srcObject.getTracks().forEach(track => {
-            track.stop();
-        });
-    }
 
     function tick() {
         canvasElement.height = video.videoHeight;

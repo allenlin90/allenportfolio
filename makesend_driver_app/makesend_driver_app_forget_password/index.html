@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css">
+    <title>MakeSend Driver - Forget Password</title>
+</head>
+
+<body>
+    <div id="login_form">
+        <div id="makesend_logo">
+            <img src="https://www.makesend.asia/wp-content/uploads/2018/06/logo-makesend.png" alt="ms_logo">
+        </div>
+        <h1>Reset Password</h1>
+        <hr>
+        <div id="phone_otp_input">
+            <form action="" method="get" class="digit-group" data-group-name="digits" data-autosubmit="false"
+                autocomplete="off" id="insert_otp">
+                <div>
+                    <input type="text" id="digit-1" name="digit-1" data-next="digit-2" />
+                    <input type="text" id="digit-2" name="digit-2" data-next="digit-3" data-previous="digit-1" />
+                    <input type="text" id="digit-3" name="digit-3" data-next="digit-4" data-previous="digit-2" />
+                    <input type="text" id="digit-4" name="digit-4" data-previous="digit-3" />
+                </div>
+                <div>
+                    <button class="btn btn-warning" type="submit">Check OTP</button>
+                </div>
+            </form>
+            <!-- <form action="" method="post" id="submit_phone">
+                <label for="driver_phone" class="form-label">Please enter your phone</label>
+                <div>
+                    <input class="form-control" id="driver_phone" type="tel" name="receiver_phone" value=""
+                        inputmode="numeric" placeholder="E.g. 0632166699" autocomplete="off" pattern="[0-9]{10}">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                    <div id="error_hint" class="invalid-feedback">Phone number starts with 0 and has 10 digits!</div>
+                </div>
+            </form> -->
+        </div>
+        <hr>
+        <div id="backToLogin">
+            <a class="btn btn-primary" href="#">Back to Login</a>
+        </div>
+
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>

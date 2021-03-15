@@ -1,0 +1,102 @@
+@import '../main.css';
+
+#login_form {
+    border: 2px #ccc solid;
+    width: 80%;
+    padding: 1.2rem;
+    background: #fff;
+    border-radius: 1rem;
+}
+
+#login_form h1 {
+    text-align: center;
+}
+
+#login_form img {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+#backToLogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#phone_otp_input {
+    display: block;
+}
+
+#submit_phone > div {
+    display: grid;
+    grid-template-areas: "phoneInput searchBtn";
+    grid-template-columns: 4fr 1fr;
+}
+
+#submit_phone input {
+    grid-area: "phoneInput";
+    display: block;
+    font-size: 1rem;
+    padding: 0.5rem;
+}
+
+#submit_phone button {
+    grid-area: "searchBtn";
+    display: block;
+    font-size: 1rem;
+    padding: 0.5rem;
+    background: #ffc107;
+    border: 1px solid grey;
+    cursor: pointer;
+}
+
+#otp_loader {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#otp_loader h4 {
+    margin: 0;
+    color: #ffc107;
+    font-weight: bold;
+}
+
+#insert_otp > div:first-child {
+    display: flex;
+    /* margin: 0 auto; */
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#insert_otp > div:last-child {
+    margin: 1rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#insert_otp input {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    margin-right: 5px;
+    text-align: center;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+@media (min-width: 768px) {
+    #login_form {
+        max-width: 500px;
+    }
+
+    #login_form img {
+        display: block;
+        /* width: 500px; */
+        margin: 0 auto;
+    }
+}

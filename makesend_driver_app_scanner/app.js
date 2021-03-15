@@ -26,7 +26,7 @@ window.addEventListener('load', async function () {
 
     startScanBtn.onclick = start;
 
-    function readResult(res) {
+    async function readResult(res) {
         if (res) {
             qrResult.style.display = `block`;
             outputData.innerText = res;
@@ -40,6 +40,11 @@ window.addEventListener('load', async function () {
             canvasElement.hidden = true;
         }
     };
+
+    async function checkResult(result) {
+        let res = result.toString().trim().toLowerCase();
+
+    }
 
     async function start() {
         qrResult.style.display = `none`;

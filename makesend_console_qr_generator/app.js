@@ -53,22 +53,24 @@ async function prePrintQRCode(quantity = 1, endpoint = `https://api.airportels.n
         <div class="shipment">
             <div class="parcel">
                 <div class="qr_code">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png"
-                        alt="">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png" alt="QRCode">
                     <p>EX2011159384234</p>
                 </div>
                 <div class="extra_service">
                     <div>
+                        <img src="https://www.makesend.asia/wp-content/uploads/2018/06/logo-makesend.png" alt="ms_logo">
+                    </div>
+                    <div>
                         <input type="checkbox" name="temp" id="temp">
-                        <label for="temp"><b>Temp Control</b></label>
+                        <label for="temp"><b>ควบคุมความเย็น</b></label>
                     </div>
                     <div>
                         <input type="checkbox" name="express" id="express">
-                        <label for="express"><b>Before 17:00</b></label>
+                        <label for="express"><b>ส่งด่วน 17:00</b></label>
                     </div>
                     <div>
                         <input type="checkbox" name="COD" id="COD">
-                        <label for="COD"><b>Cash on Delivery</b></label>
+                        <label for="COD"><b>เก็บเงินปลายทาง</b></label>
                         <p>___________ ฿</p>
                     </div>
                 </div>

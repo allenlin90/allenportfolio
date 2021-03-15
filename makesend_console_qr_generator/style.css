@@ -63,7 +63,7 @@ p {
     padding: 10px;
     padding-bottom: 0;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 3fr 4fr;
     grid-template-rows: 2fr 1fr;
     grid-template-areas: 
         "qr_code extra_service" 
@@ -73,6 +73,7 @@ p {
 
 .qr_code {
     grid-area: qr_code;
+    display: block;
     border-top: black solid 2px;
     border-left: black solid 2px;
 }
@@ -81,12 +82,12 @@ p {
     display: block;
     margin: 0 auto;
     padding: 0.2cm;
-    width: 3cm;
-    height: 3cm;
+    width: 3.5cm;
+    height: 3.5cm;
 }
 
-.qr_code {
-    display: block;
+.qr_code p {
+    font-weight: bold;
 }
 
 .extra_service {
@@ -96,13 +97,24 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding: 1rem;
+    padding: 0.2cm;
     padding-bottom: 0;
+}
+
+.extra_service > div:first-child {
+    width: 100%;
+    padding: 0.1cm;
+}
+
+.extra_service img {
+    display: block;
+    width: 100%;
 }
 
 .extra_service p {
     text-align: center;
-    margin-top: 1rem;
+    
+    /* margin-top: 1rem; */
 }
 
 .note {

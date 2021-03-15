@@ -84,6 +84,12 @@ html, body {
     padding: 1.4rem;
     display: none;
     height: 100%;
+    width: 100%;
+}
+
+#outputData {
+    width: 100%;
+    word-wrap: break-word;
 }
 
 @media (min-width: 500px) {

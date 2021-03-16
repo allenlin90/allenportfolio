@@ -1,4 +1,5 @@
-window.addEventListener('load', async function () {
+qrScanner();
+async function qrScanner() {
     const container = document.querySelector(".container");
     container.style.justifyContent = `space-between`;
 
@@ -29,7 +30,6 @@ window.addEventListener('load', async function () {
     async function readResult(res) {
         if (res) {
             qrResult.style.display = `block`;
-            outputData.innerText = res;
             startScanBtn.style.display = `block`;
             scanning = false;
 
@@ -38,12 +38,73 @@ window.addEventListener('load', async function () {
             });
 
             canvasElement.hidden = true;
+
+            checkResult(res);
         }
     };
 
     async function checkResult(result) {
-        let res = result.toString().trim().toLowerCase();
+        const res = result.toString().trim().toLowerCase();
+        actionsToQR(res);
+    }
 
+    async function actionsToQR(res = '') {
+        // let res = document.querySelector('#outputData').innerText.trim().toLowerCase();
+        const parcelId = getParameterByName('id');
+
+        const trackingIdRegex = /.?((ex|st|pp)\d{13}).?/g.exec(res);
+        const outputData = document.querySelector('#outputData');
+        const actionToResult = document.querySelector('#actionToResult');
+        actionToResult.style.display = `block`;
+        if (trackingIdRegex) {
+            const trackingId = trackingIdRegex[1].toUpperCase()
+            if (res.includes('http')) {
+                outputData.innerHTML = `
+                Parcel ID: <a href=${res}>${trackingId}</a>
+                `;
+            } else {
+                outputData.innerText = trackingId;
+            }
+
+            const link = actionToResult.querySelector('a');
+            if (trackingId.includes('ST')) {
+                link.setAttribute('href', `#search?id=${trackingId}`);
+                link.innerText = `Update Delivery Status`;
+            } else if (trackingId.includes('PP')) {
+                const checkRegistration = true;
+                if (checkRegistration) {
+                    link.setAttribute('href', `#search?id=${trackingId}`);
+                    link.innerText = `Update Delivery Status`;
+                } else {
+                    const param = parcelId.length > 0 ? `&parcelId=${parcelId}` : ``;
+                    link.setAttribute('href', `#register?id=${trackingId}${param}`);
+                    link.innerText = `Register Parcel`;
+                    if (param && param.includes('EX')) {
+                        window.location.hash = `register?id=${trackingId}${param}`;
+                    }
+                }
+            } else if (trackingId.includes('EX')) {
+                link.setAttribute('href', `#search?id=${trackingId}`);
+                link.innerText = `Update Delivery Status`;
+            }
+        } else {
+            if (res.includes('http') || res.includes('www')) {
+                outputData.innerHTML = `
+               <a href=${res}>${res}</a>
+            `;
+            } else {
+                outputData.innerText = res;
+            }
+        }
+    }
+
+    function getParameterByName(name, url = window.location.href) {
+        name = name.replace(/[\[\]]/g, '\\$&');
+        const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
     }
 
     async function start() {
@@ -203,4 +264,4 @@ window.addEventListener('load', async function () {
         userAgent = userAgent.slice(1, (userAgent.length - 1));
         return userAgent;
     }
-});
+}

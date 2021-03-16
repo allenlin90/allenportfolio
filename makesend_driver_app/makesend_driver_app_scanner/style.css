@@ -43,6 +43,12 @@
     max-height: 50vh;
 }
 
+#actionToResult{
+    display: none;
+    width: 100%;
+    padding: 0 1.4rem;
+}
+
 #startScanBtn {
     display: none;
     height: 100%;
@@ -55,8 +61,14 @@
 }
 
 #startScanBtn img {
+    display: block;
     height: 10rem;
-    /* height: 100%; */
+    padding: 0.2rem;
+    margin-bottom: 1rem;
+    border: #ccc 2px solid;
+    border-radius: 10%;
+    box-shadow: 5px 5px 5px 5px;
+    cursor: pointer;
 }
 
 #qr-result {

@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" style="justify-content: space-between;">
         <div id="qrcode_scanner">
             <!-- reference https://codesandbox.io/s/qr-code-scanner-ilrm9?file=/src/qrCodeScanner.js -->
             <!-- https://www.sitepoint.com/create-qr-code-reader-mobile-website/ -->
@@ -26,9 +26,14 @@
                 <label for="videoSource">Change Camera</label>
                 <select id="videoSource" class="custom-select"></select>
             </div>
-            <canvas id="qr-canvas"></canvas>
+            <canvas id="qr-canvas" hidden></canvas>
             <div id="qr-result">
-                <b>Result:</b><p id="outputData"></p>
+                <b>Result: </b>
+                <p id="outputData">https://app.makesend.asia/tracking?t=PP2103151042875</p>
+            </div>
+            <div id="actionToResult">
+                <a href="#" class="btn btn-primary">action</a>
+                <hr>
             </div>
             <div id="startScanBtn">
                 <label>
@@ -40,7 +45,7 @@
         <footer>
             <div class="navigator">
                 <div>
-                    <a href="#scanner" class="selected" id="navi_scanner">
+                    <a href="#scanner" class="" id="navi_scanner">
                         <i class="fas fa-qrcode"></i>
                         <span>Scan</span>
                     </a>
@@ -52,9 +57,9 @@
                     </a>
                 </div>
                 <div>
-                    <a href="#profile" class="" id="navi_profile">
-                        <i class="fas fa-users"></i>
-                        <span>Profile</span>
+                    <a href="#tasks" class="" id="navi_tasks">
+                        <i class="fas fa-tasks"></i>
+                        <span>Tasks</span>
                     </a>
                 </div>
                 <div>

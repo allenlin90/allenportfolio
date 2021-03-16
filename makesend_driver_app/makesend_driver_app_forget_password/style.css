@@ -64,7 +64,11 @@
     font-weight: bold;
 }
 
-#insert_otp > div:first-child {
+#insert_otp h3 {
+    text-align: center;
+}
+
+#insert_otp > div:nth-child(2) {
     display: flex;
     /* margin: 0 auto; */
     width: 100%;

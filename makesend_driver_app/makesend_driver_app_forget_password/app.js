@@ -1,3 +1,4 @@
+init();
 
 function init() {
     const otpInput = document.querySelector('#phone_otp_input');
@@ -34,22 +35,85 @@ function init() {
                 `;
                 setTimeout(function () {
                     otpInput.innerHTML = `
-                    <form action="" method="get" class="digit-group" data-group-name="digits" data-autosubmit="false" autocomplete="off" id="insert_otp">
+                    <form class="digit-group" data-group-name="digits" autocomplete="off" id="insert_otp">
                         <div>
-                            <input type="text" id="digit-1" name="digit-1" data-next="digit-2" />
-                            <input type="text" id="digit-2" name="digit-2" data-next="digit-3" data-previous="digit-1" />
-                            <input type="text" id="digit-3" name="digit-3" data-next="digit-4" data-previous="digit-2" />
-                            <input type="text" id="digit-4" name="digit-4" data-previous="digit-3" />
+                            <h3>Enter OTP Code</h3>
                         </div>
                         <div>
-                            <button class="btn btn-warning" type="submit">Check OTP</button>
+                            <input type="text" id="digit-1" name="digit-1" data-next="digit-2" maxlength="1" />
+                            <input type="text" id="digit-2" name="digit-2" data-next="digit-3" data-previous="digit-1"
+                                maxlength="1" />
+                            <input type="text" id="digit-3" name="digit-3" data-next="digit-4" data-previous="digit-2"
+                                maxlength="1" />
+                            <input type="text" id="digit-4" name="digit-4" data-previous="digit-3" maxlength="1" />
+                        </div>
+                        <div>
+                            <button class="btn btn-warning" type="submit" disabled>Request OTP <span>(<span id="countdown">60</span> sec)</span></button>
                         </div>
                     </form>
                     `;
+                    countdown();
+                    inputHandler();
                 }, 500);
             } else {
                 input.classList.add('is-invalid');
             }
         }
     }
+}
+
+function countdown() {
+    const clock = document.querySelector('#countdown');
+    let second = parseInt(clock.innerText);
+    if (second > 0) {
+        clock.innerText = second - 1;
+        setTimeout(function () {
+            countdown();
+        }, 1000)
+    } else {
+        const requestOTP = document.querySelector('#insert_otp button');
+        requestOTP.removeAttribute('disabled');
+        clock.parentNode.innerHTML = ``;
+        requestOTP.onclick = function () {
+            requestOTP.setAttribute("disabled", true);
+            document.querySelector('#insert_otp button span').innerHTML = `(<span id="countdown">60</span> sec)`;
+            countdown();
+        }
+    }
+}
+
+function inputHandler() {
+    const state = {
+        otp: ''
+    };
+    const inputs = document.querySelector('.digit-group').querySelectorAll('input');
+    inputs[0].focus();
+
+    inputs.forEach((input) => {
+        input.onkeyup = function (e) {
+            const parent = this.parentNode;
+            const formTag = parent.parentNode;
+            if (e.keyCode === 8 || e.keyCode === 37) {
+                const prev = parent.querySelector(`input#${this.dataset.previous}`);
+                if (prev) {
+                    prev.focus();
+                    prev.value = '';
+                }
+            } else if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode >= 96 && e.keyCode <= 105) || e.keyCode === 39) {
+                const next = parent.querySelector(`input#${this.dataset.next}`);
+                if (next) {
+                    next.focus();
+                } else {
+                    state.otp = '';
+                    formTag.querySelectorAll('input').forEach(input => {
+                        state.otp += input.value;
+                    });
+                    if (state.otp.length === 4) {
+                        console.log('check OTP');
+                        console.log(state.otp);
+                    }
+                }
+            }
+        }
+    });
 }

@@ -22,32 +22,21 @@
         <h1>Reset Password</h1>
         <hr>
         <div id="phone_otp_input">
-            <form action="" method="post" class="digit-group" data-group-name="digits" data-autosubmit="false"
-                autocomplete="off" id="insert_otp">
-                <div>
-                    <h3>Enter OTP Code</h3>
+            <form action="" autocomplete="off" id="reset_password_form">
+                <div class="mb-3">
+                    <label for="password" class="form-label">New Password</label>
+                    <input type="password" class="form-control" id="password" required>
+                    <div class="invalid-feedback">Your password do not match</div>
+                </div>
+                <div class="mb-3">
+                    <label for="password_repeat" class="form-label">Confirm password</label>
+                    <input type="password" class="form-control" id="password_repeat" required>
+                    <div class="invalid-feedback">Your password do not match</div>
                 </div>
                 <div>
-                    <input type="text" id="digit-1" name="digit-1" data-next="digit-2" maxlength="1" />
-                    <input type="text" id="digit-2" name="digit-2" data-next="digit-3" data-previous="digit-1"
-                        maxlength="1" />
-                    <input type="text" id="digit-3" name="digit-3" data-next="digit-4" data-previous="digit-2"
-                        maxlength="1" />
-                    <input type="text" id="digit-4" name="digit-4" data-previous="digit-3" maxlength="1" />
-                </div>
-                <div>
-                    <button class="btn btn-warning" type="submit">Check OTP</button>
+                    <button type="submit" class="btn btn-warning">Reset Password</button>
                 </div>
             </form>
-            <!-- <form action="" method="post" id="submit_phone">
-                <label for="driver_phone" class="form-label">Please enter your phone</label>
-                <div>
-                    <input class="form-control" id="driver_phone" type="tel" name="receiver_phone" value=""
-                        inputmode="numeric" placeholder="E.g. 0632166699" autocomplete="off" pattern="[0-9]{10}">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                    <div id="error_hint" class="invalid-feedback">Phone number starts with 0 and has 10 digits!</div>
-                </div>
-            </form> -->
         </div>
         <hr>
         <div id="backToLogin">

@@ -76,6 +76,12 @@
     align-items: center;
 }
 
+#invalid_otp {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+}
+
 #insert_otp > div:last-child {
     margin: 1rem auto;
     display: flex;
@@ -91,6 +97,11 @@
     text-align: center;
     border: 1px solid gray;
     border-radius: 5px;
+}
+
+#reset_password_form button {
+    display: block;
+    margin: 0 auto;
 }
 
 @media (min-width: 768px) {

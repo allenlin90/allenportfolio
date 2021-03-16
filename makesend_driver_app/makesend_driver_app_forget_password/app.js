@@ -40,12 +40,12 @@ function init() {
                             <h3>Enter OTP Code</h3>
                         </div>
                         <div>
-                            <input type="text" id="digit-1" name="digit-1" data-next="digit-2" maxlength="1" />
-                            <input type="text" id="digit-2" name="digit-2" data-next="digit-3" data-previous="digit-1"
+                            <input type="text" inputmode="numeric" id="digit-1" name="digit-1" data-next="digit-2" maxlength="1" />
+                            <input type="text" inputmode="numeric" id="digit-2" name="digit-2" data-next="digit-3" data-previous="digit-1"
                                 maxlength="1" />
-                            <input type="text" id="digit-3" name="digit-3" data-next="digit-4" data-previous="digit-2"
+                            <input type="text" inputmode="numeric" id="digit-3" name="digit-3" data-next="digit-4" data-previous="digit-2"
                                 maxlength="1" />
-                            <input type="text" id="digit-4" name="digit-4" data-previous="digit-3" maxlength="1" />
+                            <input type="text" inputmode="numeric" id="digit-4" name="digit-4" data-previous="digit-3" maxlength="1" />
                         </div>
                         <div>
                             <button class="btn btn-warning" type="submit" disabled>Request OTP <span>(<span id="countdown">60</span> sec)</span></button>
@@ -90,6 +90,31 @@ function inputHandler() {
     inputs[0].focus();
 
     inputs.forEach((input) => {
+        input.onchange = function (e) {
+            const parent = this.parentNode;
+            const value = e.target.value;
+            if (value) {
+                const next = parent.querySelector(`input#${this.dataset.next}`);
+                if (next) {
+                    next.focus();
+                }
+            } else if (!value) {
+                const prev = parent.querySelector(`input#${this.dataset.previous}`);
+                if (prev) {
+                    prev.focus();
+                }
+            } else {
+                state.otp = '';
+                formTag.querySelectorAll('input').forEach(input => {
+                    state.otp += input.value;
+                });
+                if (state.otp.length === 4) {
+                    console.log('check OTP');
+                    console.log(state.otp);
+                }
+            }
+        }
+
         input.onkeyup = function (e) {
             const parent = this.parentNode;
             const formTag = parent.parentNode;
@@ -97,7 +122,6 @@ function inputHandler() {
                 const prev = parent.querySelector(`input#${this.dataset.previous}`);
                 if (prev) {
                     prev.focus();
-                    prev.value = '';
                 }
             } else if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode >= 96 && e.keyCode <= 105) || e.keyCode === 39) {
                 const next = parent.querySelector(`input#${this.dataset.next}`);

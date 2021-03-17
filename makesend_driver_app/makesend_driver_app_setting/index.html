@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css">
+    <title>MakeSend - Setting</title>
+</head>
+
+<body>
+    <header>
+        <div id="header">SETTINGS</div>
+    </header>
+    <div class="container" style="justify-content: space-between;">
+        <div id="setting">
+            <div id="search_setting">
+                <form action="">
+                    <input id="search_input" type="text" name="search_input" value="" placeholder="Search Setting...">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+            <div id="setting_list">
+                <h3>Account Setting</h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div>
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>User Profile</div>
+                        <div>
+                            <i class="fas fa-greater-than"></i>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div>
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div>Reset Password</div>
+                        <div>
+                            <i class="fas fa-greater-than"></i>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div>
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <div>About</div>
+                        <div>
+                            <i class="fas fa-greater-than"></i>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <div id="logout_btn" class="btn btn-secondary">
+                    <div><i class="fas fa-sign-out-alt"></i></div>
+                    <div>Logout</div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="navigator">
+                <div>
+                    <a href="#scanner" class="" id="navi_scanner">
+                        <i class="fas fa-qrcode"></i>
+                        <span>Scan</span>
+                    </a>
+                </div>
+                <div>
+                    <a href="#search" class="" id="navi_search">
+                        <i class="fas fa-search"></i>
+                        <span>Search</span>
+                    </a>
+                </div>
+                <div>
+                    <a href="#tasks" class="" id="navi_tasks">
+                        <i class="fas fa-tasks"></i>
+                        <span>Tasks</span>
+                    </a>
+                </div>
+                <div>
+                    <a href="#setting" class="selected" id="navi_setting">
+                        <i class="fas fa-cog"></i>
+                        <span>Setting</span>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
+    <script type="module" src="app.js"></script>
+</body>
+
+</html>

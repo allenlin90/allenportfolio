@@ -1,4 +1,4 @@
-import { requestOTP } from '../app.js';
+import { requestOTP } from '../main.js';
 
 // requestOTP();
 

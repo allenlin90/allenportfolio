@@ -1,18 +1,42 @@
+import {
+    requestOTP,
+    verifyOTP,
+    changePassword
+} from '../main.js';
+
 const defaultPendingTime = 60;
 const state = {
     otp: '',
+    ref: '',
     pending: defaultPendingTime,
     driverPhone: null,
-    timeStamp: null,
+    timeStamp: 0,
     countdownTimer: null
 }
 
 resetPassword();
 
 function resetPassword() {
+    const container = document.querySelector('.container');
+    container.innerHTML = `
+    <div id="login_form">
+        <div id="makesend_logo">
+            <img src="https://www.makesend.asia/wp-content/uploads/2018/06/logo-makesend.png" alt="ms_logo">
+        </div>
+        <h1>Reset Password</h1>
+        <hr>
+        <div id="phone_otp_input">
+        </div>
+        <hr>
+        <div id="backToLogin">
+            <a class="btn btn-primary" href="#">Back to Login</a>
+        </div>
+    </div>
+    `;
+
     const otpInput = document.querySelector('#phone_otp_input');
     if (otpInput) {
-        otpInput.innerHTML = `
+        const phoneForm = `
         <form action="" method="post" id="submit_phone">
             <label for="driver_phone" class="form-label">Please enter your phone</label>
             <div>
@@ -23,10 +47,12 @@ function resetPassword() {
             </div>
         </form>
         `;
+        otpInput.innerHTML = phoneForm;
         const form = otpInput.querySelector('#submit_phone');
 
         if (otpInput && form) {
-            form.onsubmit = async function (event) {
+            form.onsubmit = sendOTP;
+            async function sendOTP(event) {
                 event.stopPropagation();
                 event.preventDefault();
                 const input = event.target.querySelector('input');
@@ -35,14 +61,23 @@ function resetPassword() {
                 }
                 const driverPhone = input.value;
                 if (/^0\d{9}/g.test(driverPhone)) {
-                    state.driverPhone = driverPhone;
                     otpInput.innerHTML = loaderTag();
-                    setTimeout(function () {
+                    const response = await requestOTP(driverPhone);
+                    if (response.resCode === 200) {
+                        console.log(response);
+                        state.ref = response.otpRef;
+                        state.driverPhone = driverPhone;
                         state.timeStamp = new Date().getTime();
                         otpInput.innerHTML = otpForm(state.driverPhone);
                         countdown();
                         inputHandler();
-                    }, 300);
+                    } else {
+                        otpInput.innerHTML = phoneForm;
+                        const form = otpInput.querySelector('#submit_phone');
+                        form.onsubmit = sendOTP;
+                        console.log(response.message);
+                        alert(response.message);
+                    }
                 } else {
                     input.classList.add('is-invalid');
                 }
@@ -57,12 +92,19 @@ function countdown(duration = 60) {
     }
     const clock = document.querySelector('#countdown');
     if (clock) {
-        let second = state.pending ?? duration;
+        const now = new Date().getTime();
+        let second = state.pending;
+        let diff = Math.floor((now - state.timeStamp) / 1000);
+        if (diff >= 60) {
+            second = 0;
+        } else if (diff < 60 && second !== 60) {
+            second = 60 - diff;
+        }
         if (second > 0) {
             state.pending = second - 1;
-            clock.innerText = state.pending ?? duration;
+            clock.innerText = state.pending;
             state.countdownTimer = setTimeout(function () {
-                countdown(state.pending ?? duration);
+                countdown(state.pending);
             }, 1000);
         } else {
             const requestOTP = document.querySelector('#insert_otp button');
@@ -72,8 +114,8 @@ function countdown(duration = 60) {
                 event.preventDefault();
                 state.pending = defaultPendingTime;
                 requestOTP.setAttribute("disabled", true);
-                document.querySelector('#insert_otp button span').innerHTML = `(<span id="countdown">${state.pending ?? duration}</span> sec)`;
-                countdown(state.pending ?? duration);
+                document.querySelector('#insert_otp button span').innerHTML = `(<span id="countdown">${state.pending}</span> sec)`;
+                countdown(state.pending);
             }
         }
     }
@@ -108,22 +150,19 @@ function inputHandler() {
                         state.otp += input.value;
                     });
                     if (state.otp.length === 4) {
-                        console.log('check OTP');
                         const otpCode = state.otp;
-                        console.log(otpCode);
                         otpInput.innerHTML = loaderTag();
-                        const timer = setTimeout(function () {
-                            if (state.otp === '0000') {
-                                resetPasswordForm();
-                            } else {
-                                otpInput.innerHTML = otpForm(state.driverPhone, state.pending);
-                                const errorMsg = document.querySelector('#invalid_otp')
-                                errorMsg.innerText = `Invalid OTP Code!`;
-                                clearTimeout(timer);
-                                inputHandler();
-                                countdown();
-                            }
-                        }, 500)
+                        const response = await verifyOTP(otpCode, state.ref);
+                        if (response.resCode === 200) {
+                            console.log(response);
+                            resetPasswordForm();
+                        } else {
+                            otpInput.innerHTML = otpForm(state.driverPhone, state.pending);
+                            const errorMsg = document.querySelector('#invalid_otp')
+                            errorMsg.innerText = `Invalid OTP Code!`;
+                            inputHandler();
+                            countdown();
+                        }
                     }
                 }
             }
@@ -148,22 +187,19 @@ function inputHandler() {
                             state.otp += input.value;
                         });
                         if (state.otp.length === 4) {
-                            console.log('check OTP');
                             const otpCode = state.otp;
-                            console.log(otpCode);
                             otpInput.innerHTML = loaderTag();
-                            const timer = setTimeout(function () {
-                                if (state.otp === '0000') {
-                                    resetPasswordForm();
-                                } else {
-                                    otpInput.innerHTML = otpForm(state.driverPhone, state.pending);
-                                    const errorMsg = document.querySelector('#invalid_otp')
-                                    errorMsg.innerText = `Invalid OTP Code!`;
-                                    clearTimeout(timer);
-                                    inputHandler();
-                                    countdown();
-                                }
-                            }, 500)
+                            const response = await verifyOTP(otpCode, state.ref);
+                            if (response.resCode === 200) {
+                                console.log(response);
+                                resetPasswordForm();
+                            } else {
+                                otpInput.innerHTML = otpForm(state.driverPhone, state.pending);
+                                const errorMsg = document.querySelector('#invalid_otp')
+                                errorMsg.innerText = `Invalid OTP Code!`;
+                                inputHandler();
+                                countdown();
+                            }
                         }
                     }
                 }
@@ -243,9 +279,13 @@ function resetPasswordForm() {
             return input.value;
         });
         if (values[0] === values[1] && !!values[0]) {
-            console.log('change passwords');
-            if (true) {
+            const response = await changePassword(state.otp, state.ref, values[0], values[1]);
+            if (response.resCode === 200) {
+                alert(response.message);
                 window.location.hash = '';
+            } else {
+                console.log(response.message);
+                alert(response.message);
             }
         } else {
             inputs.forEach(input => {

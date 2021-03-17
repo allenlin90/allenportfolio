@@ -1,23 +1,66 @@
+const state = {
+    rearCameras: [],
+    cameras: [],
+    appleDevice: null,
+    scanning: false,
+    video: null
+}
+
 qrScanner();
+
+function stopStream() {
+    if (state.scanning) {
+        state.video.srcObject.getTracks().forEach(track => {
+            track.stop();
+        });
+        state.scanning = false;
+        state.video = null;
+    }
+}
+
 async function qrScanner() {
     const container = document.querySelector(".container");
     container.style.justifyContent = `space-between`;
+    const qrCodeReader = `
+        <div id="qrcode_scanner">
+            <!-- reference https://codesandbox.io/s/qr-code-scanner-ilrm9?file=/src/qrCodeScanner.js -->
+            <!-- https://www.sitepoint.com/create-qr-code-reader-mobile-website/ -->
+            <div>
+                <h1>QR Code Scanner</h1>
+            </div>
+            <div id="videoSelect">
+                <label for="videoSource">Change Camera</label>
+                <select id="videoSource" class="custom-select"></select>
+            </div>
+            <canvas id="qr-canvas" hidden></canvas>
+            <div id="qr-result">
+                <b>Result: </b>
+                <p id="outputData">https://app.makesend.asia/tracking?t=PP2103151042875</p>
+            </div>
+            <div id="actionToResult">
+                <a href="#" class="btn btn-primary">action</a>
+                <hr>
+            </div>
+            <div id="startScanBtn">
+                <label>
+                    <img src="https://uploads.sitepoint.com/wp-content/uploads/2017/07/1499401426qr_icon.svg">
+                    <p>Scan Again</p>
+                </label>
+            </div>
+        </div>        
+    `;
+    // container.innerHTML = qrCodeReader;
 
-    const video = document.createElement("video");
+    state.video = document.createElement("video");
     const canvasElement = document.querySelector("#qr-canvas");
     canvasElement.width = (canvasElement.offsetHeight / 3) * 4;
     const canvas = canvasElement.getContext("2d");
 
     const qrResult = document.querySelector("#qr-result");
-    const outputData = document.querySelector("#outputData");
+    // const outputData = document.querySelector("#outputData");
     const videoSelect = document.querySelector('#videoSource');
 
     const startScanBtn = document.querySelector('#startScanBtn');
-
-    let scanning = false;
-    const state = {
-        rearCameras: []
-    }
 
     videoSelect.onchange = start;
     await checkDevices();
@@ -31,9 +74,9 @@ async function qrScanner() {
         if (res) {
             qrResult.style.display = `block`;
             startScanBtn.style.display = `block`;
-            scanning = false;
+            state.scanning = false;
 
-            video.srcObject.getTracks().forEach(track => {
+            state.video.srcObject.getTracks().forEach(track => {
                 track.stop();
             });
 
@@ -55,7 +98,6 @@ async function qrScanner() {
         const trackingIdRegex = /.?((ex|st|pp)\d{13}).?/g.exec(res);
         const outputData = document.querySelector('#outputData');
         const actionToResult = document.querySelector('#actionToResult');
-        actionToResult.style.display = `block`;
         if (trackingIdRegex) {
             const trackingId = trackingIdRegex[1].toUpperCase()
             if (res.includes('http')) {
@@ -65,7 +107,7 @@ async function qrScanner() {
             } else {
                 outputData.innerText = trackingId;
             }
-
+            actionToResult.style.display = `block`;
             const link = actionToResult.querySelector('a');
             if (trackingId.includes('ST')) {
                 link.setAttribute('href', `#search?id=${trackingId}`);
@@ -220,11 +262,11 @@ async function qrScanner() {
 
     function gotStream(stream) {
         window.stream = stream; // make stream available to console
-        scanning = true;
+        state.scanning = true;
 
-        video.setAttribute("playsinline", true);
-        video.srcObject = stream;
-        video.play();
+        state.video.setAttribute("playsinline", true);
+        state.video.srcObject = stream;
+        state.video.play();
         tick();
         scan();
     }
@@ -243,11 +285,11 @@ async function qrScanner() {
     }
 
     function tick() {
-        canvasElement.height = video.videoHeight;
-        canvasElement.width = video.videoWidth;
-        canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+        canvasElement.height = state.video.videoHeight;
+        canvasElement.width = state.video.videoWidth;
+        canvas.drawImage(state.video, 0, 0, canvasElement.width, canvasElement.height);
 
-        scanning && requestAnimationFrame(tick);
+        state.scanning && requestAnimationFrame(tick);
     }
 
     function scan() {

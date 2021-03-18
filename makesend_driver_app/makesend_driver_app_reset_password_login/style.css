@@ -6,26 +6,26 @@
     --line-border-empty: #ccc;
 }
 
-#phone_otp_input {
+#phone_otp_input_login {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#submit_phone > div {
+#submit_phone_login > div {
     display: grid;
     grid-template-areas: "phoneInput searchBtn";
     grid-template-columns: 4fr 1fr;
 }
 
-#submit_phone input {
+#submit_phone_login input {
     grid-area: "phoneInput";
     display: block;
     font-size: 1rem;
     padding: 0.5rem;
 }
 
-#submit_phone button {
+#submit_phone_login button {
     grid-area: "searchBtn";
     display: block;
     font-size: 1rem;
@@ -35,7 +35,7 @@
     cursor: pointer;
 }
 
-#otp_loader {
+#otp_loader_login {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -43,7 +43,7 @@
     align-items: center;
 }
 
-#otp_loader h4 {
+#otp_loader_login h4 {
     margin: 0;
     color: #ffc107;
     font-weight: bold;
@@ -129,11 +129,11 @@
     cursor: not-allowed;
 } */
 
-#insert_otp h3 {
+#insert_otp_login h3 {
     text-align: center;
 }
 
-#insert_otp > div:nth-child(2) {
+#insert_otp_login > div:nth-child(2) {
     display: flex;
     /* margin: 0 auto; */
     width: 100%;
@@ -141,14 +141,14 @@
     align-items: center;
 }
 
-#insert_otp > div:last-child {
+#insert_otp_login > div:last-child {
     margin: 1rem auto;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#insert_otp input {
+#insert_otp_login input {
     width: 50px;
     height: 50px;
     padding: 0;
@@ -156,4 +156,10 @@
     text-align: center;
     border: 1px solid gray;
     border-radius: 5px;
+}
+
+#invalid_otp_login {
+    color: red;
+    text-align: center;
+    font-weight: bold;
 }

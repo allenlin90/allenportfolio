@@ -12,9 +12,9 @@ const state = {
     step: 1
 }
 
-init();
+resetPassword();
 
-function init() {
+function resetPassword() {
     const header = document.querySelector('header')
     header.innerHTML = `
     <div id="header">reset password</div>
@@ -103,8 +103,8 @@ function init() {
         </div>
     `;
 
-    const resetPassword = document.querySelector("a[href='#resetpassword']");
-    resetPassword.onclick = function (event) {
+    const resetPasswordLink = document.querySelector("a[href='#resetpassword']");
+    resetPasswordLink.onclick = function (event) {
         const setting = document.querySelector('#setting');
         setting.innerHTML = `
         <div>
@@ -125,14 +125,14 @@ function init() {
             </div>
             <h1>Request OTP</h1>
         </div>
-        <div id="phone_otp_input">
-            <form action="" method="post" id="submit_phone">
-                <label for="driver_phone" class="form-label">Please enter your phone</label>
+        <div id="phone_otp_input_login">
+            <form action="" method="post" id="submit_phone_login">
+                <label for="driver_phone_login" class="form-label">Please enter your phone</label>
                 <div>
-                    <input class="form-control" id="driver_phone" type="tel" name="receiver_phone" value=""
+                    <input class="form-control" id="driver_phone_login" type="tel" name="receiver_phone" value=""
                         inputmode="numeric" placeholder="#0632166699" autocomplete="off" pattern="[0-9]{10}">
                     <button type="submit"><i class="fa fa-search"></i></button>
-                    <div id="error_hint" class="invalid-feedback">Phone number starts with 0 and has 10 digits!</div>
+                    <div id="error_hint_login" class="invalid-feedback">Phone number starts with 0 and has 10 digits!</div>
                 </div>
             </form>
         </div>
@@ -153,16 +153,16 @@ function init() {
 function resetForm() {
     udpateProgress(state.step);
 
-    const otpInput = document.querySelector('#phone_otp_input');
-    const form = otpInput.querySelector('#submit_phone');
+    const otpInput = document.querySelector('#phone_otp_input_login');
+    const form = otpInput.querySelector('#submit_phone_login');
     const phoneForm = `
-    <form action="" method="post" id="submit_phone">
-        <label for="driver_phone" class="form-label">Please enter your phone</label>
+    <form action="" method="post" id="submit_phone_login">
+        <label for="driver_phone_login" class="form-label">Please enter your phone</label>
         <div>
-            <input class="form-control" id="driver_phone" type="tel" name="receiver_phone" value=""
+            <input class="form-control" id="driver_phone_login" type="tel" name="receiver_phone" value=""
                 inputmode="numeric" placeholder="#0632166699" autocomplete="off" pattern="[0-9]{10}">
             <button type="submit"><i class="fa fa-search"></i></button>
-            <div id="error_hint" class="invalid-feedback">Phone number starts with 0 and has 10 digits!</div>
+            <div id="error_hint_login" class="invalid-feedback">Phone number starts with 0 and has 10 digits!</div>
         </div>
     </form>
     `;
@@ -195,7 +195,7 @@ function resetForm() {
                     inputHandler();
                 } else {
                     otpInput.innerHTML = phoneForm;
-                    const form = otpInput.querySelector('#submit_phone');
+                    const form = otpInput.querySelector('#submit_phone_login');
                     form.onsubmit = sendOTP;
                     console.log(response.message);
                     alert(response.message);
@@ -302,14 +302,14 @@ function countdown(duration = 60) {
                 countdown(state.pending);
             }, 1000);
         } else {
-            const requestOTP = document.querySelector('#insert_otp button');
+            const requestOTP = document.querySelector('#insert_otp_login button');
             requestOTP.removeAttribute('disabled');
             clock.parentNode.innerHTML = ``;
             requestOTP.onclick = function (event) {
                 event.preventDefault();
                 state.pending = defaultPendingTime;
                 requestOTP.setAttribute("disabled", true);
-                document.querySelector('#insert_otp button span').innerHTML = `(<span id="countdown">${state.pending}</span> sec)`;
+                document.querySelector('#insert_otp_login button span').innerHTML = `(<span id="countdown">${state.pending}</span> sec)`;
                 countdown(state.pending);
             }
         }
@@ -317,7 +317,7 @@ function countdown(duration = 60) {
 }
 
 function inputHandler() {
-    const otpInput = document.querySelector('#phone_otp_input');
+    const otpInput = document.querySelector('#phone_otp_input_login');
 
     const inputs = document.querySelector('.digit-group').querySelectorAll('input');
     if (inputs.length) {
@@ -327,7 +327,7 @@ function inputHandler() {
             input.onchange = async function (e) {
                 const parent = this.parentNode;
                 const value = e.target.value;
-                const errorMsg = document.querySelector('#invalid_otp');
+                const errorMsg = document.querySelector('#invalid_otp_login');
                 errorMsg.innerText = ``;
                 if (value) {
                     const next = parent.querySelector(`input#${this.dataset.next}`);
@@ -351,15 +351,14 @@ function inputHandler() {
                         const response = {
                             resCode: 200
                         }
-                        if (otpCode !== '0000') return;
-                        if (response.resCode === 200) {
+                        if (response.resCode === 200 && otpCode === '0000') {
                             console.log(response);
                             state.step += 1;
                             udpateProgress(state.step);
                             resetPasswordForm();
                         } else {
                             otpInput.innerHTML = otpForm(state.driverPhone, state.pending);
-                            const errorMsg = document.querySelector('#invalid_otp')
+                            const errorMsg = document.querySelector('#invalid_otp_login')
                             errorMsg.innerText = `Invalid OTP Code!`;
                             inputHandler();
                             countdown();
@@ -371,7 +370,7 @@ function inputHandler() {
             input.onkeyup = async function (e) {
                 const parent = this.parentNode;
                 const formTag = parent.parentNode;
-                const errorMsg = document.querySelector('#invalid_otp');
+                const errorMsg = document.querySelector('#invalid_otp_login');
                 errorMsg.innerText = ``;
                 if (e.keyCode === 8 || e.keyCode === 37) {
                     const prev = parent.querySelector(`input#${this.dataset.previous}`);
@@ -394,15 +393,14 @@ function inputHandler() {
                             const response = {
                                 resCode: 200
                             }
-                            if (otpCode !== '0000') return;
-                            if (response.resCode === 200) {
+                            if (response.resCode === 200 && otpCode === '0000') {
                                 console.log(response);
                                 state.step += 1;
                                 udpateProgress(state.step);
                                 resetPasswordForm();
                             } else {
                                 otpInput.innerHTML = otpForm(state.driverPhone, state.pending);
-                                const errorMsg = document.querySelector('#invalid_otp')
+                                const errorMsg = document.querySelector('#invalid_otp_login')
                                 errorMsg.innerText = `Invalid OTP Code!`;
                                 inputHandler();
                                 countdown();
@@ -416,17 +414,17 @@ function inputHandler() {
 }
 
 function resetPasswordForm() {
-    const otpInput = document.querySelector('#phone_otp_input');
+    const otpInput = document.querySelector('#phone_otp_input_login');
     otpInput.innerHTML = `
-        <form action="" autocomplete="off" id="reset_password_form">
+        <form action="" autocomplete="off" id="reset_password_form_login">
             <div class="mb-3">
                 <label for="password" class="form-label">New Password</label>
-                <input type="password" class="form-control" id="password" required>
+                <input type="password" class="form-control" id="password_login" required>
                 <div class="invalid-feedback">Your password do not match</div>
             </div>
             <div class="mb-3">
                 <label for="password_repeat" class="form-label">Confirm password</label>
-                <input type="password" class="form-control" id="password_repeat" required>
+                <input type="password" class="form-control" id="password_repeat_login" required>
                 <div class="invalid-feedback">Your password do not match</div>
             </div>
             <div style="display:flex; justify-content: center; align-items: center;">
@@ -434,7 +432,7 @@ function resetPasswordForm() {
             </div>
         </form>
     `;
-    const resetForm = document.querySelector('#reset_password_form');
+    const resetForm = document.querySelector('#reset_password_form_login');
     const submitBtn = resetForm.querySelector('button');
     const inputs = [...resetForm.querySelectorAll('input')];
     inputs[0].focus();
@@ -511,7 +509,7 @@ function successAnimation(duration = '10') {
 
 function loaderTag() {
     return `
-        <div id="otp_loader">
+        <div id="otp_loader_login">
             <div class="spinner-border text-warning" style="width:3rem; height:3rem;" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
@@ -522,7 +520,7 @@ function loaderTag() {
 
 function otpForm(driverPhone = null, pendingTime = 60) {
     return `
-    <form class="digit-group" data-group-name="digits" autocomplete="off" id="insert_otp">
+    <form class="digit-group" data-group-name="digits" autocomplete="off" id="insert_otp_login">
         <div>
             <h3>Enter OTP Code</h3>
             <h3>Phone: ${driverPhone}</h3>
@@ -535,7 +533,7 @@ function otpForm(driverPhone = null, pendingTime = 60) {
                 maxlength="1" />
             <input autocomplete="off" type="text" inputmode="numeric" id="digit-4" name="digit-4" data-previous="digit-3" maxlength="1" />
         </div>
-        <div id="invalid_otp"></div>
+        <div id="invalid_otp_login"></div>
         <div>
             <button class="btn btn-warning" type="submit" disabled>Request OTP <span>(<span id="countdown">${pendingTime}</span> sec)</span></button>
         </div>

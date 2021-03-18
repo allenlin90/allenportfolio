@@ -18,6 +18,7 @@ resetPassword();
 
 function resetPassword() {
     const container = document.querySelector('.container');
+    container.style.justifyContent = `center`;
     container.innerHTML = `
     <div id="login_form">
         <div id="makesend_logo">
@@ -62,7 +63,11 @@ function resetPassword() {
                 const driverPhone = input.value;
                 if (/^0\d{9}/g.test(driverPhone)) {
                     otpInput.innerHTML = loaderTag();
-                    const response = await requestOTP(driverPhone);
+                    // const response = await requestOTP(driverPhone);
+                    const response = {
+                        resCode: 200,
+                        message: 'success'
+                    }
                     if (response.resCode === 200) {
                         console.log(response);
                         state.ref = response.otpRef;
@@ -152,8 +157,12 @@ function inputHandler() {
                     if (state.otp.length === 4) {
                         const otpCode = state.otp;
                         otpInput.innerHTML = loaderTag();
-                        const response = await verifyOTP(otpCode, state.ref);
-                        if (response.resCode === 200) {
+                        // const response = await verifyOTP(otpCode, state.ref);
+                        const response = {
+                            resCode: 200,
+                            message: 'success'
+                        }
+                        if (response.resCode === 200 && otpCode === '0000') {
                             console.log(response);
                             resetPasswordForm();
                         } else {
@@ -189,8 +198,12 @@ function inputHandler() {
                         if (state.otp.length === 4) {
                             const otpCode = state.otp;
                             otpInput.innerHTML = loaderTag();
-                            const response = await verifyOTP(otpCode, state.ref);
-                            if (response.resCode === 200) {
+                            // const response = await verifyOTP(otpCode, state.ref);
+                            const response = {
+                                resCode: 200,
+                                message: 'success'
+                            }
+                            if (response.resCode === 200 && otpCode === '0000') {
                                 console.log(response);
                                 resetPasswordForm();
                             } else {
@@ -279,7 +292,11 @@ function resetPasswordForm() {
             return input.value;
         });
         if (values[0] === values[1] && !!values[0]) {
-            const response = await changePassword(state.otp, state.ref, values[0], values[1]);
+            // const response = await changePassword(state.otp, state.ref, values[0], values[1]);
+            const response = {
+                resCode: 200,
+                message: 'success'
+            }
             if (response.resCode === 200) {
                 alert(response.message);
                 window.location.hash = '';

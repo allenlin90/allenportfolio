@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css">
+    <title>MakeSend - Reset Password</title>
+</head>
+
+<body>
+    <header></header>
+    <div class="container">
+        <div id="setting">
+            <div>
+                <div class="progress-container">
+                    <div class="progress" id="progress"></div>
+                    <div class="circle active">
+                        1
+                    </div>
+                    <div class="circle">
+                        2
+                    </div>
+                    <div class="circle">
+                        3
+                    </div>
+                    <div class="circle">
+                        4
+                    </div>
+                </div>
+                <h1>Request OTP</h1>
+            </div>
+            <div id="phone_otp_input">
+                <form action="" method="post" id="submit_phone">
+                    <label for="driver_phone" class="form-label">Please enter your phone</label>
+                    <div>
+                        <input class="form-control" id="driver_phone" type="tel" name="receiver_phone" value=""
+                            inputmode="numeric" placeholder="#0632166699" autocomplete="off" pattern="[0-9]{10}">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                        <div id="error_hint" class="invalid-feedback">Phone number starts with 0 and has 10 digits!
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div>
+                <a href="#setting" class="btn btn-primary">Back To Setting</a>
+            </div>
+        </div>
+    </div>
+    <footer></footer>
+    <script type=module src="./app.js"></script>
+</body>
+
+</html>

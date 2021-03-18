@@ -45,12 +45,18 @@
     margin-top: 1.2rem;
 }
 
-#setting_list li {
+#setting_list li a {
     display: grid;
     grid-template-columns: 1fr 8fr 1fr;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    text-decoration: none;
+    color: #000;
+}
+
+#setting_list li a > div:last-child i {
+    float: right;
 }
 
 #setting > div:last-child {

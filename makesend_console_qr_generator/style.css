@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #ccc;
+    background: #ccc;
 }
 
 #qr_form {
@@ -71,6 +71,10 @@ p {
     ;
 }
 
+.parcel p {
+    margin: 0;
+}
+
 .qr_code {
     grid-area: qr_code;
     display: block;
@@ -113,18 +117,18 @@ p {
 
 .extra_service p {
     text-align: center;
-    
+    margin: 0;
     /* margin-top: 1rem; */
 }
 
 .note {
     grid-area: note;
-    height: 2cm;
+    height: 1.7cm;
     border-left: black solid 2px;
     border-right: black solid 2px;
     border-bottom: black solid 2px;
-    padding: 1rem;
-    padding-top: 0;
+    padding: 0 1rem;
+    /* padding-top: 0; */
 }
 
 .btn {

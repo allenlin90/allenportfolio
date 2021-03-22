@@ -2,6 +2,8 @@ const requestOTPEndpoint = `https://api.airportels.ninja/api/msd/password/recove
 const verifyOTPEndpoint = `https://api.airportels.ninja/api/msd/user/password/recover/verifyOTP`;
 const changePasswordEndpoint = `https://api.airportels.ninja/api/msd/user/password/recover`;
 const endpoint = `http://localhost:8080/header`;
+const loginEndpoint = `http://localhost:8080/login`;
+// const endpoint = `https://makesend-driver.herokuapp.com/header`;
 
 export async function changePassword(otp = '', ref = '', password = '', confirmPassword = '') {
     const state = await fetchHeader();
@@ -88,4 +90,34 @@ export async function fetchHeader() {
     state.timeStamp = response['Time-Stamp'];
     state.timeSignature = response['Time-Signature'];
     return state;
+}
+
+export async function userLogin(email = '', password = '', rememberMe = false) {
+    let headers = await fetchHeader();
+    const response = await fetch(loginEndpoint, {
+        method: 'post',
+        headers: {
+            'Content-type': 'application/json',
+            'Client-Token': headers.clientToken,
+            'Time-Stamp': headers.timeStamp,
+            'Time-Signature': headers.timeSignature
+        },
+        body: JSON.stringify({
+            email,
+            password,
+            keepAlive: (rememberMe ? 1 : 0)
+        })
+    })
+        .then(res => res.json())
+        .then(data => data)
+        .catch(err => err);
+    if (response.resCode === 200) {
+        if (rememberMe) {
+            localStorage.setItem('token', response.token);
+        } else {
+            sessionStorage.setItem('token', response.token);
+        }
+        return response.token;
+    }
+    return null;
 }

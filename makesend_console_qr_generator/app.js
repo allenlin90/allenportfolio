@@ -1,3 +1,7 @@
+import { fetchHeader, userLogin } from '../makesend_driver_app/main.js';
+const preprintEndpoint = `https://api.airportels.ninja/api/google/makesend/trackingID/substitute/generate`;
+// const preprintEndpoint = `https://api.airportels.ninja/api/msd/qr/preprint/generate`;
+
 qrFormInput();
 function qrFormInput() {
     const container = document.querySelector('.container');
@@ -18,17 +22,24 @@ function qrFormInput() {
         event.stopPropagation();
         event.preventDefault();
         const quantity = event.target.querySelector('input').value;
-        const endpoint = `https://api.airportels.ninja/api/google/makesend/trackingID/substitute/generate`;
+        const endpoint = preprintEndpoint;
         prePrintQRCode(quantity, endpoint);
     });
 }
 
 async function prePrintQRCode(quantity = 1, endpoint = `https://api.airportels.ninja/api/google/makesend/trackingID/substitute/generate`) {
+    // const token = await userLogin('linmting@airportels.asia', 'black123', true);
+    const token = '';
+    const headers = await fetchHeader();
     const options = {
         method: 'post',
         mod: 'cors',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Client-Token': headers.clientToken,
+            'Time-Stamp': headers.timeStamp,
+            'Time-Signature': headers.timeSignature,
+            'User-Token': `${token}`,
         },
         body: JSON.stringify({
             quantity

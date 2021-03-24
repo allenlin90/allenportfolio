@@ -1,0 +1,106 @@
+:root {
+    --max-width: 1100px;
+    --eridu-logo: url("http://eridu-app.herokuapp.com/images/eridu_logo.png");
+    --eridu-primary-color: #0F41BC;
+    --eridu-secondary-color: #F5A201;
+    --eridu-secondary-color: #16d891;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.btn-eridu-primary {
+    color: #212529;
+    background-color: #7cc;
+    border-color: #5bc2c2
+}
+
+.btn-eridu-primary:hover {
+    color: #212529;
+    background-color: #52bebe;
+    border-color: #8ad3d3
+}
+
+.btn-eridu-primary:focus,
+.btn-eridu-primary.focus {
+    box-shadow: 0 0 0 .2rem rgba(91, 194, 194, 0.5)
+}
+
+.btn-eridu-primary.disabled,
+.btn-eridu-primary:disabled {
+    color: #212529;
+    background-color: #7cc;
+    border-color: #5bc2c2
+}
+
+.btn-eridu-primary:not(:disabled):not(.disabled):active,
+.btn-eridu-primary:not(:disabled):not(.disabled).active,
+.show>.btn-eridu-primary.dropdown-toggle {
+    color: #212529;
+    background-color: #9cdada;
+    border-color: #2e7c7c
+}
+
+.btn-eridu-primary:not(:disabled):not(.disabled):active:focus,
+.btn-eridu-primary:not(:disabled):not(.disabled).active:focus,
+.show>.btn-eridu-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .2rem rgba(91, 194, 194, 0.5)
+}
+
+.btn-outline-eridu-primary {
+    color: #7cc;
+    background-color: transparent;
+    background-image: none;
+    border-color: #7cc
+}
+
+.btn-outline-eridu-primary:hover {
+    color: #222;
+    background-color: #8ad3d3;
+    border-color: #7cc
+}
+
+.btn-outline-eridu-primary:focus,
+.btn-outline-eridu-primary.focus {
+    box-shadow: 0 0 0 .2rem rgba(119, 204, 204, 0.5)
+}
+
+.btn-outline-eridu-primary.disabled,
+.btn-outline-eridu-primary:disabled {
+    color: #7cc;
+    background-color: transparent
+}
+
+.btn-outline-eridu-primary:not(:disabled):not(.disabled):active,
+.btn-outline-eridu-primary:not(:disabled):not(.disabled).active,
+.show>.btn-outline-eridu-primary.dropdown-toggle {
+    color: #212529;
+    background-color: #8ad3d3;
+    border-color: #7cc
+}
+
+.btn-outline-eridu-primary:not(:disabled):not(.disabled):active:focus,
+.btn-outline-eridu-primary:not(:disabled):not(.disabled).active:focus,
+.show>.btn-outline-eridu-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .2rem rgba(119, 204, 204, 0.5)
+}

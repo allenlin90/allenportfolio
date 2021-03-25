@@ -1,7 +1,10 @@
+const defaultPendingTime = 60;
 const state = {
     name: '',
     email: '',
     phone: '',
+    pending: defaultPendingTime,
+    countdownTimer: null
 }
 
 signupForm();
@@ -33,7 +36,7 @@ async function signUpUser(event) {
     if (userProfile.password === userProfile.confirm_password) {
         console.log(userProfile);
         const formWrapper = document.querySelector('#form_wrapper');
-        formWrapper.style.alignItems = `center`;
+        formWrapper.style.justifyContent = `center`;
         formWrapper.innerHTML = loaderTag();
         const buttons = document.querySelector('#signup_form > div:last-child');
         buttons.style.display = 'none';
@@ -57,7 +60,7 @@ async function signUpUser(event) {
             } else {
                 console.log(response.message);
                 alert(response.message);
-                formWrapper.style.alignItems = `flex-start`;
+                formWrapper.style.justifyContent = `flex-start`;
                 signupForm();
             }
         }, 1500);
@@ -179,11 +182,44 @@ function verificationForm() {
             placeholder="0000" required>
         </div>
     </form>
+    <div>
+        <button type="submit" class="btn btn-warning" disabled>Request Code <span>(<span id="countdown">${state.pending}</span> sec)</span></button>
+    <div>
     `;
     const input = document.querySelector('#signup_next_step')
     input.setAttribute('form', 'registration_verification');
     input.value = 'Verify';
     formWrapper.querySelector('form').onsubmit = checkVerificationCode;
+    countdown();
+}
+
+    
+function countdown() {
+    if (state.countdownTimer) {
+        clearTimeout(state.countdownTimer);
+    }
+    const clock = document.querySelector('#countdown');
+    if (clock) {
+        let second = state.pending;
+        if (second > 0) {
+            state.pending = second - 1;
+            clock.innerText = state.pending;
+            state.countdownTimer = setTimeout(function () {
+                countdown(state.pending);
+            }, 1000);
+        } else {
+            const requestCode = document.querySelector('#signup_form button');
+            requestCode.removeAttribute('disabled');
+            clock.parentNode.innerHTML = ``;
+            requestCode.onclick = function (event) {
+                event.preventDefault();
+                state.pending = defaultPendingTime;
+                requestCode.setAttribute("disabled", true);
+                document.querySelector('#signup_form button span').innerHTML = `(<span id="countdown">${state.pending}</span> sec)`;
+                countdown(state.pending);
+            }
+        }
+    }
 }
 
 async function checkVerificationCode(event) {

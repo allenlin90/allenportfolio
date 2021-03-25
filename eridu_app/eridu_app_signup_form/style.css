@@ -19,12 +19,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 0.5rem;
 }
 
 #form_wrapper {
     overflow: auto;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
 }
 

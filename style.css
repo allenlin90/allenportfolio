@@ -14,3 +14,7 @@ html, body {
 h1 {
     text-align: center;
 }
+
+.container {
+    height: 100%;
+}

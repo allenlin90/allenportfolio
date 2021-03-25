@@ -19,13 +19,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 0.5rem;
 }
 
 #form_wrapper {
     overflow: auto;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 #form_wrapper form > div > span:nth-child(3):hover {

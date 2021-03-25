@@ -5,7 +5,7 @@ const state = {
     trackingId: ''
 }
 
-window.location.hash = '#registerqr?id=PP2103222259363&trackingId=EX2103211733231'; // valid IDs
+window.location.hash = '#registerqr?id=PP0123456789012&trackingId=EX2103211733231'; // valid IDs
 // window.location.hash = '#registerqr?id=PP21032222593&trackingId=EX03211733231'; // invalid IDs
 
 state.id = getParameterByName('id'); // PP2103222259363
@@ -38,7 +38,7 @@ async function mapIds(event) {
     const trackingIdToRegister = state.trackingId;
     registerQRDiv.innerHTML = loaderTag();
     if (/^p{2}\d{13}$/g.test(idToRegister) && /^ex\d{13}$/g.test(trackingIdToRegister)) {
-        const resCode = idToRegister === 'PP0123456789012' ? 200 : 400;
+        const resCode = idToRegister === 'pp0123456789012' ? 200 : 400;
         const message = resCode === 200 ? 'success' : 'register failed'
         const response = {
             resCode,
@@ -49,6 +49,9 @@ async function mapIds(event) {
                 console.log('registered');
                 registerQRDiv.innerHTML = successAnimation(3);
                 redirectCountdown(3);
+                setTimeout(function(){
+                    window.location.reload();
+                }, 3000)
             } else {
                 console.log(response.message);
                 alert(response.message);

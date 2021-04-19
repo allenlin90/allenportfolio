@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="sass/main.css">
+    <title>Address List</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="postcode_list">
+            <form action="">
+                <label for="postcode">Choose the area from the list:</label>
+                <input list="postcodes" name="postcodes" id="postcode">
+                <datalist id="postcodes">
+                    <option value="10110, Klong Tan, Khlong Toei">
+                    <option value="Firefox">
+                    <option value="Chrome">
+                    <option value="Opera">
+                    <option value="Safari">
+                </datalist>
+            </form>
+            <div class="areainfo">
+                <div class="areainfo__element">
+                    <div class="areainfo__element--subdistrict__name">Sub-district</div>
+                    <div class="areainfo__element--subdistrict__value" data-name="sub_district" data-value="">-</div>
+                </div>
+                <div class="areainfo__element">
+                    <div class="areainfo__element--district__name">District</div>
+                    <div class="areainfo__element--district__value" data-name="district" data-value="">-</div>
+                </div>
+                <div class="areainfo__element">
+                    <div class="areainfo__element--postcode__name">Postcode</div>
+                    <div class="areainfo__element--postcode__value" data-name="postcode" data-value="">-</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

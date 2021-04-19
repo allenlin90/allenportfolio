@@ -1,0 +1,65 @@
+:root {
+    --background-color: #fff;
+    --color-grey-dark-1: #333;
+    --color-grey-light-1: #ccc;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+    line-height: 1.6;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    padding: 15rem;
+    background-color: #ccc;
+    font-size: 2rem;
+}
+
+.postcode_list {
+    min-width: 180px;
+    background-color: var(--background-color);
+    box-shadow: 0 2rem 6rem rgba(#000, .1);
+    padding: 2rem;
+    color: var(--color-grey-dark-1);
+    font-family: sans-serif;
+    border: 3px solid var(--color-grey-light-1);
+    border-radius: .5rem;
+
+    display: grid;
+    grid-template-columns: minmax(min-content, max-content);
+    grid-row-gap: 3rem;
+    justify-content: center;
+
+    .areainfo {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+        justify-items: center;
+        border: 2px solid var(--color-grey-light-1);
+        box-shadow: 0 .5rem 1rem rgba(#000, .2);
+        border-radius: 1rem;
+
+        &__element {
+            min-width: max-content;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            padding: 2rem 4rem;
+        }
+    }
+}

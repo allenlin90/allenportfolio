@@ -122,6 +122,17 @@ body {
   border-bottom: 1px solid black;
 }
 
+.container .content .sender__name p,
+.container .content .receiver__name p {
+  white-space: nowrap;
+  max-width: 220px;
+}
+
+.container .content .sender__name p span,
+.container .content .receiver__name p span {
+  overflow: hidden;
+}
+
 .container .content .sender__address,
 .container .content .receiver__address {
   font-size: .55rem;
@@ -147,6 +158,7 @@ body {
   -ms-grid-row: 4;
   -ms-grid-row-span: 1;
   grid-row: 4 / span 1;
+  width: 100%;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 2fr 1fr;
@@ -263,16 +275,14 @@ body {
 }
 
 .container .space_between p {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-line-pack: justify;
-      align-content: space-between;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 3.5fr 1fr;
+      grid-template-columns: 3.5fr 1fr;
 }
 
 .container .space_between span {
   display: block;
-  width: 50%;
 }
 
 .container .space_between span:nth-child(2n) {

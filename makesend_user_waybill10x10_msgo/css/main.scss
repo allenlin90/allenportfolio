@@ -100,6 +100,14 @@ body {
 
             &__name{
                 border-bottom: 1px solid black;
+                p {
+                    white-space: nowrap;
+                    max-width: 220px;
+
+                    span {
+                        overflow: hidden;
+                    }
+                }
             }
 
             &__address {
@@ -124,6 +132,8 @@ body {
         .bottom_block {
             grid-column: 1 / -1;
             grid-row: 4 / span 1;
+
+            width: 100%;
 
             display: grid; 
             grid-template-columns: 2fr 1fr;
@@ -206,13 +216,14 @@ body {
 
     .space_between {
         p {
-            display: flex;
-            align-content: space-between;
+            // display: flex;
+            // justify-content: space-between;
+            display: grid;
+            grid-template-columns: 3.5fr 1fr;
         }
 
         span {
             display: block;
-            width: 50%;
         }
 
         span:nth-child(2n) {

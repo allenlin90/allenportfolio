@@ -1,0 +1,308 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+    background: transparent;
+    box-sizing: border-box;
+}
+
+body {
+    background: rgb(204,204,204);    
+    font: 9px "Roboto", "serif", "Georgia", "Times New Roman", "Times";
+}
+
+@page {
+    margin: 0;
+    size: auto;
+    width: 10cm;
+    height: 10cm;
+}
+
+@media print {          
+    body{
+        /* zoom: 95%; */
+        margin: auto;
+    }
+    
+    .buttonDiv {
+        display: none;
+    }
+}
+
+.container {
+    height: 9.5cm;
+    width: 9.5cm;
+    background: white;
+    page-break-before: avoid;
+    page-break-after: auto;
+    padding: 0.5cm;
+    margin: 0.5rem auto;
+}
+
+.container > p {
+    text-align: center;
+}
+
+.content {
+    border: 2px solid black;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 15% 15% 35% 20% 15%;
+    grid-template-areas:
+        "sender mslogo"
+        "sender serviceDate" 
+        "receiver tracking"
+        "note extraService"
+        "empty extraService"
+    ;
+}
+
+.sender_info,
+.receiver_info,
+.note,
+.empty {
+    border-right: 2px grey solid;
+}
+
+.receiver_info, 
+.tracking {
+    border-top: 2px grey solid;
+    border-bottom: 2px grey solid;
+}
+
+.sender_info,
+.receiver_info,
+.note,
+.empty,
+.serviceDate,
+.tracking,
+.extraService {
+    padding: 0 2mm;
+}
+
+.sender_info,
+.note,
+.empty,
+.makesend_logo {
+    padding-top: 2mm;
+}
+
+.sender_info {
+    grid-area: sender;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: space-between;
+}
+
+.receiver_info {
+    grid-area: receiver;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: space-between;
+}
+
+.contact p {
+    display: flex;
+    align-content: space-between;
+}
+
+.contact span {
+    display: block;
+    width: 50%
+}
+
+.contact span:nth-child(2n) {
+    text-align: right;
+}
+
+.name p {
+    line-height: 1.3rem;
+    display: flex;
+    align-content: space-between;
+}
+
+.name span {
+    display: block;
+    width: 75%;
+}
+
+.name span:nth-child(2n) {
+    width: 25%;
+    text-align: right;
+}
+
+.receiver_info p {
+    font-size: 0.7rem;
+}
+
+.makesend_logo {
+    grid-area: mslogo;
+}
+
+.serviceDate {
+    grid-area: serviceDate;
+}
+
+.serviceDate p {
+    text-align: center;
+    line-height: 0.8rem;
+}
+
+.tracking {
+    grid-area: tracking;
+}
+
+.note {
+    grid-area: note;
+}
+
+.note > p:last-child {
+    transform: scale(0.7);
+    text-align: center;
+}
+
+.empty {
+    grid-area: empty;
+}
+
+.extraService {
+    grid-area: extraService;
+}
+
+.makesend_logo p {
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center;
+    font-family: 'Kanit', sans-serif;
+}
+
+.tracking {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.parcels {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.parcels p {
+    line-height: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.qr_code {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#qr_code_img {
+    margin: 0 auto;
+}
+
+#qr_code_img img {
+    height: 100%;
+    width: 100%;
+    display: block;
+}
+
+.qr_code p {
+    margin-top: 6px;
+    text-align: center;
+}
+
+.extraService {
+    display: grid;
+    grid-row: 1fr 1fr 1fr;
+}
+
+.extraService p { 
+    display: block;
+    width: 50%;
+    font-size: 0.7rem;
+}
+
+.extraService p:nth-child(2n) {
+    text-align: center;
+}
+
+.temp, .cod, .express {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buttonDiv {
+    margin: 1rem auto;
+}
+
+.btn {
+    font-size: 14px;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    margin: 0 auto;
+
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+    /* vertical-align: middle; */
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+}
+.btn:focus,
+.btn:active:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+.btn:hover,
+.btn:focus {
+    color: #333;
+    text-decoration: none;
+}
+.btn:active {
+    background-image: none;
+    outline: 0;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+.btn-default:focus {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #8c8c8c;
+}
+.btn-default:hover {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
+.btn-default:active {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}

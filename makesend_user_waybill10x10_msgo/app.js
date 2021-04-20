@@ -15,3 +15,12 @@ buttons.addEventListener('click', () => {
         }, 300);
     }, 300);
 });
+
+window.onload = function () {
+    const receiverAddress = document.querySelector('.receiver__address');
+    const textLength = receiverAddress.innerText.length;
+    console.log(textLength);
+    if (textLength < 90) {
+        receiverAddress.style.fontSize = `.8rem`;
+    }
+}

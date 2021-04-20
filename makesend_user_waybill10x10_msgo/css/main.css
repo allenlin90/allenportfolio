@@ -40,7 +40,7 @@ body {
   width: 9.5cm;
   background: white;
   page-break-before: avoid;
-  page-break-after: auto;
+  page-break-after: always;
   padding-bottom: 0.35cm;
   margin: 0.5rem auto;
 }
@@ -81,13 +81,16 @@ body {
   line-height: 0.8rem;
 }
 
+.container .content .break_line {
+  height: 2px;
+  border-bottom: 2px solid black;
+}
+
 .container .content .break_line--1 {
   grid-column: 1 / -1;
   -ms-grid-row: 2;
   -ms-grid-row-span: 1;
   grid-row: 2 / span 1;
-  height: 2px;
-  background-color: black;
 }
 
 .container .content .break_line--2 {
@@ -95,8 +98,6 @@ body {
   -ms-grid-row: 4;
   -ms-grid-row-span: 1;
   grid-row: 4 / span 1;
-  height: 2px;
-  background-color: black;
 }
 
 .container .content .sender,
@@ -119,6 +120,12 @@ body {
 .container .content .sender__name,
 .container .content .receiver__name {
   border-bottom: 1px solid black;
+}
+
+.container .content .sender__address,
+.container .content .receiver__address {
+  font-size: .55rem;
+  overflow: hidden;
 }
 
 .container .content .sender {

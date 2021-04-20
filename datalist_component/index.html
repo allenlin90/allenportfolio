@@ -14,14 +14,17 @@
         <div class="postcode_list">
             <form action="">
                 <label for="postcode">Choose the area from the list:</label>
-                <input list="postcodes" name="postcodes" id="postcode">
-                <datalist id="postcodes">
-                    <option value="10110, Klong Tan, Khlong Toei">
-                    <option value="Firefox">
-                    <option value="Chrome">
-                    <option value="Opera">
-                    <option value="Safari">
-                </datalist>
+                <div class="input_container">
+                    <div class="input_container--remove"></div>
+                    <input list="postcodes" name="postcodes" id="postcode">
+                    <datalist id="postcodes">
+                        <option value="10110, Klong Tan, Khlong Toei">
+                        <option value="Firefox">
+                        <option value="Chrome">
+                        <option value="Opera">
+                        <option value="Safari">
+                    </datalist>
+                </div>
             </form>
             <div class="areainfo">
                 <div class="areainfo__element">

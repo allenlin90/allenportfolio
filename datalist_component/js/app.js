@@ -21,4 +21,9 @@ window.onload = function () {
             }
         }
     }
+
+    const removeInputBtn = document.querySelector('.input_container--remove');
+    removeInputBtn.onclick = function () {
+        listInput.value = '';
+    }
 }

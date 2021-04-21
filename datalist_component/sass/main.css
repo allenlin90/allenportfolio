@@ -83,7 +83,7 @@ html, body {
 
 .postcode_list form .input_container--remove {
   display: block;
-  width: 10%;
+  width: 3.5rem;
   border: 2px var(--color-grey-light-1) solid;
   background-image: -webkit-gradient(linear, left top, right bottom, from(rgba(204, 204, 204, 0.1)), to(#ccc));
   background-image: linear-gradient(to right bottom, rgba(204, 204, 204, 0.1), #ccc);

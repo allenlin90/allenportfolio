@@ -25,5 +25,11 @@ window.onload = function () {
     const removeInputBtn = document.querySelector('.input_container--remove');
     removeInputBtn.onclick = function () {
         listInput.value = '';
+        const selectedPostcode = document.querySelector(`div[data-name="postcode"]`);
+        const selectedsubdistrict = document.querySelector(`div[data-name="sub_district"]`);
+        const selectedDistrict = document.querySelector(`div[data-name="district"]`);
+        selectedPostcode.innerText = `-`;
+        selectedsubdistrict.innerText = `-`;
+        selectedDistrict.innerText = `-`;
     }
 }

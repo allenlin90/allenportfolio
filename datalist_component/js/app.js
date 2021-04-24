@@ -7,13 +7,16 @@ window.onload = function () {
             const selectedPostcode = document.querySelector(`div[data-name="postcode"]`);
             const selectedsubdistrict = document.querySelector(`div[data-name="sub_district"]`);
             const selectedDistrict = document.querySelector(`div[data-name="district"]`);
-            if (areas.length === 3) {
-                const postcode = areas[0].trim();
-                const subDistrict = areas[1].trim();
-                const district = areas[2].trim();
+            const selectedProvince = document.querySelector(`div[data-name="province"]`);
+            if (areas.length === 4) {
+                const postcode = areas[3].trim();
+                const subDistrict = areas[0].trim();
+                const district = areas[1].trim();
+                const province = areas[2].trim();
                 selectedPostcode.innerText = postcode;
                 selectedsubdistrict.innerText = subDistrict;
                 selectedDistrict.innerText = district;
+                selectedProvince.innerText = province;
             } else {
                 selectedPostcode.innerText = `-`;
                 selectedsubdistrict.innerText = `-`;
@@ -28,8 +31,10 @@ window.onload = function () {
         const selectedPostcode = document.querySelector(`div[data-name="postcode"]`);
         const selectedsubdistrict = document.querySelector(`div[data-name="sub_district"]`);
         const selectedDistrict = document.querySelector(`div[data-name="district"]`);
+        const selectedProvince = document.querySelector(`div[data-name="province"]`);
         selectedPostcode.innerText = `-`;
         selectedsubdistrict.innerText = `-`;
         selectedDistrict.innerText = `-`;
+        selectedProvince.innerText = `-`;
     }
 }

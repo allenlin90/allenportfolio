@@ -21,6 +21,7 @@ window.onload = function () {
                 selectedPostcode.innerText = `-`;
                 selectedsubdistrict.innerText = `-`;
                 selectedDistrict.innerText = `-`;
+                selectedProvince.innerText = `-`;
             }
         }
     }

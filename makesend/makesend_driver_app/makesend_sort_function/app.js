@@ -67,7 +67,7 @@ function renderResult(data) {
             <!-- <button class="btn btn-warning">Transfer</button> -->
         </div>
         `;
-        confirmTransfer(data);
+        // confirmTransfer(data);
     }
 }
 

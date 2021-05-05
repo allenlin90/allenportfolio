@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-size: inherit;
 }
 
 html, body {
@@ -8,6 +9,7 @@ html, body {
     justify-content: center;
     align-items: center;
     height: 100%;
+    width: 100%;
     overflow: auto;
 }
 
@@ -17,4 +19,5 @@ h1 {
 
 .container {
     height: 100%;
+    /* width: 100%; */
 }

@@ -33,17 +33,17 @@ html, body {
 .container {
     height: 100%;
     width: 100%;
-    // padding: 5rem;
     background-color: #ccc;
     font-size: 2rem;
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: auto;
 }
 
 .postcode_list {
-    min-width: 300px;
+    width: calc(100% - 10rem);
+    max-width: 120rem;
     background-color: var(--background-color);
     box-shadow: 0 2rem 6rem rgba(#000, .1);
     padding: 2rem;
@@ -52,7 +52,7 @@ html, body {
     border: 3px solid var(--color-grey-light-1);
     border-radius: .5rem;
     overflow: auto;
-    margin: 1rem;
+    margin: auto;
 
     display: grid;
     grid-template-columns: 100%;

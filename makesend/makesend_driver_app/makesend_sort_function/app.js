@@ -40,8 +40,9 @@ function createOptions(data) {
     const { parcels, shipments, accounts } = data;
     const datalist = document.querySelector('#destinations');
     let optionsHTML = Object.entries(parcels).reduce((options, parcel) => {
+        console.log(parcel);
         options += `
-        <option value='${parcel[0]}${String.fromCharCode(8218)} ${parcel[1].receiver_name}${String.fromCharCode(8218)} ${parcel[1].receiver_phone}${String.fromCharCode(8218)} ${parcel[1].car_plate}${String.fromCharCode(8218)} ${parcel[1].assigned_driver}${String.fromCharCode(8218)} ${shipments[parcel[0]]['dropAddress']}'></option>
+        <option value='${parcel[0]}${String.fromCharCode(8218)} ${parcel[1].receiver_name}${String.fromCharCode(8218)} ${parcel[1].receiver_phone}${String.fromCharCode(8218)} ${parcel[1].car_plate}${String.fromCharCode(8218)} ${parcel[1].assigned_driver}${String.fromCharCode(8218)} ${shipments[parcel[0]]['dropAddress']}${String.fromCharCode(8218)} ${parcel[1].size}${String.fromCharCode(8218)} ${parcel[1].temp}'></option>
         `;
         return options;
     }, '');
@@ -57,6 +58,8 @@ function renderResult(data) {
         const carPlate = data.selected[3];
         const assignedDriver = data.selected[4];
         const address = data.selected[5];
+        const size = data.selected[6];
+        const temp = parseInt(data.selected[7]);
         searchResult.innerHTML = `
         <div id="sorting__search_result--list">
             <p>Receiver Name: ${receiverName}</p>
@@ -64,6 +67,8 @@ function renderResult(data) {
             <p>Receiver Phone: ${receiverPhone}</p>
             <p>Address: ${address}</p>
             <p>Tracking ID: ${trackingId}</p>
+            <p>Size: ${size}</p>
+            <p>Temperature: ${temp ? 'Yes' : 'No'}</p>
             <!-- <button class="btn btn-warning">Transfer</button> -->
         </div>
         `;

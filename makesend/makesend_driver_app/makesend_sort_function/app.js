@@ -65,10 +65,10 @@ function renderResult(data) {
             <p>Receiver Name: ${receiverName}</p>
             <h3>Car Plate: ${carPlate} ${assignedDriver}</h3>
             <p>Receiver Phone: ${receiverPhone}</p>
-            <p>Address: ${address}</p>
+            <p>Address: <a href="https://www.google.com/maps/search/?q=${encodeURI(address)}">${address}</a></p>
             <p>Tracking ID: ${trackingId}</p>
             <p>Size: ${size}</p>
-            <p>Temperature: ${temp ? 'Yes' : 'No'}</p>
+            <p style="color: ${temp ? 'blue' : 'black'};">Temperature: ${temp ? 'Yes' : 'No'}</p>
             <!-- <button class="btn btn-warning">Transfer</button> -->
         </div>
         `;

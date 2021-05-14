@@ -33,28 +33,30 @@ window.onload = async function testRun() {
         await timeoutReload(state.reloadTime, state);
     }
 
-    setupAllDOMs(state);
-
     if (state.data.parcels.count) {
         createOptions(state);
         renderResult(state);
     }
+
+    setupAllDOMs(state);
     // console.log(state);
 }
 
 function createOptions(state) {
     const { parcels, shipments, accounts } = state.data;
     const datalist = document.querySelector('#destinations');
+    console.log(parcels);
     let optionsHTML = Object.entries(parcels).reduce((options, parcel) => {
-        if (!('#REF!' in shipments)) {
+        if (parcel[0] in shipments) {
             options += `
             <option value='${parcel[0]}${String.fromCharCode(8218)} ${parcel[1].receiver_name}${String.fromCharCode(8218)} ${parcel[1].receiver_phone}${String.fromCharCode(8218)} ${parcel[1].car_plate}${String.fromCharCode(8218)} ${parcel[1].assigned_driver}${String.fromCharCode(8218)} ${shipments[parcel[0]]['dropAddress']}${String.fromCharCode(8218)} ${parcel[1].size}${String.fromCharCode(8218)} ${parcel[1].temp}'></option>
             `;
-            return options;
         } else {
             state.errorIds.push(parcel[0]);
         }
+        return options;
     }, '');
+    console.log(state);
     datalist.innerHTML = optionsHTML;
 }
 
@@ -214,6 +216,7 @@ function setupAllDOMs(state) {
         const errorListBtn = document.querySelector('#sorting__form button');
         errorListBtn.style.display = 'inline-block';
         errorListBtn.onclick = openErrorList;
+        createErrorList(state);
     }
     setInputDOMs(state);
 }
@@ -265,6 +268,19 @@ function copyAllErrorIds(state = null) {
             console.log(state.errorIds);
             await navigator.clipboard.writeText(state.errorIds.join(String.fromCharCode(10)));
         }
+    }
+}
+
+function createErrorList(state = null) {
+    if (state) {
+        const listDOM = document.querySelector('.error_message__list ul');
+        const listItems = state.errorIds.reduce((tags, id) => {
+            tags += `<ul>${id}</ul>`;
+            return tags;
+        }, '');
+        listDOM.innerHTML = listItems;
+    } else {
+        console.warn(`state is not given to 'createErrorList'!`);
     }
 }
 

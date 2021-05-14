@@ -39,7 +39,7 @@ window.onload = async function testRun() {
         createOptions(state);
         renderResult(state);
     }
-    console.log(state);
+    // console.log(state);
 }
 
 function createOptions(state) {
@@ -302,7 +302,7 @@ function updateSize(shipmentId = '') {
                 },
                 body: JSON.stringify({
                     trackingID: shipmentId,
-                    // size
+                    size
                 }),
             }
             const res = await fetch('https://api.airportels.asia/api/google/makesend/shipment/changeSize', options)

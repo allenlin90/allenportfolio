@@ -45,6 +45,7 @@
                     <input list="destinations" name="destinations" id="postcode" autocomplete="off">
                     <datalist id="destinations"></datalist>
                 </div>
+                <button class="btn btn-danger">Check Error IDs</button>
             </form>
             <div id="sorting__search_result">
                 <div class="spinner">
@@ -56,6 +57,17 @@
             </div>
         </div>
     </div>
+    <dialog open class="error_message">
+        <div class="error_message__container">
+            <div class="error_message__container__btns">
+                <button class="btn btn-warning error_message__container__btns--copy_btn">Copy All Error IDs</button>
+                <div class="btn btn-light error_message__container__btns--close_btn"><i
+                        class="far fa-window-close fa-2x"></i></div>
+            </div>
+            <hr>
+            <div class="error_message__list"></div>
+        </div>
+    </dialog>
     <footer>
         <div class="navigator">
             <div>

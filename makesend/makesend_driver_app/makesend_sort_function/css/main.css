@@ -211,9 +211,13 @@ header {
   outline: none;
 }
 
+#sorting__form button {
+  display: none;
+}
+
 #sorting__search_result {
   overflow: auto;
-  text-align: center;
+  text-align: left;
 }
 
 #sorting__search_result--list {
@@ -227,8 +231,80 @@ header {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  padding-top: 1rem;
+}
+
+#sorting__search_result--list #size_selector {
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.error_message {
+  border: none;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: none;
+}
+
+.error_message__container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 35rem;
+  height: 60%;
+  max-height: 50rem;
+  background-color: #fff;
+  overflow: auto;
+  padding: .5rem;
+  -webkit-animation-name: moveIn;
+          animation-name: moveIn;
+  -webkit-animation-duration: .5s;
+          animation-duration: .5s;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+}
+
+@-webkit-keyframes moveIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes moveIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.error_message__container__btns--copy_btn {
+  display: block;
+  margin: 0 auto;
+}
+
+.error_message__container__btns--close_btn {
+  cursor: pointer;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.error_message__container__btns--close_btn i {
+  color: #666;
 }
 
 .spinner {
@@ -257,6 +333,13 @@ header {
   font-size: 2rem;
   font-weight: bold;
   color: #333;
+}
+
+.temp_control {
+  background-color: royalblue;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
 }
 
 @media (min-width: 500px) {

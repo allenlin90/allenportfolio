@@ -49,7 +49,7 @@ function createOptions(state) {
     let optionsHTML = Object.entries(parcels).reduce((options, parcel) => {
         if (parcel[0] in shipments) {
             options += `
-            <option value='${parcel[0]}${String.fromCharCode(8218)} ${parcel[1].receiver_name}${String.fromCharCode(8218)} ${parcel[1].receiver_phone}${String.fromCharCode(8218)} ${parcel[1].car_plate}${String.fromCharCode(8218)} ${parcel[1].assigned_driver}${String.fromCharCode(8218)} ${shipments[parcel[0]]['dropAddress']}${String.fromCharCode(8218)} ${parcel[1].size}${String.fromCharCode(8218)} ${parcel[1].temp}'></option>
+            <option value='${parcel[0]}${String.fromCharCode(8218)} ${parcel[1].receiver_name}${String.fromCharCode(8218)} ${parcel[1].receiver_phone}${String.fromCharCode(8218)} ${parcel[1].car_plate}${String.fromCharCode(8218)} ${parcel[1].assigned_driver}${String.fromCharCode(8218)} ${shipments[parcel[0]]['dropAddress']}${String.fromCharCode(8218)} ${parcel[1].size}${String.fromCharCode(8218)} ${parcel[1].temp}${String.fromCharCode(8218)} ${parcel[1].rack}'></option>
             `;
         } else {
             state.errorIds.push(parcel[0]);
@@ -72,6 +72,7 @@ function renderResult(data) {
         const address = data.selected[5].trim();
         const size = data.selected[6].trim();
         const temp = parseInt(data.selected[7].trim());
+        const rack = data.selected[8].trim();
         const optionTags = sizes.reduce((tags, item, index) => {
             if (item.toLowerCase().trim() === size.toLowerCase().trim()) {
                 tags += `<option selected value="${item}">${item}</option>`;
@@ -84,7 +85,8 @@ function renderResult(data) {
         <div id="sorting__search_result--list">
             <p>Receiver Name: ${receiverName}</p>
             <p>Receiver Phone: ${receiverPhone}</p>
-            <h3>Car Plate: ${carPlate} ${assignedDriver}</h3>
+            <h3>Rack: ${rack}</h3>
+            <!-- <h3>Car Plate: ${carPlate} ${assignedDriver}</h3> -->
             <hr>
             <div id="size_selector">
                 <label for="size_select">Size:</label>

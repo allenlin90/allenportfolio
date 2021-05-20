@@ -237,6 +237,10 @@ header {
   padding-top: 1rem;
 }
 
+#sorting__search_result--list h3 {
+  text-align: center;
+}
+
 #sorting__search_result--list #size_selector {
   text-align: center;
   font-size: 1.3rem;

@@ -325,7 +325,7 @@ function updateSize(shipmentId = '') {
                     size
                 }),
             }
-            const res = await fetch('https://api.airportels.asia/api/google/makesend/shipment/changeSize', options)
+            const res = await fetch('https://apiold.makesend.asia/api/google/makesend/shipment/changeSize', options)
                 .then(res => res.json()).then(data => data).catch(err => err);
             if (res.resCode === 200) {
                 console.log(res);

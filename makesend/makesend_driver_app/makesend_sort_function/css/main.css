@@ -244,6 +244,16 @@ header {
 #sorting__search_result--list #size_selector {
   text-align: center;
   font-size: 1.3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#sorting__search_result--list #size_selector > div {
+  margin: 0 .2rem;
 }
 
 .error_message {

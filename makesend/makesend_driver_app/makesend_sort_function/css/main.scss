@@ -204,6 +204,12 @@ header {
             #size_selector {
                 text-align: center;
                 font-size: 1.3rem;
+                display: flex;
+                justify-content: center;
+
+                & > div {
+                    margin: 0 .2rem;
+                }
             }
         }        
     }

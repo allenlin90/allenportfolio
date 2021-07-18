@@ -87,20 +87,24 @@ function renderResult(data) {
         <div id="sorting__search_result--list">
             <p>Receiver Name: ${receiverName}</p>
             <p>Receiver Phone: ${receiverPhone}</p>
-            <h3>Rack: ${rack ? rack : 'Google Sheet has error'} - ${seq ? seq : 'Google Sheet has error'}</h3>
-            <!-- <h3>Car Plate: ${carPlate} ${assignedDriver}</h3> -->
-            <hr>
             <div id="size_selector">
-                <label for="size_select">Size:</label>
-                <select id="size_select"> 
-                    ${optionTags}
-                </select>
+                <div>
+                    <label for="size_select">Size:
+                        <select id="size_select"> 
+                            ${optionTags}
+                        </select>
+                    </label>
+                </div>
                 <div id="select_loader">
                     <div class="spinner-border text-secondary" role="status" style="display: none;">
                         <span class="visually-hidden">Loading...</span>
                     </div>
                 </div>
+                <div><button id="reveal_rack_data" type="button" class="btn btn-primary">Confirm</button></div>
             </div>
+            <hr>
+            <h3 id="rack_data" style="visibility: hidden">Rack: ${rack ? rack : 'Google Sheet has error'} - ${seq ? seq : 'Google Sheet has error'}</h3>
+            <!-- <h3>Car Plate: ${carPlate} ${assignedDriver}</h3> -->
             <hr>
             <p class="${temp ? 'temp_control' : ''}">Temperature: ${temp ? 'Yes' : 'No'}</p>
             <p>Address: <a href="https://www.google.com/maps/search/?q=${encodeURI(address)}" target="_blank">${address}</a></p>
@@ -109,6 +113,10 @@ function renderResult(data) {
         </div>
         `;
         document.querySelector('#size_selector').onchange = updateSize(trackingId, size);
+        document.querySelector('#reveal_rack_data').onclick = function(event) {
+            event.preventDefault;
+            document.querySelector('#rack_data').style.visibility = 'visible';
+        }
         // confirmTransfer(data);
     }
 }

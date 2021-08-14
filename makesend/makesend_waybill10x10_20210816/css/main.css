@@ -1,0 +1,451 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: baseline;
+  background: transparent;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background: #cccccc;
+  font-family: "Roboto", "serif", "Georgia", "Times New Roman", "Times";
+}
+
+#buttonDiv {
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+#buttonDiv button {
+  padding: .2rem .5rem;
+  border: 2px solid black;
+  background-color: aliceblue;
+}
+
+.waybill {
+  height: 10cm;
+  width: 10cm;
+  background: white;
+  page-break-before: avoid;
+  page-break-after: auto;
+  margin: auto;
+  border: #000 solid 2px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1.3fr;
+      grid-template-columns: 1fr 1.3fr;
+  -ms-grid-rows: 1fr 1.5fr 1.25fr 2.5fr;
+      grid-template-rows: 1fr 1.5fr 1.25fr 2.5fr;
+}
+
+.waybill > div {
+  border-bottom: #000 solid 2px;
+  border-right: #000 solid 2px;
+}
+
+.waybill > div:nth-child(7), .waybill > div:nth-child(8) {
+  border-bottom: none;
+}
+
+.waybill > div:nth-child(2n) {
+  border-right: none;
+}
+
+.waybill .ms_logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.waybill .ms_logo img {
+  display: block;
+  width: 100%;
+}
+
+.waybill .msgo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: .2rem;
+}
+
+.waybill .msgo p {
+  font-size: 10px;
+}
+
+.waybill .tracking {
+  padding: .2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.waybill .tracking__qr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.waybill .tracking__qr img {
+  display: block;
+  max-width: 50%;
+  border-radius: .5rem;
+  height: auto;
+  margin: 0 auto;
+}
+
+.waybill .tracking__id {
+  font-size: 16px;
+  text-align: center;
+}
+
+.waybill .header {
+  background-color: #555;
+  color: #fff;
+  font-size: 11px;
+  font-weight: bold;
+  padding: .2rem;
+}
+
+.waybill .receiver {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: .5fr 3.5fr;
+      grid-template-rows: .5fr 3.5fr;
+}
+
+.waybill .receiver_info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  height: 100%;
+  padding: .2rem;
+}
+
+.waybill .receiver_info > div {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 3.5fr;
+      grid-template-columns: 1fr 3.5fr;
+}
+
+.waybill .receiver_info > div > div:first-child {
+  font-size: 11px;
+}
+
+.waybill .receiver_info > div > div:last-child {
+  font-size: 12px;
+}
+
+.waybill .sender_top .parcel_service_date {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 2fr;
+      grid-template-columns: 1fr 2fr;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: calc(100% - 20px);
+}
+
+.waybill .sender_top .parcel_service_date__header, .waybill .sender_top .parcel_service_date__content {
+  padding: .2rem;
+}
+
+.waybill .sender_top .parcel_service_date__header {
+  font-size: 11px;
+}
+
+.waybill .sender_top .parcel_service_date__content {
+  font-size: 12px;
+}
+
+.waybill .sender_info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  height: 100%;
+  padding: .2rem;
+  overflow: hidden;
+}
+
+.waybill .sender_info > div {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 2fr;
+      grid-template-columns: 1fr 2fr;
+}
+
+.waybill .sender_info > div > div:first-child {
+  font-size: 11px;
+}
+
+.waybill .sender_info > div > div:last-child {
+  font-size: 12px;
+}
+
+.waybill .parcel_meta_top__content {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1.25fr;
+      grid-template-columns: 1fr 1.25fr;
+  height: calc(100% - 20px);
+}
+
+.waybill .parcel_meta_top__content > div:first-child {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+}
+
+.waybill .parcel_meta_top__content > div:first-child .parcel_amount,
+.waybill .parcel_meta_top__content > div:first-child .parcel_size {
+  border-right: 2px solid #000;
+}
+
+.waybill .parcel_meta_top__content > div:first-child .parcel_amount {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+}
+
+.waybill .parcel_meta_top__content > div:first-child .parcel_amount__header {
+  font-size: 11px;
+}
+
+.waybill .parcel_meta_top__content > div:first-child .parcel_amount__content {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.waybill .parcel_meta_top__content > div:first-child .parcel_size {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+}
+
+.waybill .parcel_meta_top__content > div:first-child .parcel_size__header {
+  font-size: 11px;
+}
+
+.waybill .parcel_meta_top__content > div:first-child .parcel_size__content {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.waybill .parcel_meta_top__content .parcel_type {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+}
+
+.waybill .parcel_meta_top__content .parcel_type__header {
+  font-size: 11px;
+}
+
+.waybill .parcel_meta_top__content .parcel_type__content {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.waybill .parcel_meta_bottom {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr 1fr 1.5fr;
+      grid-template-rows: 1fr 1fr 1.5fr;
+}
+
+.waybill .parcel_meta_bottom .extra_service {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1.25fr;
+      grid-template-columns: 1fr 1.25fr;
+  border-bottom: 2px solid #000;
+}
+
+.waybill .parcel_meta_bottom .extra_service__temp {
+  padding: .2rem;
+  text-align: center;
+  border-right: solid 2px #000;
+}
+
+.waybill .parcel_meta_bottom .extra_service__temp > div:first-child {
+  font-size: 11px;
+}
+
+.waybill .parcel_meta_bottom .extra_service__temp > div:last-child {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.waybill .parcel_meta_bottom .extra_service__cod {
+  padding: .2rem;
+  text-align: center;
+}
+
+.waybill .parcel_meta_bottom .extra_service__cod > div:first-child {
+  font-size: 11px;
+}
+
+.waybill .parcel_meta_bottom .extra_service__cod > div:last-child {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.waybill .parcel_meta_bottom .parcel_delivery {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: .2rem;
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 2;
+  grid-row: 2 / span 2;
+}
+
+.waybill .parcel_meta_bottom .parcel_delivery__pickup {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+}
+
+.waybill .parcel_meta_bottom .parcel_delivery__pickup > div:first-child,
+.waybill .parcel_meta_bottom .parcel_delivery__pickup > div:last-child {
+  font-size: 11px;
+}
+
+.waybill .parcel_meta_bottom .parcel_delivery__dropoff {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+}
+
+.waybill .parcel_meta_bottom .parcel_delivery__dropoff > div:first-child,
+.waybill .parcel_meta_bottom .parcel_delivery__dropoff > div:last-child {
+  font-size: 11px;
+}
+
+.waybill .parcel_meta_bottom .parcel_round {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: .5fr 1.75fr;
+      grid-template-columns: .5fr 1.75fr;
+  display: none;
+}
+
+.waybill .parcel_meta_bottom .parcel_round > div:first-child {
+  border-right: #000 solid 2px;
+}
+
+.waybill .parcel_meta_bottom .parcel_round > div:first-child,
+.waybill .parcel_meta_bottom .parcel_round > div:last-child {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 34px;
+  font-weight: bold;
+}
+
+@media print {
+  .buttonDiv,
+  br {
+    display: none;
+  }
+  .header {
+    -webkit-print-color-adjust: exact;
+  }
+  @page {
+    margin: 0;
+    padding: 0;
+    size: 10cm 10cm;
+  }
+}
+/*# sourceMappingURL=main.css.map */

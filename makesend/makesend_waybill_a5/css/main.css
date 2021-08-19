@@ -1,0 +1,468 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: baseline;
+  background: transparent;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background: #cccccc;
+  font-family: 'Roboto', 'serif', 'Georgia', 'Times New Roman', 'Times';
+}
+
+#buttonDiv {
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+#buttonDiv button {
+  padding: 0.2rem 0.5rem;
+  border: 2px solid black;
+  background-color: aliceblue;
+}
+
+.waybill {
+  height: 148mm;
+  width: 210mm;
+  background: white;
+  page-break-before: avoid;
+  page-break-after: auto;
+  margin: auto;
+  margin-bottom: 0.5mm;
+  border: #000 solid 4px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1.75fr;
+      grid-template-columns: 1fr 1.75fr;
+  -ms-grid-rows: 1fr 2fr 2fr;
+      grid-template-rows: 1fr 2fr 2fr;
+}
+
+.waybill > div {
+  border-bottom: #000 solid 2px;
+  border-right: #000 solid 2px;
+}
+
+.waybill > div:nth-child(5), .waybill > div:nth-child(6) {
+  border-bottom: none;
+}
+
+.waybill > div:nth-child(2n) {
+  border-right: none;
+}
+
+.waybill .ms_logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.5rem;
+}
+
+.waybill .ms_logo img {
+  display: block;
+  width: 100%;
+}
+
+.waybill .msgo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.2rem;
+}
+
+.waybill .msgo p {
+  font-size: 18px;
+}
+
+.waybill .tracking {
+  padding: 0.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.waybill .tracking__qr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.5rem;
+}
+
+.waybill .tracking__qr img {
+  display: block;
+  max-width: 50%;
+  border-radius: 0.5rem;
+  height: auto;
+  margin: 0 auto;
+}
+
+.waybill .tracking__id {
+  font-size: 24px;
+  text-align: center;
+}
+
+.waybill .header {
+  background-color: #555;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 0.2rem;
+  padding-left: 1rem;
+}
+
+.waybill .receiver {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 0.5fr 3.5fr;
+      grid-template-rows: 0.5fr 3.5fr;
+}
+
+.waybill .receiver_info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  height: 100%;
+  padding: 0.2rem;
+  padding-left: 1rem;
+}
+
+.waybill .receiver_info > div {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 3.5fr;
+      grid-template-columns: 1fr 3.5fr;
+}
+
+.waybill .receiver_info > div > div:first-child {
+  font-size: 16px;
+}
+
+.waybill .receiver_info > div > div:last-child {
+  font-size: 16px;
+}
+
+.waybill .sender {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 0.5fr 3.5fr;
+      grid-template-rows: 0.5fr 3.5fr;
+}
+
+.waybill .sender .parcel_service_date {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 2fr;
+      grid-template-columns: 1fr 2fr;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.2rem;
+  padding-left: 1rem;
+}
+
+.waybill .sender .parcel_service_date__header {
+  font-size: 16px;
+}
+
+.waybill .sender .parcel_service_date__content {
+  font-size: 16px;
+}
+
+.waybill .sender_info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 0.2rem;
+  padding-left: 1rem;
+  overflow: hidden;
+  height: calc(100% - 50px);
+}
+
+.waybill .sender_info > div {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 2fr;
+      grid-template-columns: 1fr 2fr;
+}
+
+.waybill .sender_info > div > div:first-child {
+  font-size: 16px;
+}
+
+.waybill .sender_info > div > div:last-child {
+  font-size: 16px;
+}
+
+.waybill .parcel_meta {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 0.5fr 3.5fr;
+      grid-template-rows: 0.5fr 3.5fr;
+}
+
+.waybill .parcel_meta__content {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 2fr;
+      grid-template-columns: 1fr 2fr;
+  -ms-grid-rows: (1fr)[3];
+      grid-template-rows: repeat(3, 1fr);
+}
+
+.waybill .parcel_meta__content > div:first-child,
+.waybill .parcel_meta__content > div:nth-child(2) {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  border-bottom: 2px #000 solid;
+}
+
+.waybill .parcel_meta__content .parcel_amount,
+.waybill .parcel_meta__content .parcel_size {
+  border-right: 2px solid #000;
+}
+
+.waybill .parcel_meta__content .parcel_amount {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+}
+
+.waybill .parcel_meta__content .parcel_amount__header {
+  font-size: 16px;
+}
+
+.waybill .parcel_meta__content .parcel_amount__content {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.waybill .parcel_meta__content .parcel_size {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+}
+
+.waybill .parcel_meta__content .parcel_size__header {
+  font-size: 16px;
+}
+
+.waybill .parcel_meta__content .parcel_size__content {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.waybill .parcel_meta__content .parcel_type {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  border-right: solid 2px #000;
+}
+
+.waybill .parcel_meta__content .parcel_type__header {
+  font-size: 16px;
+}
+
+.waybill .parcel_meta__content .parcel_type__content {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.waybill .parcel_meta .extra_service {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1.25fr;
+      grid-template-columns: 1fr 1.25fr;
+  border-bottom: 2px solid #000;
+}
+
+.waybill .parcel_meta .extra_service__temp {
+  padding: 0.2rem;
+  text-align: center;
+  border-right: solid 2px #000;
+  border-bottom: solid 2px #000;
+}
+
+.waybill .parcel_meta .extra_service__temp > div:first-child {
+  font-size: 16px;
+}
+
+.waybill .parcel_meta .extra_service__temp > div:last-child {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.waybill .parcel_meta .extra_service__cod {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0.2rem;
+  text-align: center;
+}
+
+.waybill .parcel_meta .extra_service__cod > div:first-child {
+  font-size: 16px;
+}
+
+.waybill .parcel_meta .extra_service__cod > div:last-child {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.waybill .parcel_meta .parcel_delivery {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0.2rem;
+  padding-left: 1rem;
+  border-bottom: 2px #000 solid;
+}
+
+.waybill .parcel_meta .parcel_delivery__pickup {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+}
+
+.waybill .parcel_meta .parcel_delivery__pickup > div:first-child,
+.waybill .parcel_meta .parcel_delivery__pickup > div:last-child {
+  font-size: 16px;
+}
+
+.waybill .parcel_meta .parcel_delivery__dropoff {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+}
+
+.waybill .parcel_meta .parcel_delivery__dropoff > div:first-child,
+.waybill .parcel_meta .parcel_delivery__dropoff > div:last-child {
+  font-size: 16px;
+}
+
+.waybill .parcel_meta .pickup_round {
+  border-right: #000 solid 2px;
+}
+
+.waybill .parcel_meta .pickup_round,
+.waybill .parcel_meta .hub_transfer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 56px;
+  font-weight: bold;
+}
+
+@media print {
+  #buttonDiv,
+  br {
+    display: none;
+  }
+  .header {
+    -webkit-print-color-adjust: exact;
+  }
+  @page {
+    margin: 0;
+    padding: 0;
+    width: 210mm;
+    height: 148mm;
+  }
+}
+/*# sourceMappingURL=main.css.map */

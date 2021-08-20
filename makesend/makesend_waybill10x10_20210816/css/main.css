@@ -11,7 +11,7 @@
 
 body {
   background: #cccccc;
-  font-family: "Roboto", "serif", "Georgia", "Times New Roman", "Times";
+  font-family: 'Roboto', 'serif', 'Georgia', 'Times New Roman', 'Times';
 }
 
 #buttonDiv {
@@ -21,7 +21,7 @@ body {
 }
 
 #buttonDiv button {
-  padding: .2rem .5rem;
+  padding: 0.2rem 0.5rem;
   border: 2px solid black;
   background-color: aliceblue;
 }
@@ -82,7 +82,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: .2rem;
+  padding: 0.2rem;
 }
 
 .waybill .msgo p {
@@ -90,7 +90,7 @@ body {
 }
 
 .waybill .tracking {
-  padding: .2rem;
+  padding: 0.2rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -117,7 +117,7 @@ body {
 .waybill .tracking__qr img {
   display: block;
   max-width: 50%;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   height: auto;
   margin: 0 auto;
 }
@@ -132,14 +132,14 @@ body {
   color: #fff;
   font-size: 11px;
   font-weight: bold;
-  padding: .2rem;
+  padding: 0.2rem;
 }
 
 .waybill .receiver {
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: .5fr 3.5fr;
-      grid-template-rows: .5fr 3.5fr;
+  -ms-grid-rows: 0.5fr 3.5fr;
+      grid-template-rows: 0.5fr 3.5fr;
 }
 
 .waybill .receiver_info {
@@ -153,7 +153,7 @@ body {
   -ms-flex-pack: distribute;
       justify-content: space-around;
   height: 100%;
-  padding: .2rem;
+  padding: 0.2rem;
 }
 
 .waybill .receiver_info > div {
@@ -183,7 +183,7 @@ body {
 }
 
 .waybill .sender_top .parcel_service_date__header, .waybill .sender_top .parcel_service_date__content {
-  padding: .2rem;
+  padding: 0.2rem;
 }
 
 .waybill .sender_top .parcel_service_date__header {
@@ -205,7 +205,7 @@ body {
   -ms-flex-pack: distribute;
       justify-content: space-around;
   height: 100%;
-  padding: .2rem;
+  padding: 0.2rem;
   overflow: hidden;
 }
 
@@ -338,7 +338,7 @@ body {
 }
 
 .waybill .parcel_meta_bottom .extra_service__temp {
-  padding: .2rem;
+  padding: 0.2rem;
   text-align: center;
   border-right: solid 2px #000;
 }
@@ -353,7 +353,7 @@ body {
 }
 
 .waybill .parcel_meta_bottom .extra_service__cod {
-  padding: .2rem;
+  padding: 0.2rem;
   text-align: center;
 }
 
@@ -377,10 +377,8 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: .2rem;
-  -ms-grid-row: 2;
-  -ms-grid-row-span: 2;
-  grid-row: 2 / span 2;
+  padding: 0.2rem;
+  border-bottom: 2px #000 solid;
 }
 
 .waybill .parcel_meta_bottom .parcel_delivery__pickup {
@@ -410,9 +408,8 @@ body {
 .waybill .parcel_meta_bottom .parcel_round {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: .5fr 1.75fr;
-      grid-template-columns: .5fr 1.75fr;
-  display: none;
+  -ms-grid-columns: 0.5fr 1.75fr;
+      grid-template-columns: 0.5fr 1.75fr;
 }
 
 .waybill .parcel_meta_bottom .parcel_round > div:first-child {

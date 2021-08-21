@@ -416,8 +416,7 @@ body {
   border-right: #000 solid 2px;
 }
 
-.waybill .parcel_meta_bottom .parcel_round > div:first-child,
-.waybill .parcel_meta_bottom .parcel_round > div:last-child {
+.waybill .parcel_meta_bottom .parcel_round > div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -429,6 +428,11 @@ body {
           align-items: center;
   font-size: 34px;
   font-weight: bold;
+}
+
+.waybill .parcel_meta_bottom .parcel_round .hub_transfer {
+  font-size: 20px;
+  text-align: center;
 }
 
 @media print {

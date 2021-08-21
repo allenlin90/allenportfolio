@@ -24,6 +24,7 @@ $extra-service-header-font-size: 11px;
 $extra-service-content-font-size: 12px;
 $meta-content-font-size: 24px;
 $parcel-round-font-size: 56px;
+$hub-transfer-font-size: 36px;
 
 body {
   background: rgb(204, 204, 204);
@@ -349,6 +350,10 @@ body {
       align-items: center;
       font-size: $parcel-round-font-size;
       font-weight: bold;
+    }
+
+    .hub_transfer {
+      font-size: $hub-transfer-font-size;
     }
   }
 }

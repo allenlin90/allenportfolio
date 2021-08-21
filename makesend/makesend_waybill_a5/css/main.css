@@ -450,6 +450,10 @@ body {
   font-weight: bold;
 }
 
+.waybill .parcel_meta .hub_transfer {
+  font-size: 36px;
+}
+
 @media print {
   #buttonDiv,
   br {

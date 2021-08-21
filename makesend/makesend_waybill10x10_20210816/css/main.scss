@@ -20,6 +20,7 @@ $parcel-meta-top-font-size: 12px;
 $extra-service-header-font-size: 11px;
 $extra-service-content-font-size: 12px;
 $parcel-round-font-size: 34px;
+$hub-transfer-font-size: 20px;
 
 body {
   background: rgb(204, 204, 204);
@@ -337,13 +338,17 @@ body {
           border-right: $black solid $border-thickness;
         }
 
-        & > div:first-child,
-        & > div:last-child {
+        & > div {
           display: flex;
           justify-content: center;
           align-items: center;
           font-size: $parcel-round-font-size;
           font-weight: bold;
+        }
+
+        .hub_transfer {
+          font-size: $hub-transfer-font-size;
+          text-align: center;
         }
       }
     }

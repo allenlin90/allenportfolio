@@ -1,11 +1,12 @@
 window.onload = () => {
-  const buttons = document.getElementById('buttonDiv');
+  const buttons = document.querySelector('#buttonDiv button');
   buttons.addEventListener('click', () => {
-    buttons.style.display = 'none';
+    const functions = document.querySelector('#functions');
+    functions.style.display = 'none';
     setTimeout(function () {
       window.print();
       setTimeout(function () {
-        buttons.style.display = 'block';
+        functions.style.display = 'flex';
       }, 300);
     }, 300);
   });

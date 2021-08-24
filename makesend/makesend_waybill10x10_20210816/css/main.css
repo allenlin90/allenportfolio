@@ -86,7 +86,9 @@ body {
 }
 
 .waybill .msgo p {
-  font-size: 10px;
+  font-size: 8px;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .waybill .tracking {
@@ -341,6 +343,16 @@ body {
   padding: 0.2rem;
   text-align: center;
   border-right: solid 2px #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .waybill .parcel_meta_bottom .extra_service__temp > div:first-child {
@@ -348,7 +360,7 @@ body {
 }
 
 .waybill .parcel_meta_bottom .extra_service__temp > div:last-child {
-  font-size: 12px;
+  font-size: 16px;
   font-weight: bold;
 }
 

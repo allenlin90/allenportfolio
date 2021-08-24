@@ -10,7 +10,7 @@
 
 $black: #000;
 $border-thickness: 2px;
-$msgo-font-size: 10px;
+$msgo-font-size: 8px;
 $header-background: #555;
 $header-color: #fff;
 $header-font-size: 11px;
@@ -19,6 +19,7 @@ $content-font-size: 12px;
 $parcel-meta-top-font-size: 12px;
 $extra-service-header-font-size: 11px;
 $extra-service-content-font-size: 12px;
+$extra-service-temp-font-size: 16px;
 $parcel-round-font-size: 34px;
 $hub-transfer-font-size: 20px;
 
@@ -84,6 +85,8 @@ body {
 
     p {
       font-size: $msgo-font-size;
+      white-space: nowrap;
+      overflow: hidden;
     }
   }
 
@@ -275,13 +278,16 @@ body {
           padding: 0.2rem;
           text-align: center;
           border-right: solid $border-thickness $black;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
 
           & > div:first-child {
             font-size: $extra-service-header-font-size;
           }
 
           & > div:last-child {
-            font-size: $extra-service-content-font-size;
+            font-size: $extra-service-temp-font-size;
             font-weight: bold;
           }
         }

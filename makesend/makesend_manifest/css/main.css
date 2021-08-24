@@ -84,7 +84,7 @@ body {
 .manifest {
   background: white;
   width: 297mm;
-  height: 210mm;
+  height: 208mm;
   margin: auto;
   padding: 1rem;
   page-break-before: avoid;
@@ -127,6 +127,10 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.manifest_meta .msgo_branch {
+  font-size: 12px;
 }
 
 .manifest_meta .parcel_type {
@@ -229,7 +233,10 @@ body {
 .manifest_table table thead td:last-child,
 .manifest_table table tbody th:last-child,
 .manifest_table table tbody td:last-child {
-  max-width: 180px;
+  min-width: 200px;
+  max-width: 200px;
+  width: 200px;
+  overflow: hidden;
 }
 
 .manifest_footer {
@@ -307,7 +314,7 @@ body {
     margin: 0;
     padding: 0;
     width: 297mm;
-    height: 210mm;
+    height: 208mm;
   }
 }
 /*# sourceMappingURL=main.css.map */

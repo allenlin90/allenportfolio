@@ -282,6 +282,9 @@ body {
         text-align: center;
         border-right: solid $border-thickness $black;
         border-bottom: solid $border-thickness $black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
         & > div:first-child {
           font-size: $header-font-size;

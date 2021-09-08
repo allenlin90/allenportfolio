@@ -356,6 +356,16 @@ body {
   text-align: center;
   border-right: solid 2px #000;
   border-bottom: solid 2px #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .waybill .parcel_meta .extra_service__temp > div:first-child {
@@ -448,6 +458,10 @@ body {
           align-items: center;
   font-size: 56px;
   font-weight: bold;
+}
+
+.waybill .parcel_meta .hub_transfer {
+  font-size: 36px;
 }
 
 @media print {

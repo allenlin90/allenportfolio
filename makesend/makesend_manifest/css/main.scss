@@ -17,25 +17,67 @@ $border-color: #000;
 $border-size: 2px;
 $color-white: #fff;
 $header-font-size: 18px;
+$branch-font-size: 12px;
 $chilled_count_bg: rgba(123, 230, 223, 0.38);
 $total_count_bg: rgba(255, 176, 83, 0.38);
 $count_bg_opacity: 0.38;
+
+#functions {
+  margin: 0 auto;
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.search {
+  padding: 1rem;
+  display: flex;
+
+  &__remove,
+  &__btn {
+    padding: 0 1rem;
+  }
+
+  &__select {
+    display: flex;
+    align-items: center;
+
+    label {
+      display: block;
+      padding: 0 1rem;
+    }
+
+    select {
+      max-width: 20rem;
+      text-align: center;
+      text-align-last: center;
+      background-color: $color-white;
+      border: $border-size $border-color solid;
+    }
+  }
+}
 
 #buttonDiv {
   margin: 0 auto;
   padding: 1rem;
   text-align: center;
-  button {
-    padding: 0.2rem 0.5rem;
-    border: $border-size solid black;
-    background-color: aliceblue;
+}
+
+.btn {
+  padding: 0.2rem 0.5rem;
+  border: $border-size solid black;
+  background-color: aliceblue;
+  &:hover {
+    cursor: pointer;
   }
 }
 
 .manifest {
   background: white;
   width: 297mm;
-  height: 210mm;
+  height: 208mm;
   margin: auto;
   padding: 1rem;
   page-break-before: avoid;
@@ -66,6 +108,10 @@ $count_bg_opacity: 0.38;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     justify-content: space-between;
+
+    .msgo_branch {
+      font-size: $branch-font-size;
+    }
 
     .parcel_type {
       display: grid;
@@ -150,7 +196,11 @@ $count_bg_opacity: 0.38;
 
         th:last-child,
         td:last-child {
-          max-width: 180px;
+          // note
+          min-width: 200px;
+          max-width: 200px;
+          width: 200px;
+          overflow: hidden;
         }
       }
     }
@@ -201,6 +251,7 @@ $count_bg_opacity: 0.38;
 }
 
 @media print {
+  #functions,
   #buttonDiv,
   br {
     display: none;
@@ -231,6 +282,6 @@ $count_bg_opacity: 0.38;
     padding: 0;
     // size: A4 landscape;
     width: 297mm;
-    height: 210mm;
+    height: 208mm;
   }
 }

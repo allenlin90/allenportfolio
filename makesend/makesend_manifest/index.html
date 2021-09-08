@@ -16,8 +16,30 @@
     <title>MakeSend Manifest</title>
   </head>
   <body>
-    <div id="buttonDiv">
-      <button id="printBtn">Print</button>
+    <div id="functions">
+      <div id="search" class="search">
+        <!-- <div class="search__remove"><i class="fas fa-times"></i></div> -->
+        <div class="search__select">
+          <label for="branch">Select a branch</label>
+          <select id="branch">
+            <option value="" disabled selected>-</option>
+            <option value="1">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Perferendis tenetur in itaque ab modi laborum eveniet! Dignissimos
+            </option>
+            <option value="2">branch 2</option>
+            <option value="3">branch 3</option>
+            <option value="4">branch 4</option>
+            <option value="5">branch 5</option>
+          </select>
+        </div>
+        <div class="search__btn">
+          <button class="btn">Search</button>
+        </div>
+      </div>
+      <div id="buttonDiv">
+        <button id="printBtn" class="btn">Print</button>
+      </div>
     </div>
     <div class="container">
       <div class="manifest">
@@ -26,8 +48,8 @@
             <img src="./assets/makesend_logo.png" alt="makesend_logo" />
           </div>
           <div>
-            <h4>Service Date</h4>
-            <h4>20/Aug/2021</h4>
+            <h4>Service Date: 2021/08/31</h4>
+            <h4>1 of 3</h4>
           </div>
         </div>
         <div class="manifest_meta">

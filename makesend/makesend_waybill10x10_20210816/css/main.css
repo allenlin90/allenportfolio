@@ -11,7 +11,7 @@
 
 body {
   background: #cccccc;
-  font-family: "Roboto", "serif", "Georgia", "Times New Roman", "Times";
+  font-family: 'Roboto', 'serif', 'Georgia', 'Times New Roman', 'Times';
 }
 
 #buttonDiv {
@@ -21,7 +21,7 @@ body {
 }
 
 #buttonDiv button {
-  padding: .2rem .5rem;
+  padding: 0.2rem 0.5rem;
   border: 2px solid black;
   background-color: aliceblue;
 }
@@ -76,21 +76,24 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: .2rem;
+  padding: 0.2rem;
+  overflow: hidden;
 }
 
 .waybill .msgo p {
-  font-size: 10px;
+  font-size: 8px;
+  overflow: hidden;
+  max-height: calc((8px + 3px) * 2);
 }
 
 .waybill .tracking {
-  padding: .2rem;
+  padding: 0.2rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -117,7 +120,7 @@ body {
 .waybill .tracking__qr img {
   display: block;
   max-width: 50%;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   height: auto;
   margin: 0 auto;
 }
@@ -132,14 +135,14 @@ body {
   color: #fff;
   font-size: 11px;
   font-weight: bold;
-  padding: .2rem;
+  padding: 0.2rem;
 }
 
 .waybill .receiver {
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: .5fr 3.5fr;
-      grid-template-rows: .5fr 3.5fr;
+  -ms-grid-rows: 0.5fr 3.5fr;
+      grid-template-rows: 0.5fr 3.5fr;
 }
 
 .waybill .receiver_info {
@@ -153,7 +156,22 @@ body {
   -ms-flex-pack: distribute;
       justify-content: space-around;
   height: 100%;
-  padding: .2rem;
+  padding: 0.2rem;
+  max-height: 109px;
+}
+
+.waybill .receiver_info__name > div:last-child {
+  max-height: 15px;
+  overflow: hidden;
+}
+
+.waybill .receiver_info__address {
+  overflow: hidden;
+}
+
+.waybill .receiver_info__note > div:last-child {
+  max-height: calc(12px * 2);
+  overflow: hidden;
 }
 
 .waybill .receiver_info > div {
@@ -169,6 +187,7 @@ body {
 
 .waybill .receiver_info > div > div:last-child {
   font-size: 12px;
+  max-width: 159px;
 }
 
 .waybill .sender_top .parcel_service_date {
@@ -183,7 +202,7 @@ body {
 }
 
 .waybill .sender_top .parcel_service_date__header, .waybill .sender_top .parcel_service_date__content {
-  padding: .2rem;
+  padding: 0.2rem;
 }
 
 .waybill .sender_top .parcel_service_date__header {
@@ -205,7 +224,22 @@ body {
   -ms-flex-pack: distribute;
       justify-content: space-around;
   height: 100%;
-  padding: .2rem;
+  padding: 0.2rem;
+  overflow: hidden;
+}
+
+.waybill .sender_info__name > div:last-child {
+  max-height: 15px;
+  overflow: hidden;
+}
+
+.waybill .sender_info__address {
+  max-height: 86px;
+  overflow: hidden;
+}
+
+.waybill .sender_info__note > div:last-child {
+  max-height: calc((12px + 3px) * 2);
   overflow: hidden;
 }
 
@@ -222,6 +256,7 @@ body {
 
 .waybill .sender_info > div > div:last-child {
   font-size: 12px;
+  max-width: 102px;
 }
 
 .waybill .parcel_meta_top__content {
@@ -338,9 +373,19 @@ body {
 }
 
 .waybill .parcel_meta_bottom .extra_service__temp {
-  padding: .2rem;
+  padding: 0.2rem;
   text-align: center;
   border-right: solid 2px #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .waybill .parcel_meta_bottom .extra_service__temp > div:first-child {
@@ -353,7 +398,7 @@ body {
 }
 
 .waybill .parcel_meta_bottom .extra_service__cod {
-  padding: .2rem;
+  padding: 0.2rem;
   text-align: center;
 }
 
@@ -377,10 +422,8 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: .2rem;
-  -ms-grid-row: 2;
-  -ms-grid-row-span: 2;
-  grid-row: 2 / span 2;
+  padding: 0.2rem;
+  border-bottom: 2px #000 solid;
 }
 
 .waybill .parcel_meta_bottom .parcel_delivery__pickup {
@@ -410,17 +453,15 @@ body {
 .waybill .parcel_meta_bottom .parcel_round {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: .5fr 1.75fr;
-      grid-template-columns: .5fr 1.75fr;
-  display: none;
+  -ms-grid-columns: 0.5fr 1.75fr;
+      grid-template-columns: 0.5fr 1.75fr;
 }
 
 .waybill .parcel_meta_bottom .parcel_round > div:first-child {
   border-right: #000 solid 2px;
 }
 
-.waybill .parcel_meta_bottom .parcel_round > div:first-child,
-.waybill .parcel_meta_bottom .parcel_round > div:last-child {
+.waybill .parcel_meta_bottom .parcel_round > div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -432,6 +473,11 @@ body {
           align-items: center;
   font-size: 34px;
   font-weight: bold;
+}
+
+.waybill .parcel_meta_bottom .parcel_round .hub_transfer {
+  font-size: 20px;
+  text-align: center;
 }
 
 @media print {

@@ -1,16 +1,16 @@
 * {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    vertical-align: baseline;
-    background: transparent;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: baseline;
+  background: transparent;
+  box-sizing: border-box;
 }
 
 $black: #000;
 $border-thickness: 2px;
-$msgo-font-size: 10px;
+$msgo-font-size: 8px;
 $header-background: #555;
 $header-color: #fff;
 $header-font-size: 11px;
@@ -19,357 +19,402 @@ $content-font-size: 12px;
 $parcel-meta-top-font-size: 12px;
 $extra-service-header-font-size: 11px;
 $extra-service-content-font-size: 12px;
+$extra-service-temp-font-size: 12px;
 $parcel-round-font-size: 34px;
+$hub-transfer-font-size: 20px;
 
 body {
-    background: rgb(204,204,204);    
-    font-family: "Roboto", "serif", "Georgia", "Times New Roman", "Times";
+  background: rgb(204, 204, 204);
+  font-family: 'Roboto', 'serif', 'Georgia', 'Times New Roman', 'Times';
 }
 
 #buttonDiv {
-    margin: 0 auto;
-    padding: 1rem;
-    text-align: center;
-    button {
-        padding: .2rem .5rem;
-        border: 2px solid black;
-        background-color: aliceblue;
-    }
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+  button {
+    padding: 0.2rem 0.5rem;
+    border: 2px solid black;
+    background-color: aliceblue;
+  }
 }
-
-
 
 .waybill {
-    height: 10cm;
-    width: 10cm;
-    background: white;
-    page-break-before: avoid;
-    page-break-after: auto;
-    margin: auto;
-    border: $black solid $border-thickness;
+  height: 10cm;
+  width: 10cm;
+  background: white;
+  page-break-before: avoid;
+  page-break-after: auto;
+  margin: auto;
+  border: $black solid $border-thickness;
 
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  grid-template-rows: 1fr 1.5fr 1.25fr 2.5fr;
+
+  & > div {
+    border-bottom: $black solid $border-thickness;
+    border-right: $black solid $border-thickness;
+
+    &:nth-child(7),
+    &:nth-child(8) {
+      border-bottom: none;
+    }
+
+    &:nth-child(2n) {
+      border-right: none;
+    }
+  }
+
+  .ms_logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  .msgo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0.2rem;
+    overflow: hidden;
+
+    p {
+      font-size: $msgo-font-size;
+      overflow: hidden;
+      max-height: calc((#{$msgo-font-size} + 3px) * 2);
+    }
+  }
+
+  .tracking {
+    padding: 0.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    &__qr {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        display: block;
+        max-width: 50%;
+        border-radius: 0.5rem;
+        height: auto;
+        margin: 0 auto;
+      }
+    }
+
+    &__id {
+      font-size: 16px;
+      text-align: center;
+    }
+  }
+
+  .header {
+    background-color: $header-background;
+    color: $header-color;
+    font-size: $header-font-size;
+    font-weight: $header-font-weight;
+    padding: 0.2rem;
+  }
+
+  .receiver {
     display: grid;
-    grid-template-columns: 1fr 1.3fr;
-    grid-template-rows: 1fr 1.5fr 1.25fr 2.5fr;
+    grid-template-rows: 0.5fr 3.5fr;
 
-    & > div {
-        border-bottom: $black solid $border-thickness;
-        border-right: $black solid $border-thickness;
+    &_info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      height: 100%;
+      padding: 0.2rem;
+      max-height: 109px;
 
-        &:nth-child(7),
-        &:nth-child(8) {
-            border-bottom: none;
+      &__name {
+        & > div:last-child {
+          max-height: 15px;
+          overflow: hidden;
+        }
+      }
+
+      &__address {
+        overflow: hidden;
+      }
+
+      &__note {
+        & > div:last-child {
+          max-height: calc(#{$content-font-size} * 2);
+          overflow: hidden;
+        }
+      }
+
+      & > div {
+        display: grid;
+        grid-template-columns: 1fr 3.5fr;
+
+        & > div:first-child {
+          font-size: $header-font-size;
         }
 
-        &:nth-child(2n) {
-            border-right: none;
+        & > div:last-child {
+          font-size: $content-font-size;
+          max-width: 159px;
         }
+      }
     }
+  }
 
-    .ms_logo {
-        display: flex;
-        justify-content: center;
+  .sender {
+    &_top {
+      .parcel_service_date {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
         align-items: center;
+        height: calc(100% - 20px);
 
-        img {
-            display: block;
-            width: 100%;
+        &__header,
+        &__content {
+          padding: 0.2rem;
         }
+
+        &__header {
+          font-size: $header-font-size;
+        }
+
+        &__content {
+          font-size: $content-font-size;
+        }
+      }
     }
 
-    .msgo {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: .2rem;
+    &_info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      height: 100%;
+      padding: 0.2rem;
+      overflow: hidden;
 
-        p {
-            font-size: $msgo-font-size;
+      &__name {
+        & > div:last-child {
+          max-height: $content-font-size + 3px;
+          overflow: hidden;
         }
-    }
+      }
 
-    .tracking {
-        padding: .2rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        &__qr {
+      &__address {
+        max-height: 86px;
+        overflow: hidden;
+      }
+
+      &__note {
+        & > div:last-child {
+          max-height: calc((#{$content-font-size} + 3px) * 2);
+          overflow: hidden;
+        }
+      }
+
+      & > div {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+
+        & > div:first-child {
+          font-size: $header-font-size;
+        }
+
+        & > div:last-child {
+          font-size: $content-font-size;
+          max-width: 102px;
+        }
+      }
+    }
+  }
+
+  .parcel_meta {
+    &_top {
+      &__content {
+        display: grid;
+        grid-template-columns: 1fr 1.25fr;
+        height: calc(100% - 20px);
+
+        & > div:first-child {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+
+          .parcel_amount,
+          .parcel_size {
+            border-right: 2px solid $black;
+          }
+
+          .parcel_amount {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-
-            img {
-                display: block;
-                max-width: 50%;
-                border-radius: .5rem;
-                height: auto;
-                margin: 0 auto;
-            }
-        }
-
-        &__id {
-            font-size: 16px;
-            text-align: center;
-        }
-    }
-
-    .header {
-        background-color: $header-background;
-        color: $header-color;
-        font-size: $header-font-size;
-        font-weight: $header-font-weight;
-        padding: .2rem;
-    }
-
-    .receiver {
-        display: grid;
-        grid-template-rows: .5fr 3.5fr;
-
-        &_info {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
             height: 100%;
-            padding: .2rem;
 
-            & > div {
-                display: grid;
-                grid-template-columns: 1fr 3.5fr;
-
-                & > div:first-child {
-                    font-size: $header-font-size;
-                }
-
-                & > div:last-child {
-                    font-size: $content-font-size;
-                }
+            &__header {
+              font-size: $header-font-size;
             }
-        }
-    }
 
-    .sender {
-        &_top {
-            .parcel_service_date {
-                display: grid;
-                grid-template-columns: 1fr 2fr;
-                align-items: center;
-                height: calc(100% - 20px);
-
-                &__header,
-                &__content {
-                    padding: .2rem;
-                }
-
-                &__header {
-                    font-size: $header-font-size;
-                }
-
-                &__content {
-                    font-size: $content-font-size;
-                }
-            }
-        }
-
-        &_info {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            height: 100%;
-            padding: .2rem;
-            overflow: hidden;
-            
-            & > div {
-                display: grid;
-                grid-template-columns: 1fr 2fr;
-
-                & > div:first-child {
-                    font-size: $header-font-size;
-                }
-
-                & > div:last-child {
-                    font-size: $content-font-size;
-                }
-            }
-        }
-    }
-
-    .parcel_meta {
-        &_top {
             &__content {
-                display: grid;
-                grid-template-columns: 1fr 1.25fr;
-                height: calc(100% - 20px);
-
-                & > div:first-child {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-
-                    .parcel_amount,
-                    .parcel_size {
-                        border-right: 2px solid $black;
-                    }
-
-                    .parcel_amount {
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        height: 100%;
-
-                        &__header {
-                            font-size: $header-font-size;
-                        }
-
-                        &__content {
-                            font-size: $parcel-meta-top-font-size;
-                            font-weight: bold;
-                        }
-                    }
-
-                    .parcel_size {
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        height: 100%;
-
-                        &__header {
-                            font-size: $header-font-size;
-                        }
-
-                        &__content {
-                            font-size: $parcel-meta-top-font-size;
-                            font-weight: bold;
-                        }
-                    }
-
-                }
-
-                .parcel_type {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    height: 100%;
-
-                    &__header {
-                        font-size: $header-font-size;
-                    }
-
-                    &__content {
-                        font-size: $content-font-size;
-                        font-weight: bold;
-                    }
-                }
+              font-size: $parcel-meta-top-font-size;
+              font-weight: bold;
             }
+          }
+
+          .parcel_size {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+
+            &__header {
+              font-size: $header-font-size;
+            }
+
+            &__content {
+              font-size: $parcel-meta-top-font-size;
+              font-weight: bold;
+            }
+          }
         }
-        
-        &_bottom {
-            display: grid;
-            grid-template-rows: 1fr 1fr 1.5fr;
 
-            .extra_service {
-                display: grid;
-                grid-template-columns: 1fr 1.25fr;
-                border-bottom: $border-thickness solid $black;
+        .parcel_type {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
 
-                &__temp {
-                    padding: .2rem;
-                    text-align: center;
-                    border-right: solid $border-thickness $black;
+          &__header {
+            font-size: $header-font-size;
+          }
 
-                    & > div:first-child {
-                        font-size: $extra-service-header-font-size;
-                    }
-
-                    & > div:last-child {
-                        font-size: $extra-service-content-font-size;
-                        font-weight: bold;
-                    }
-                }
-
-                &__cod {
-                    padding: .2rem;
-                    text-align: center;
-
-                    & > div:first-child {
-                        font-size: $extra-service-header-font-size;
-                    }
-
-                    & > div:last-child {
-                        font-size: $extra-service-content-font-size;
-                        font-weight: bold;
-                    }
-                }
-            }
-
-            .parcel_delivery {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                padding: .2rem;
-                // update later when round and hub is ready
-                // border-bottom: $border-thickness $black solid;
-                grid-row: 2 / span 2;
-
-                &__pickup {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-
-                    & > div:first-child,
-                    & > div:last-child {
-                        font-size: $extra-service-header-font-size;
-                    }
-                }
-
-                &__dropoff {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-
-                    & > div:first-child,
-                    & > div:last-child {
-                        font-size: $extra-service-header-font-size;
-                    }
-                }
-            }
-
-            .parcel_round {
-                display: grid;
-                grid-template-columns: .5fr 1.75fr;
-                display: none;
-
-                & > div:first-child {
-                    border-right: $black solid $border-thickness;
-                }
-
-                & > div:first-child,
-                & > div:last-child {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    font-size: $parcel-round-font-size;
-                    font-weight: bold;
-                }
-            }
+          &__content {
+            font-size: $content-font-size;
+            font-weight: bold;
+          }
         }
+      }
     }
+
+    &_bottom {
+      display: grid;
+      grid-template-rows: 1fr 1fr 1.5fr;
+
+      .extra_service {
+        display: grid;
+        grid-template-columns: 1fr 1.25fr;
+        border-bottom: $border-thickness solid $black;
+
+        &__temp {
+          padding: 0.2rem;
+          text-align: center;
+          border-right: solid $border-thickness $black;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          & > div:first-child {
+            font-size: $extra-service-header-font-size;
+          }
+
+          & > div:last-child {
+            font-size: $extra-service-temp-font-size;
+            font-weight: bold;
+          }
+        }
+
+        &__cod {
+          padding: 0.2rem;
+          text-align: center;
+
+          & > div:first-child {
+            font-size: $extra-service-header-font-size;
+          }
+
+          & > div:last-child {
+            font-size: $extra-service-content-font-size;
+            font-weight: bold;
+          }
+        }
+      }
+
+      .parcel_delivery {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0.2rem;
+        // update later when round and hub is ready
+        border-bottom: $border-thickness $black solid;
+
+        &__pickup {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+
+          & > div:first-child,
+          & > div:last-child {
+            font-size: $extra-service-header-font-size;
+          }
+        }
+
+        &__dropoff {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+
+          & > div:first-child,
+          & > div:last-child {
+            font-size: $extra-service-header-font-size;
+          }
+        }
+      }
+
+      .parcel_round {
+        display: grid;
+        grid-template-columns: 0.5fr 1.75fr;
+
+        & > div:first-child {
+          border-right: $black solid $border-thickness;
+        }
+
+        & > div {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: $parcel-round-font-size;
+          font-weight: bold;
+        }
+
+        .hub_transfer {
+          font-size: $hub-transfer-font-size;
+          text-align: center;
+        }
+      }
+    }
+  }
 }
 
+@media print {
+  .buttonDiv,
+  br {
+    display: none;
+  }
 
+  .header {
+    -webkit-print-color-adjust: exact;
+  }
 
-@media print {    
-    .buttonDiv,
-    br {
-        display: none;
-    }
-
-    .header {
-        -webkit-print-color-adjust: exact;
-    }
-
-    @page {
-        margin: 0;
-        padding: 0;
-        size: 10cm 10cm;
-    }
+  @page {
+    margin: 0;
+    padding: 0;
+    size: 10cm 10cm;
+  }
 }

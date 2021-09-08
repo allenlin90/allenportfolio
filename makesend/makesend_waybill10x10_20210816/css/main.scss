@@ -79,14 +79,15 @@ body {
 
   .msgo {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     padding: 0.2rem;
+    overflow: hidden;
 
     p {
       font-size: $msgo-font-size;
-      white-space: nowrap;
       overflow: hidden;
+      max-height: calc((#{$msgo-font-size} + 3px) * 2);
     }
   }
 
@@ -133,6 +134,25 @@ body {
       justify-content: space-around;
       height: 100%;
       padding: 0.2rem;
+      max-height: 109px;
+
+      &__name {
+        & > div:last-child {
+          max-height: 15px;
+          overflow: hidden;
+        }
+      }
+
+      &__address {
+        overflow: hidden;
+      }
+
+      &__note {
+        & > div:last-child {
+          max-height: calc(#{$content-font-size} * 2);
+          overflow: hidden;
+        }
+      }
 
       & > div {
         display: grid;
@@ -144,6 +164,7 @@ body {
 
         & > div:last-child {
           font-size: $content-font-size;
+          max-width: 159px;
         }
       }
     }
@@ -180,6 +201,25 @@ body {
       padding: 0.2rem;
       overflow: hidden;
 
+      &__name {
+        & > div:last-child {
+          max-height: $content-font-size + 3px;
+          overflow: hidden;
+        }
+      }
+
+      &__address {
+        max-height: 86px;
+        overflow: hidden;
+      }
+
+      &__note {
+        & > div:last-child {
+          max-height: calc((#{$content-font-size} + 3px) * 2);
+          overflow: hidden;
+        }
+      }
+
       & > div {
         display: grid;
         grid-template-columns: 1fr 2fr;
@@ -190,6 +230,7 @@ body {
 
         & > div:last-child {
           font-size: $content-font-size;
+          max-width: 102px;
         }
       }
     }

@@ -76,19 +76,20 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   padding: 0.2rem;
+  overflow: hidden;
 }
 
 .waybill .msgo p {
   font-size: 8px;
-  white-space: nowrap;
   overflow: hidden;
+  max-height: calc((8px + 3px) * 2);
 }
 
 .waybill .tracking {
@@ -156,6 +157,21 @@ body {
       justify-content: space-around;
   height: 100%;
   padding: 0.2rem;
+  max-height: 109px;
+}
+
+.waybill .receiver_info__name > div:last-child {
+  max-height: 15px;
+  overflow: hidden;
+}
+
+.waybill .receiver_info__address {
+  overflow: hidden;
+}
+
+.waybill .receiver_info__note > div:last-child {
+  max-height: calc(12px * 2);
+  overflow: hidden;
 }
 
 .waybill .receiver_info > div {
@@ -171,6 +187,7 @@ body {
 
 .waybill .receiver_info > div > div:last-child {
   font-size: 12px;
+  max-width: 159px;
 }
 
 .waybill .sender_top .parcel_service_date {
@@ -211,6 +228,21 @@ body {
   overflow: hidden;
 }
 
+.waybill .sender_info__name > div:last-child {
+  max-height: 15px;
+  overflow: hidden;
+}
+
+.waybill .sender_info__address {
+  max-height: 86px;
+  overflow: hidden;
+}
+
+.waybill .sender_info__note > div:last-child {
+  max-height: calc((12px + 3px) * 2);
+  overflow: hidden;
+}
+
 .waybill .sender_info > div {
   display: -ms-grid;
   display: grid;
@@ -224,6 +256,7 @@ body {
 
 .waybill .sender_info > div > div:last-child {
   font-size: 12px;
+  max-width: 102px;
 }
 
 .waybill .parcel_meta_top__content {

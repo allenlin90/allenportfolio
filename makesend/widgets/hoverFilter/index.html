@@ -10,23 +10,38 @@
       integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="./css/main.css" />
     <title>Hover Filter</title>
   </head>
   <body class="d-flex flex-column justify-content-between">
-    <nav class="navbar navbar-light bg-primary text-white">
+    <nav class="navbar navbar-light bg-warning text-white">
       <a class="navbar-brand" href="#">HOVER FILTER</a>
     </nav>
     <div class="container">
       <div class="row align-self-start">
         <div class="col-6">
-          <button class="d-block btn btn-primary">Filter</button>
+          <button
+            type="button"
+            id="sender_filter_btn"
+            class="btn btn-warning"
+            data-toggle="popover"
+            data-placement="bottom"
+          >
+            Filter
+          </button>
         </div>
       </div>
     </div>
-    <footer class="page-footer font-small bg-primary text-white">
+    <footer class="page-footer font-small bg-warning">
       <div class="footer-copyright text-center py-3">
-        <a href="#">© 2021 Copyright</a>
+        <a class="text-white" href="#">© 2021 Copyright</a>
       </div>
     </footer>
     <script

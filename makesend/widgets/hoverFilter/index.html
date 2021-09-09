@@ -26,6 +26,16 @@
     </nav>
     <div class="container">
       <div class="row align-self-start">
+        <div class="col-12">
+          <p>Number to sort:</p>
+          <p>[1, 2, 3, 4, 5]</p>
+        </div>
+        <div class="col-12">
+          <p>Names to sort:</p>
+          <p>['john doe', 'jane smith', 'foo bar']</p>
+        </div>
+      </div>
+      <div class="row align-self-start">
         <div class="col-6">
           <button
             type="button"
@@ -34,9 +44,40 @@
             data-toggle="popover"
             data-placement="bottom"
           >
-            Filter
+            Sender Filter
           </button>
         </div>
+        <div class="col-6">
+          <button
+            type="button"
+            id="size_filter_btn"
+            class="btn btn-warning"
+            data-toggle="popover"
+            data-placement="bottom"
+          >
+            Size Filter
+          </button>
+        </div>
+      </div>
+      <br />
+      <div class="row align-self-start">
+        <div class="col-6">
+          <button type="button" class="btn btn-warning" id="check_names">
+            Check Names
+          </button>
+        </div>
+        <div class="col-6">
+          <button type="button" class="btn btn-warning" id="check_nums">
+            Check Numbers
+          </button>
+        </div>
+      </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <div class="row align-self-start">
+        <div class="col-12 text-center" id="result">Result</div>
       </div>
     </div>
     <footer class="page-footer font-small bg-warning">

@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/main.css" />
+    <title>MSGO Dropoff</title>
+  </head>
+  <body class="d-flex flex-column justify-content-between">
+    <nav
+      class="navbar navbar-light text-center justify-content-center"
+      style="background-color: #ef8b16"
+    >
+      <h1 class="text-light font-weight-bold">Dropoff Service</h1>
+    </nav>
+    <div class="container-fluid flex-grow-1 my-3">
+      <div class="container-fluid" id="parcel_list">
+        <div class="row py-3">
+          <div class="col text-center">
+            <h3>รายการพัสดุฝากส่ง</h3>
+          </div>
+        </div>
+        <div class="row bg-white">
+          <div class="col">
+            <div class="row mt-3 mx-1" style="overflow-x: auto">
+              <div class="col px-0">
+                <table class="table table-bordered bg-light">
+                  <thead class="thead-light">
+                    <tr>
+                      <th><input type="checkbox" id="" /></th>
+                      <th data-header="เลขที่ออเดอร์">เลขที่ออเดอร์</th>
+                      <th data-header="ผู้รับ">ผู้รับ</th>
+                      <th data-header="เบอร์ผู้รับ">เบอร์ผู้รับ</th>
+                      <th data-header="ที่อยู่ปลายทาง">ที่อยู่ปลายทาง</th>
+                      <th data-header="ขนาด">ขนาด</th>
+                      <th data-header="ประเภท">ประเภท</th>
+                      <th data-header="บริการเสริม">บริการเสริม</th>
+                      <th data-header="สถานะ">สถานะ</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><input type="checkbox" id="" /></td>
+                      <td data-trackingId="EX2109040804601">EX2109040804601</td>
+                      <td data-receiverName="ร้านกนกพรรณี">ร้านกนกพรรณี</td>
+                      <td data-receiverPhone="0619962972">0619962972</td>
+                      <td
+                        data-address="38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก คลองสามวา กรุงเทพ 10510"
+                      >
+                        38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก
+                        คลองสามวา กรุงเทพ 10510
+                      </td>
+                      <td data-parcelSize="s60">S60</td>
+                      <td data-serviceType="อาหาร">อาหาร</td>
+                      <td data-addon="cod, temp">COD / TEMP</td>
+                      <td class="text-danger" data-status="รอรับพัสดุ">
+                        รอรับพัสดุ
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" id="" /></td>
+                      <td data-trackingId="EX2109040804601">EX2109040804601</td>
+                      <td data-receiverName="ร้านกนกพรรณี">ร้านกนกพรรณี</td>
+                      <td data-receiverPhone="0619962972">0619962972</td>
+                      <td
+                        data-address="38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก คลองสามวา กรุงเทพ 10510"
+                      >
+                        38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก
+                        คลองสามวา กรุงเทพ 10510
+                      </td>
+                      <td data-parcelSize="s60">S60</td>
+                      <td data-serviceType="อาหาร">อาหาร</td>
+                      <td data-addon="cod, temp">COD / TEMP</td>
+                      <td class="text-danger" data-status="รอรับพัสดุ">
+                        รอรับพัสดุ
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" id="" /></td>
+                      <td data-trackingId="EX2109040804601">EX2109040804601</td>
+                      <td data-receiverName="ร้านกนกพรรณี">ร้านกนกพรรณี</td>
+                      <td data-receiverPhone="0619962972">0619962972</td>
+                      <td
+                        data-address="38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก คลองสามวา กรุงเทพ 10510"
+                      >
+                        38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก
+                        คลองสามวา กรุงเทพ 10510
+                      </td>
+                      <td data-parcelSize="s60">S60</td>
+                      <td data-serviceType="อาหาร">อาหาร</td>
+                      <td data-addon="cod, temp">COD / TEMP</td>
+                      <td class="text-danger" data-status="รอรับพัสดุ">
+                        รอรับพัสดุ
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" id="" /></td>
+                      <td data-trackingId="EX2109040804601">EX2109040804601</td>
+                      <td data-receiverName="ร้านกนกพรรณี">ร้านกนกพรรณี</td>
+                      <td data-receiverPhone="0619962972">0619962972</td>
+                      <td
+                        data-address="38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก คลองสามวา กรุงเทพ 10510"
+                      >
+                        38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก
+                        คลองสามวา กรุงเทพ 10510
+                      </td>
+                      <td data-parcelSize="s60">S60</td>
+                      <td data-serviceType="อาหาร">อาหาร</td>
+                      <td data-addon="cod, temp">COD / TEMP</td>
+                      <td class="text-danger" data-status="รอรับพัสดุ">
+                        รอรับพัสดุ
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" id="" /></td>
+                      <td data-trackingId="EX2109040804601">EX2109040804601</td>
+                      <td data-receiverName="ร้านกนกพรรณี">ร้านกนกพรรณี</td>
+                      <td data-receiverPhone="0619962972">0619962972</td>
+                      <td
+                        data-address="38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก คลองสามวา กรุงเทพ 10510"
+                      >
+                        38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก
+                        คลองสามวา กรุงเทพ 10510
+                      </td>
+                      <td data-parcelSize="s60">S60</td>
+                      <td data-serviceType="อาหาร">อาหาร</td>
+                      <td data-addon="cod, temp">COD / TEMP</td>
+                      <td class="text-danger" data-status="รอรับพัสดุ">
+                        รอรับพัสดุ
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" id="" /></td>
+                      <td data-trackingId="EX2109040804601">EX2109040804601</td>
+                      <td data-receiverName="ร้านกนกพรรณี">ร้านกนกพรรณี</td>
+                      <td data-receiverPhone="0619962972">0619962972</td>
+                      <td
+                        data-address="38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก คลองสามวา กรุงเทพ 10510"
+                      >
+                        38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก
+                        คลองสามวา กรุงเทพ 10510
+                      </td>
+                      <td data-parcelSize="s60">S60</td>
+                      <td data-serviceType="อาหาร">อาหาร</td>
+                      <td data-addon="cod, temp">COD / TEMP</td>
+                      <td class="text-danger" data-status="รอรับพัสดุ">
+                        รอรับพัสดุ
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" id="" /></td>
+                      <td data-trackingId="EX2109040804601">EX2109040804601</td>
+                      <td data-receiverName="ร้านกนกพรรณี">ร้านกนกพรรณี</td>
+                      <td data-receiverPhone="0619962972">0619962972</td>
+                      <td
+                        data-address="38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก คลองสามวา กรุงเทพ 10510"
+                      >
+                        38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก
+                        คลองสามวา กรุงเทพ 10510
+                      </td>
+                      <td data-parcelSize="s60">S60</td>
+                      <td data-serviceType="อาหาร">อาหาร</td>
+                      <td data-addon="cod, temp">COD / TEMP</td>
+                      <td class="text-danger" data-status="รอรับพัสดุ">
+                        รอรับพัสดุ
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" id="" /></td>
+                      <td data-trackingId="EX2109040804601">EX2109040804601</td>
+                      <td data-receiverName="ร้านกนกพรรณี">ร้านกนกพรรณี</td>
+                      <td data-receiverPhone="0619962972">0619962972</td>
+                      <td
+                        data-address="38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก คลองสามวา กรุงเทพ 10510"
+                      >
+                        38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก
+                        คลองสามวา กรุงเทพ 10510
+                      </td>
+                      <td data-parcelSize="s60">S60</td>
+                      <td data-serviceType="อาหาร">อาหาร</td>
+                      <td data-addon="cod, temp">COD / TEMP</td>
+                      <td class="text-danger" data-status="รอรับพัสดุ">
+                        รอรับพัสดุ
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" id="" /></td>
+                      <td data-trackingId="EX2109040804601">EX2109040804601</td>
+                      <td data-receiverName="ร้านกนกพรรณี">ร้านกนกพรรณี</td>
+                      <td data-receiverPhone="0619962972">0619962972</td>
+                      <td
+                        data-address="38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก คลองสามวา กรุงเทพ 10510"
+                      >
+                        38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก
+                        คลองสามวา กรุงเทพ 10510
+                      </td>
+                      <td data-parcelSize="s60">S60</td>
+                      <td data-serviceType="อาหาร">อาหาร</td>
+                      <td data-addon="cod, temp">COD / TEMP</td>
+                      <td class="text-danger" data-status="รอรับพัสดุ">
+                        รอรับพัสดุ
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" id="" /></td>
+                      <td data-trackingId="EX2109040804601">EX2109040804601</td>
+                      <td data-receiverName="ร้านกนกพรรณี">ร้านกนกพรรณี</td>
+                      <td data-receiverPhone="0619962972">0619962972</td>
+                      <td
+                        data-address="38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก คลองสามวา กรุงเทพ 10510"
+                      >
+                        38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก
+                        คลองสามวา กรุงเทพ 10510
+                      </td>
+                      <td data-parcelSize="s60">S60</td>
+                      <td data-serviceType="อาหาร">อาหาร</td>
+                      <td data-addon="cod, temp">COD / TEMP</td>
+                      <td class="text-danger" data-status="รอรับพัสดุ">
+                        รอรับพัสดุ
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">3</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">4</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">5</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col text-center">
+                <div>โปรดตรวจสอบความถูกต้องอีกครั้งก่อนการยืนยัน</div>
+                <div>
+                  ทางบริษัทจะตรวจสอบและดำเนินการเข้ารับพัสดุฝากส่ง
+                  ตามวันและเวลาที่ได้รับการยืนยันจากทางสาขาผู้รับฝากพัสดุ
+                </div>
+              </div>
+            </div>
+            <div class="row my-3">
+              <div class="col col-6">
+                <button
+                  class="d-block btn btn-primary ml-auto mr-3"
+                  type="button"
+                >
+                  ยืนยันการทำรายการ
+                </button>
+              </div>
+              <div class="col col-6">
+                <button class="d-block btn btn-warning mr-auto" type="button">
+                  ยืนยันการทำรายการและพิมพ์ Waybill
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="order_list">
+        <div class="row py-3">
+          <div class="col col-4">
+            <h4 class="font-weight-bold">รายการพัสดุฝากส่ง</h4>
+          </div>
+          <div class="col col-8 d-flex justify-content-end">
+            <div
+              class="mr-3 d-flex badge badge-warning"
+              style="background-color: #ef8b16"
+            >
+              <div
+                class="mr-2 text-wrap text-light text-left"
+                style="width: 5rem"
+              >
+                รายการฝากส่ง วันนี้
+              </div>
+              <div
+                class="text-light align-self-center"
+                style="font-size: 1.2rem"
+              >
+                20 รายการ
+              </div>
+            </div>
+            <div
+              class="d-flex badge badge-warning"
+              style="background-color: #ef8b16"
+            >
+              <div
+                class="mr-2 text-wrap text-light text-left"
+                style="width: 5rem"
+              >
+                มาส่งแล้ว
+              </div>
+              <div
+                class="text-light align-self-center"
+                style="font-size: 1.2rem"
+              >
+                8 รายการ
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row bg-white">
+          <div class="col">
+            <div class="row mb-2 p-2 align-items-center">
+              <div class="col col-3">
+                <h5>หมายเลขติดตาม</h5>
+              </div>
+              <div class="col col-7">
+                <input
+                  class="d-block w-100"
+                  type="text"
+                  placeholder="MS1234567890"
+                />
+              </div>
+              <div class="col col-2 justify-self-end">
+                <button class="d-block w-100 btn btn-warning">ค้นหา</button>
+              </div>
+            </div>
+            <div class="row mt-3 mx-1" style="overflow-x: auto">
+              <div class="col px-0">
+                <table class="table table-bordered bg-light">
+                  <thead class="thead-light">
+                    <tr>
+                      <th data-header="count">#</th>
+                      <th data-header="order_id">เลขที่ออเดอร์</th>
+                      <th data-header="sender_name">ผู้ส่ง</th>
+                      <th data-header="sender_phone">เบอร์ผู้ส่ง</th>
+                      <th data-header="sender_address">ที่อยู่ผู้ส่ง</th>
+                      <th data-header="count_parcels">จำนวน</th>
+                      <th data-header="due_time">รอบการเข้ารับ</th>
+                      <th data-header="status">สถานะ</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th data-count="1">1</th>
+                      <th data-order_id="MS2109101117513">MS2109101117513</th>
+                      <th
+                        data-sender_name="บริษัท ตี๋เล็กฟู้ดส์ 
+                      จำกัด"
+                      >
+                        บริษัท ตี๋เล็กฟู้ดส์ จำกัด
+                      </th>
+                      <th data-sender_phone="0619962972">0619962972</th>
+                      <th
+                        data-sender_address="38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก คลองสามวา กรุงเทพ 10510"
+                      >
+                        38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก
+                        คลองสามวา กรุงเทพ 10510
+                      </th>
+                      <th data-count_parcels="2">2</th>
+                      <th data-due_time="11.00">11.00</th>
+                      <th data-status="รอรับพัสดุ" class="text-danger">
+                        รอรับพัสดุ
+                      </th>
+                    </tr>
+                    <tr>
+                      <th data-count="2">2</th>
+                      <th data-order_id="MS2109101117513">MS2109101117513</th>
+                      <th
+                        data-sender_name="บริษัท ตี๋เล็กฟู้ดส์ 
+                      จำกัด"
+                      >
+                        บริษัท ตี๋เล็กฟู้ดส์ จำกัด
+                      </th>
+                      <th data-sender_phone="0619962972">0619962972</th>
+                      <th
+                        data-sender_address="38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก คลองสามวา กรุงเทพ 10510"
+                      >
+                        38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก
+                        คลองสามวา กรุงเทพ 10510
+                      </th>
+                      <th data-count_parcels="2">4</th>
+                      <th data-due_time="11.00">11.00</th>
+                      <th data-status="พร้อมนำส่ง" class="text-success">
+                        พร้อมนำส่ง
+                      </th>
+                    </tr>
+                    <tr>
+                      <th data-count="3">3</th>
+                      <th data-order_id="MS2109101117513">MS2109101117513</th>
+                      <th
+                        data-sender_name="บริษัท ตี๋เล็กฟู้ดส์ 
+                      จำกัด"
+                      >
+                        บริษัท ตี๋เล็กฟู้ดส์ จำกัด
+                      </th>
+                      <th data-sender_phone="0619962972">0619962972</th>
+                      <th
+                        data-sender_address="38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก คลองสามวา กรุงเทพ 10510"
+                      >
+                        38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก
+                        คลองสามวา กรุงเทพ 10510
+                      </th>
+                      <th data-count_parcels="2">4</th>
+                      <th data-due_time="11.00">11.00</th>
+                      <th data-status="รับบางส่วน" class="text-warning">
+                        รับบางส่วน
+                      </th>
+                    </tr>
+                    <tr>
+                      <th data-count="4">4</th>
+                      <th data-order_id="MS2109101117513">MS2109101117513</th>
+                      <th
+                        data-sender_name="บริษัท ตี๋เล็กฟู้ดส์ 
+                      จำกัด"
+                      >
+                        บริษัท ตี๋เล็กฟู้ดส์ จำกัด
+                      </th>
+                      <th data-sender_phone="0619962972">0619962972</th>
+                      <th
+                        data-sender_address="38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก คลองสามวา กรุงเทพ 10510"
+                      >
+                        38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก
+                        คลองสามวา กรุงเทพ 10510
+                      </th>
+                      <th data-count_parcels="2">2</th>
+                      <th data-due_time="11.00">11.00</th>
+                      <th data-status="รอรับพัสดุ" class="text-danger">
+                        รอรับพัสดุ
+                      </th>
+                    </tr>
+                    <tr>
+                      <th data-count="5">5</th>
+                      <th data-order_id="MS2109101117513">MS2109101117513</th>
+                      <th
+                        data-sender_name="บริษัท ตี๋เล็กฟู้ดส์ 
+                      จำกัด"
+                      >
+                        บริษัท ตี๋เล็กฟู้ดส์ จำกัด
+                      </th>
+                      <th data-sender_phone="0619962972">0619962972</th>
+                      <th
+                        data-sender_address="38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก คลองสามวา กรุงเทพ 10510"
+                      >
+                        38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก
+                        คลองสามวา กรุงเทพ 10510
+                      </th>
+                      <th data-count_parcels="2">4</th>
+                      <th data-due_time="11.00">11.00</th>
+                      <th data-status="พร้อมนำส่ง" class="text-success">
+                        พร้อมนำส่ง
+                      </th>
+                    </tr>
+                    <tr>
+                      <th data-count="6">6</th>
+                      <th data-order_id="MS2109101117513">MS2109101117513</th>
+                      <th
+                        data-sender_name="บริษัท ตี๋เล็กฟู้ดส์ 
+                      จำกัด"
+                      >
+                        บริษัท ตี๋เล็กฟู้ดส์ จำกัด
+                      </th>
+                      <th data-sender_phone="0619962972">0619962972</th>
+                      <th
+                        data-sender_address="38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก คลองสามวา กรุงเทพ 10510"
+                      >
+                        38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก
+                        คลองสามวา กรุงเทพ 10510
+                      </th>
+                      <th data-count_parcels="2">4</th>
+                      <th data-due_time="11.00">11.00</th>
+                      <th data-status="รับบางส่วน" class="text-warning">
+                        รับบางส่วน
+                      </th>
+                    </tr>
+                    <tr>
+                      <th data-count="7">7</th>
+                      <th data-order_id="MS2109101117513">MS2109101117513</th>
+                      <th
+                        data-sender_name="บริษัท ตี๋เล็กฟู้ดส์ 
+                      จำกัด"
+                      >
+                        บริษัท ตี๋เล็กฟู้ดส์ จำกัด
+                      </th>
+                      <th data-sender_phone="0619962972">0619962972</th>
+                      <th
+                        data-sender_address="38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก คลองสามวา กรุงเทพ 10510"
+                      >
+                        38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก
+                        คลองสามวา กรุงเทพ 10510
+                      </th>
+                      <th data-count_parcels="2">2</th>
+                      <th data-due_time="11.00">11.00</th>
+                      <th data-status="รอรับพัสดุ" class="text-danger">
+                        รอรับพัสดุ
+                      </th>
+                    </tr>
+                    <tr>
+                      <th data-count="8">8</th>
+                      <th data-order_id="MS2109101117513">MS2109101117513</th>
+                      <th
+                        data-sender_name="บริษัท ตี๋เล็กฟู้ดส์ 
+                      จำกัด"
+                      >
+                        บริษัท ตี๋เล็กฟู้ดส์ จำกัด
+                      </th>
+                      <th data-sender_phone="0619962972">0619962972</th>
+                      <th
+                        data-sender_address="38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก คลองสามวา กรุงเทพ 10510"
+                      >
+                        38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก
+                        คลองสามวา กรุงเทพ 10510
+                      </th>
+                      <th data-count_parcels="2">4</th>
+                      <th data-due_time="11.00">11.00</th>
+                      <th data-status="พร้อมนำส่ง" class="text-success">
+                        พร้อมนำส่ง
+                      </th>
+                    </tr>
+                    <tr>
+                      <th data-count="9">9</th>
+                      <th data-order_id="MS2109101117513">MS2109101117513</th>
+                      <th
+                        data-sender_name="บริษัท ตี๋เล็กฟู้ดส์ 
+                      จำกัด"
+                      >
+                        บริษัท ตี๋เล็กฟู้ดส์ จำกัด
+                      </th>
+                      <th data-sender_phone="0619962972">0619962972</th>
+                      <th
+                        data-sender_address="38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก คลองสามวา กรุงเทพ 10510"
+                      >
+                        38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก
+                        คลองสามวา กรุงเทพ 10510
+                      </th>
+                      <th data-count_parcels="2">4</th>
+                      <th data-due_time="11.00">11.00</th>
+                      <th data-status="รับบางส่วน" class="text-warning">
+                        รับบางส่วน
+                      </th>
+                    </tr>
+                    <tr>
+                      <th data-count="10">10</th>
+                      <th data-order_id="MS2109101117513">MS2109101117513</th>
+                      <th
+                        data-sender_name="บริษัท ตี๋เล็กฟู้ดส์ 
+                      จำกัด"
+                      >
+                        บริษัท ตี๋เล็กฟู้ดส์ จำกัด
+                      </th>
+                      <th data-sender_phone="0619962972">0619962972</th>
+                      <th
+                        data-sender_address="38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก คลองสามวา กรุงเทพ 10510"
+                      >
+                        38/292 มบ.เคซี-รามอินทรา 5 แขวงคลองสามวาตะวันตก
+                        คลองสามวา กรุงเทพ 10510
+                      </th>
+                      <th data-count_parcels="2">4</th>
+                      <th data-due_time="11.00">11.00</th>
+                      <th data-status="รับบางส่วน" class="text-warning">
+                        รับบางส่วน
+                      </th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">3</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">4</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">5</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="page-footer font-small" style="background-color: #ef8b16">
+      <div class="footer-copyright text-center py-3">
+        <h5 class="text-light">© 2021 Copyright</h5>
+      </div>
+    </footer>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+      integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+      crossorigin="anonymous"
+    ></script>
+    <script src="app.js"></script>
+  </body>
+</html>

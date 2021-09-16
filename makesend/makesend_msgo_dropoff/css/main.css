@@ -1,0 +1,27 @@
+html,
+body {
+  height: 100%;
+  background-color: #f2f5f7;
+}
+
+.container {
+  height: 100%;
+  margin: 1rem 0;
+}
+
+.table th {
+  text-align: center;
+}
+
+.table th,
+.table td {
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.table tbody tr:hover {
+  background-color: grey;
+  color: #fff;
+  cursor: pointer;
+}
+/*# sourceMappingURL=main.css.map */

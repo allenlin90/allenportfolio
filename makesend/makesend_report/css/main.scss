@@ -1,0 +1,25 @@
+html,
+body {
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+  margin: 1rem 0;
+}
+
+.modal {
+  table {
+    tr {
+      th,
+      td {
+        white-space: nowrap;
+      }
+    }
+    tr:hover {
+      background-color: grey;
+      color: #fff;
+      transition: all 0.2s ease-in;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+html,
+body {
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+  margin: 1rem 0;
+}
+
+.modal table tr th,
+.modal table tr td {
+  white-space: nowrap;
+}
+
+.modal table tr:hover {
+  background-color: grey;
+  color: #fff;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+/*# sourceMappingURL=main.css.map */

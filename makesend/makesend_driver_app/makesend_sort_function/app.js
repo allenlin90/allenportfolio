@@ -91,7 +91,7 @@ function renderResult(data) {
     // const position = data.selected[10].trim();
     const optionTags = sizes.reduce((tags, item, index) => {
       if (item.toLowerCase().trim() === size.toLowerCase().trim()) {
-        tags += `<option selected value="${item}">${item}</option>`;
+        tags += `<option value="${item}">${item}</option>`;
       } else {
         tags += `<option value="${item}">${item}</option>`;
       }
@@ -104,7 +104,8 @@ function renderResult(data) {
             <div id="size_selector">
                 <div>
                     <label for="size_select">Size:
-                        <select id="size_select"> 
+                        <select id="size_select">
+                            <option disabled value="" selected>-</option>
                             ${optionTags}
                         </select>
                     </label>

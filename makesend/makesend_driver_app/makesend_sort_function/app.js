@@ -133,13 +133,14 @@ function renderResult(data) {
             <!-- <button class="btn btn-warning">Transfer</button> -->
         </div>
         `;
-    document.querySelector('#size_selector').onchange = updateSize(
-      trackingId,
-      size,
-    );
+    const sizeSelector = document.querySelector('#size_selector');
+    sizeSelector.onchange = updateSize(trackingId, size);
     document.querySelector('#reveal_rack_data').onclick = function (event) {
-      event.preventDefault;
-      document.querySelector('#rack_data').style.visibility = 'visible';
+      if (sizeSelector.querySelector('select').value){
+        document.querySelector('#rack_data').style.visibility = 'visible';
+      } else {
+        alert('please update the parcel size!');
+      }      
     };
     // confirmTransfer(data);
   }

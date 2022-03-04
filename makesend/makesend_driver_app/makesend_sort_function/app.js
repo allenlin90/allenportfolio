@@ -56,11 +56,11 @@ function createOptions(state) {
       }${String.fromCharCode(8218)} ${
         parcel[1].receiver_phone
       }${String.fromCharCode(8218)} ${parcel[1].car_plate}${String.fromCharCode(
-        8218,
+        8218
       )} ${parcel[1].assigned_driver}${String.fromCharCode(8218)} ${
         shipments[parcel[0]]['dropAddress']
       }${String.fromCharCode(8218)} ${parcel[1].size}${String.fromCharCode(
-        8218,
+        8218
       )} ${parcel[1].temp}${String.fromCharCode(8218)} ${
         parcel[1].rack
       }${String.fromCharCode(8218)} ${parcel[1].seq}'></option>
@@ -127,21 +127,27 @@ function renderResult(data) {
       temp ? 'Yes' : 'No'
     }</p>
             <p>Address: <a href="https://www.google.com/maps/search/?q=${encodeURI(
-              address,
+              address
             )}" target="_blank">${address}</a></p>
             <p>Tracking ID: <a href="https://app.makesend.asia/tracking?t=${trackingId}" target="_blank">${trackingId}</a></p>
             <!-- <button class="btn btn-warning">Transfer</button> -->
         </div>
         `;
-    const sizeSelector = document.querySelector('#size_selector');
-    sizeSelector.onchange = updateSize(trackingId, size);
-    document.querySelector('#reveal_rack_data').onclick = function (event) {
-      if (sizeSelector.querySelector('select').value) {
-        document.querySelector('#rack_data').style.visibility = 'visible';
-      } else {
-        alert('please update the parcel size!');
-      }
-    };
+    // show rack data directly without selecting size
+    document.querySelector('#rack_data').style.visibility = 'visible';
+    document.querySelector('#size_selector').style.display = 'none';
+    // show rack data directly when a parcel is selected
+    // const sizeSelector = document.querySelector('#size_selector');
+    // sizeSelector.onchange = updateSize(trackingId, size);
+    // document.querySelector('#reveal_rack_data').onclick = function (event) {
+    //   if (sizeSelector.querySelector('select').value) {
+    //     document.querySelector('#rack_data').style.visibility = 'visible';
+    //   } else {
+    //     alert('please update the parcel size!');
+    //   }
+    // };
+
+    // legacy
     // confirmTransfer(data);
   }
 }
@@ -312,7 +318,7 @@ function copyAllErrorIds(state = null) {
     return async function (event) {
       console.log(state.errorIds);
       await navigator.clipboard.writeText(
-        state.errorIds.join(String.fromCharCode(10)),
+        state.errorIds.join(String.fromCharCode(10))
       );
     };
   }
@@ -370,7 +376,7 @@ function updateSize(shipmentId = '') {
       };
       const res = await fetch(
         'https://apiold.makesend.asia/api/google/makesend/shipment/changeSize',
-        options,
+        options
       )
         .then((res) => res.json())
         .then((data) => data)
